@@ -9,9 +9,11 @@ function App() {
       <Container
         display="flex"
         justifyContent="center"
-        minW="container.xl"
-        py={"100px"}
-        px={"100px"}
+        flexDirection="column"
+        maxW="container.2xl"
+        py={"50px"}
+        px={"50px"}
+        gap={12}
       >
         <GameRoom />
       </Container>
