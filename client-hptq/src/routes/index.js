@@ -6,7 +6,7 @@ import { GameRoom } from "../components";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/start-game" element={<GameRoom />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
     </Routes>
