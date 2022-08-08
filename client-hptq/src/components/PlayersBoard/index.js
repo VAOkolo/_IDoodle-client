@@ -42,7 +42,7 @@ const PlayersBoard = () => {
     setSortedAvailablePlayers(sortByPosition(availablePlayers));
   }, []);
 
-  console.log("positions for uuuu", sortByPosition(availablePlayers));
+
   return (
     <>
       <Text as="h3" textAlign="start" m="3">
