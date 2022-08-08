@@ -43,10 +43,12 @@ const Players = () => {
   console.log("positions for uuuu", sortByPosition(availablePlayers));
   return (
     <>
-      <Text as="h3">Connected Players</Text>
+      <Text as="h3" textAlign="start" m="3" mb="6">
+        Connected Players
+      </Text>
       <TableContainer w="100%">
-        <Table variant="simple" colorScheme="teal">
-          <Thead>
+        <Table variant="simple" colorScheme="gray">
+          <Thead bg="gray" color="white">
             <Tr>
               <Th>Position</Th>
               <Th>Name</Th>
@@ -57,7 +59,7 @@ const Players = () => {
             {availablePlayers &&
               availablePlayers.map((user, i) => (
                 <Tr>
-                  <Td># {i+1}</Td>
+                  <Td># {i + 1}</Td>
                   <Td>
                     <Wrap p="1">
                       <WrapItem>

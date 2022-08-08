@@ -5,9 +5,9 @@ const GameRoom = () => {
   return (
     <>
       <Grid
-        templateColumns="repeat(4, 1fr)"
+        templateColumns="repeat(6, 1fr)"
         templateRows="repeat(1, 1fr)"
-        gap={"15%"}
+        // gap={"15%"}
         //   alignItems="center"
         // bg="yellow"
         textAlign="center"
@@ -17,7 +17,7 @@ const GameRoom = () => {
           <Players />
         </GridItem>
 
-        <GridItem colSpan={2}>
+        <GridItem colSpan={4}>
           <Box>Drawing</Box>
         </GridItem>
         <GridItem colSpan={1}>
