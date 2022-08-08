@@ -1,6 +1,7 @@
 import "./App.css";
 import { Container } from "@chakra-ui/react";
 import { GameRoom, NavBar } from "./components";
+import AppRoutes from "./routes";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         px={"50px"}
         gap={12}
       >
-        <GameRoom />
+        {/* <GameRoom /> */}
       </Container>
+      <AppRoutes />
     </>
   );
 }
