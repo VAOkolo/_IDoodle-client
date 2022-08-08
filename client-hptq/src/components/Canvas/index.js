@@ -119,8 +119,7 @@ const Canvas = () => {
       {/* <h1> Message </h1> */}
       {/* {messageReceived} */}
 
-      <Container>
-        <Word />
+      <Container display="flex" flexDirection="column" p="10">
         <Box>
           <canvas
             onMouseDown={startDrawing}
@@ -133,6 +132,7 @@ const Canvas = () => {
           />
         </Box>
 
+        <Word />
         {/* <button onClick={handleSetMyTurn}>handleSetMyTurn</button> */}
       </Container>
       {/* <input

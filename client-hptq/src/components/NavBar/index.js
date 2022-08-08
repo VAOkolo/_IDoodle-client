@@ -3,7 +3,7 @@ import { Flex, Text } from "@chakra-ui/react";
 
 const NavBar = () => {
   return (
-    <Flex as="nav" bg="gray" minH="10vh" p={3}>
+    <Flex as="nav" bg="gray" minH="10vh" p={3} boxShadow="xl">
       <Text fontSize="4xl" as="h1" color="white" letterSpacing={2}>
         Scribble Do
       </Text>

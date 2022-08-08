@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
-import Players from "../Players";
+import Players from "../PlayersBoard";
 import Canvas from "../Canvas";
 const GameRoom = () => {
   return (
@@ -19,9 +19,7 @@ const GameRoom = () => {
         </GridItem>
 
         <GridItem colSpan={4}>
-          <Box>
-            <Canvas />
-          </Box>
+          <Canvas />
         </GridItem>
         <GridItem colSpan={1}>
           <Box>Chat</Box>

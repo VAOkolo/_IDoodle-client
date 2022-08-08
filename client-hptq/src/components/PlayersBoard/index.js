@@ -17,12 +17,14 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-const Players = () => {
+const PlayersBoard = () => {
   const [availablePlayers, setAvailablePlayers] = useState([]);
   const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
+
+  // this will change to reflect the connected users rather than all users
   const fetchPlayers = async () => {
     const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
-    // setAvailablePlayers((prev) => [...prev, users]);
+
     setAvailablePlayers(data);
     console.log(data);
   };
@@ -43,7 +45,7 @@ const Players = () => {
   console.log("positions for uuuu", sortByPosition(availablePlayers));
   return (
     <>
-      <Text as="h3" textAlign="start" m="3" mb="6">
+      <Text as="h3" textAlign="start" m="3">
         Connected Players
       </Text>
       <TableContainer w="100%">
@@ -56,27 +58,26 @@ const Players = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {availablePlayers &&
-              availablePlayers.map((user, i) => (
-                <Tr>
-                  <Td># {i + 1}</Td>
-                  <Td>
-                    <Wrap p="1">
-                      <WrapItem>
-                        <Avatar
-                          name={user.username}
-                          src="https://bit.ly/broken-link"
-                          key={user.id}
-                        >
-                          <AvatarBadge bg="green.500" boxSize="1em" />
-                        </Avatar>
-                      </WrapItem>
-                    </Wrap>
-                    <span>{user.username}</span>
-                  </Td>
-                  <Td>{user.points}</Td>
-                </Tr>
-              ))}
+            {availablePlayers.map((user, i) => (
+              <Tr>
+                <Td># {i + 1}</Td>
+                <Td>
+                  <Wrap p="1">
+                    <WrapItem>
+                      <Avatar
+                        name={user.username}
+                        src="https://bit.ly/broken-link"
+                        key={user.id}
+                      >
+                        <AvatarBadge bg="green.500" boxSize="1em" />
+                      </Avatar>
+                    </WrapItem>
+                  </Wrap>
+                  <span>{user.username}</span>
+                </Td>
+                <Td>{user.points}</Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
@@ -84,4 +85,4 @@ const Players = () => {
   );
 };
 
-export default Players;
+export default PlayersBoard;
