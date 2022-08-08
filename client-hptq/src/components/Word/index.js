@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Box, Text, Input, Button } from "@chakra-ui/react";
 
 const Word = () => {
-  const [activePlayer, setActivePlayer] = useState(true);
+  const [activePlayer, setActivePlayer] = useState(false);
   return (
     <>
       {activePlayer ? (

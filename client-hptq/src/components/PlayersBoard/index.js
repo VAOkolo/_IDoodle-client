@@ -42,7 +42,6 @@ const PlayersBoard = () => {
     setSortedAvailablePlayers(sortByPosition(availablePlayers));
   }, []);
 
-
   return (
     <>
       <Text as="h3" textAlign="start" m="3">
@@ -58,7 +57,7 @@ const PlayersBoard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {availablePlayers.map((user, i) => (
+            {sortedAvailablePlayers.map((user, i) => (
               <Tr>
                 <Td># {i + 1}</Td>
                 <Td>
