@@ -53,7 +53,7 @@ export default function Settings() {
   return (
     <Container
       display="flex"
-      h="93vh"
+      h="90vh"
       minH="100%"
       justifyContent="center"
       alignItems="center"

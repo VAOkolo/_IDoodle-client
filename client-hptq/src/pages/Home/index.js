@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
@@ -17,25 +17,30 @@ const Home = () => {
     setAvailablePlayers,
   ] = useContext(SocketContext);
 
+  const [player, setPlayer] = useState({});
+
   const handleRoomSelect = (e) => {
-    if (userName && room) {
-      setAvailablePlayers((list) => [...list, userName]);
-      socket.emit("join_room", userName, room);
+    if (player.username && room) {
+      setAvailablePlayers((list) => [...list, player.username]);
+      socket.emit("join_room", player, room);
     }
   };
 
   return (
     <Container
-      as={motion.div}
-      className="home"
+      as={motion.main}
+      display="flex"
       size="md"
       justifyContent="center"
       alignItems="center"
       minW="83vw"
       h="80vh"
       w="800px"
-      transition="0.5s linear"
-      initial={{ opacity: 0.55, x: 390 }}
+      // transition="2s infinite"
+      transition="0.2s"
+      // initial={{ opacity: 0.55, x: 390 }}
+      // animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: 300 }}
       animate={{ opacity: 1, x: 0 }}
     >
       <Box
@@ -49,18 +54,13 @@ const Home = () => {
         justifyContent="space-evenly"
       >
         <Heading letterSpacing={1}>Join Room</Heading>
-        <Box justifyContent="space-between" alignItems="space-between">
-          <Input
-            type="text"
-            placeholder="Username"
-            onChange={(e) => setUserName(e.target.value)}
-            isRequired
-            width="210px"
-            height="40px"
-            mb="2"
-            focusBorderColor="#FFC75F"
-            errorBorderColor="crimson"
-          />
+        <Box
+          justifyContent="space-between"
+          alignItems="space-between"
+          h="38%"
+          display="flex"
+          flexDirection="column"
+        >
           <Input
             type="text"
             onChange={(e) => setRoom(e.target.value)}
@@ -70,6 +70,19 @@ const Home = () => {
             height="40px"
             isRequired
             mt="2"
+          />
+          <Input
+            type="text"
+            placeholder="Username"
+            onChange={(e) =>
+              setPlayer({ username: e.target.value, points: 0, room: room })
+            }
+            isRequired
+            width="210px"
+            height="40px"
+            mb="2"
+            focusBorderColor="#FFC75F"
+            errorBorderColor="crimson"
           />
         </Box>
         <NavLink to="/game-room">

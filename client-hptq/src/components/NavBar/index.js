@@ -1,13 +1,15 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Flex, Heading } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 import { AnimatedLink } from "../../animations/animatedLink";
 import BurgerMenu from "../BurgerMenu";
 
 const NavBar = () => {
+  const FlexContainer = motion(Flex);
+  const dx = useSpring(0, { stifness: 300, damping: 100, delay: 1 });
   return (
-    <Flex
+    <FlexContainer
       as={motion.nav}
       bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
       minH={["20vh", "15vh"]}
@@ -15,10 +17,19 @@ const NavBar = () => {
       boxShadow="0px 1px 10px #999"
       justifyContent={["center", "space-between", "start", "space-between"]}
       alignItems={["center", "center", "center", "center"]}
-      initial={{ opacity: 0.33 }}
-      animate={{ opacity: 1 }}
-      transition="1.3s ease-in-out"
-      _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
+      animate={{
+        opacity: 1,
+        background: [
+          "linear-gradient( 135deg, #845EC2 10%, #008E9B 100%)",
+          // "linear-gradient( 35deg, #008E9B 100%, #845EC2 50%, #FF6F91 10%)",
+        ],
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+        repeatType: "reverse",
+      }}
+      whileHover={{ filter: "brightness(107%)", delay: 1, duration: 1 }}
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"
     >
@@ -36,7 +47,13 @@ const NavBar = () => {
           transition="2s fade-in"
           p={3}
           order={["2", "1", "1", "1"]}
-          whileHover={{ scale: 1.22,rotate: 180, duration: 10, color:"#FFC75F", x: "22px" }}
+          whileHover={{
+            scale: 1.22,
+            rotate: 180,
+            duration: 10,
+            color: "#FFC75F",
+            x: "22px",
+          }}
         >
           <Link to="/">Scribble Do</Link>
         </Heading>
@@ -64,7 +81,7 @@ const NavBar = () => {
         </AnimatedLink>
       </Flex>
       <BurgerMenu />
-    </Flex>
+    </FlexContainer>
   );
 };
 

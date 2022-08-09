@@ -41,24 +41,21 @@ export default function LeaderBoardTable() {
       as={motion.div}
       initial={{ opacity: 0.2 }}
       animate={{ opacity: 1 }}
-      exit={{ y: "-300px", opacity: 0 }}
-      transition="2s spring"
+      exit={{ x: "-300px", opacity: 0 }}
+      overflow="visible"
+      // transition="2s linear"
     >
-      <TableContainer>
-        <Table
-          as={motion.table}
-          variant="striped"
-          colorScheme="purple"
-          initial={{ opacity: 0.2 }}
-          animate={{ opacity: 1 }}
-          whileHover={{
-            x: ["100px", "0px", "100px"],
-            x: ["10px", "-20px", "10px", "0px"],
-          }}
-          exit={{ y: "-300px", opacity: 0 }}
-          // transition="0.5"
-          transition={{ type: "tween", duration: 5 }}
-        >
+      <TableContainer
+        as={motion.div}
+        boxShadow="
+        rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset"
+        transition="0.5s"
+        initial={{ opacity: 0.2, delay: 1 }}
+        animate={{ opacity: 1 }}
+        exit={{ x: 10, opacity: 0 }}
+        m={6}
+      >
+        <Table variant="striped" colorScheme="purple" p="2" fontSize="sm">
           <Thead>
             <Tr>
               <Th>Rank</Th>
