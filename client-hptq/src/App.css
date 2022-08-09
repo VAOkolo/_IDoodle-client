@@ -43,7 +43,7 @@ width: 100vw; */
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.joinGameContainer input {
+/* .joinGameContainer input {
   width: 210px;
   height: 40px;
   margin: 7px;
@@ -51,9 +51,9 @@ width: 100vw; */
   border-radius: 5px;
   padding: 5px;
   font-size: 16px;
-}
+} */
 
-.joinGameContainer button {
+/* .joinGameContainer button {
   width: 225px;
   height: 50px;
   margin: 7px;
@@ -64,11 +64,11 @@ width: 100vw; */
   background: #43a047;
   color: #fff;
   cursor: pointer;
-}
+} */
 
-.joinGameContainer button:hover {
+/* .joinGameContainer button:hover {
   background: #2e7d32;
-}
+} */
 
 /* Chat Box */
 

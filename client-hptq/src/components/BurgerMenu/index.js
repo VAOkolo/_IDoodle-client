@@ -33,8 +33,14 @@ const BurgerMenu = () => {
           background="white"
         />
       </AnimatedMenuButton>
-      <MenuList>
-        <MenuItem icon={<CloseIcon />}></MenuItem>
+      <MenuList mt={6} py={4} px={2}>
+        <MenuItem
+          icon={<CloseIcon textAlign="right" fontSize="10px" w="12px" />}
+        ></MenuItem>
+        <MenuItem>
+          <a href="/lobby">New Game</a>
+        </MenuItem>
+        <MenuItem>Leader Board</MenuItem>
       </MenuList>
     </Menu>
   );
