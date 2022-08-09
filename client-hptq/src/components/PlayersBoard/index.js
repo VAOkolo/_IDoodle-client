@@ -64,8 +64,9 @@ const PlayersBoard = () => {
                         name={user.username}
                         src="https://bit.ly/broken-link"
                       >
+
                         <AvatarBadge bg="green.500" boxSize="1em" />
-                      </Avatar>
+                      </Avatar> */}
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>

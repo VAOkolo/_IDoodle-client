@@ -3,6 +3,8 @@ import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { list } from "@chakra-ui/react";
+
 
 const Home = () => {
   const [
@@ -23,6 +25,7 @@ const Home = () => {
     if (player.username && room) {
       setAvailablePlayers((list) => [...list, player.username]);
       socket.emit("join_room", player, room);
+
     }
   };
 
