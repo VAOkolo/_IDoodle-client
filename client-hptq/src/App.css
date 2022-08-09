@@ -1,7 +1,6 @@
 body,
 html {
-  /* background-image: url("../src/assets/bg-img.jpeg"); */
-  background: url('./assets/bg-img.jpeg'), linear-gradient(50deg, #d00 0, #300 100%);
+  background-image: url("../src/assets/bg-img.jpeg");
   height: 100%;
   width: 100%;
 }
@@ -250,8 +249,8 @@ html {
 
 /* Nav bar */
 .active {
-  color: rgb(0, 208, 255);
-  transform: scale(1);
+  color: #FFC75F;
+  /* transform: scale(1); */
 }
 
 nav ul {
@@ -260,4 +259,5 @@ nav ul {
 
 nav ul li {
   cursor: pointer;
+  text-transform: uppercase;
 }
