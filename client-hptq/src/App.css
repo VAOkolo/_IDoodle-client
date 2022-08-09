@@ -32,7 +32,21 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.active {
+  color: rgb(0, 208, 255);
+  transform: scale(1);
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  cursor: pointer;
 }
