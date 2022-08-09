@@ -32,10 +32,12 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 
 /* Home Page */
 
@@ -229,4 +231,16 @@
 }
 .hide {
   opacity: 0 !important;
+
+.active {
+  color: rgb(0, 208, 255);
+  transform: scale(1);
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  cursor: pointer;
 }
