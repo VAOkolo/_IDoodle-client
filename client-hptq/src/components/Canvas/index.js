@@ -1,56 +1,44 @@
-import React, { useEffect, useState, useRef } from "react";
-import io from "socket.io-client";
-import { Container, Box, Text } from "@chakra-ui/react";
-import Word from "../Word";
+import { useEffect, useState, useRef, useContext } from "react";
+import { SocketContext } from "../../SocketContext";
 
-const Canvas = () => {
-  //   const [message, setMessage] = useState("");
-  //   const [messageReceived, setMessageReceived] = useState("");
-  const socket = io.connect("https://hptq-backend.herokuapp.com/");
-  const [userID, setUserID] = useState("");
+function Canvas() {
+  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
+    useContext(SocketContext);
+
   const [userGameState, setUserGameState] = useState({
     username: userID,
     isTurn: false,
   });
 
-  const [room, setRoom] = useState("");
-  const [userName, setUserName] = useState("");
-  //are we drawing?
   const [isDrawing, setIsDrawing] = useState(false);
+
   //canvas - sets state of canvas. useRef stores state without triggering a re-render
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
-  //socket to send message. message goes to server and then it returned to everyone apart from sender using 'broadcast'
-  //   const sendMessage = () => {
-  //     socket.emit("send_message", { message });
-  //   };
-
-  //se effect triggered when the socket value changes. socket is connected to the server listening for data
+  //socket to send message, message goes to server and then it returned to everyone apart from sender using 'broadcast'
   useEffect(() => {
-    // socket.on("recieved_message", (data) => {
-    //   setMessageReceived(data.message);
-    // });
     socket.on("recieved_canvas", newDrawing);
     socket.on("refreshed_canvas", refreshCanvas);
     socket.on("recieved_id", (data) => {
       setUserID(data);
     });
+
+    socket.on("make_all_other_turns_false", (id) => {
+      setUserGameState({ isTurn: false });
+    });
   }, [socket]);
 
-  // newDrawing is called when the socket receives 'recieved_canvas' data value form server.
+  //newDrawing is called when the socket receives 'recieved_canvas' data value form server.
   function newDrawing(data) {
     const canvas = canvasRef.current;
-
     let image = new Image();
-    // let canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     image.src = data;
     image.onload = () => {
       ctx.drawImage(image, 0, 0);
     };
   }
-  //canvas
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -65,6 +53,8 @@ const Canvas = () => {
     setUserGameState({
       isTurn: !userGameState.isTurn,
     });
+    socket.emit("set_all_other_turns_false", room);
+
     refreshCanvas();
   };
 
@@ -72,18 +62,17 @@ const Canvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
-
     let base64ImageData = canvas.toDataURL("image/png");
     socket.emit("refresh_canvas", base64ImageData, room);
   };
 
-  const handleRoomSelect = () => {
-    if (userName && room) {
-      socket.emit("join_room", room);
-    }
-  };
   const startDrawing = ({ nativeEvent }) => {
-    console.log(userGameState.isTurn);
+    console.log(
+      "startdrawing user state",
+      userGameState.isTurn,
+      "in room",
+      room
+    );
     if (userGameState.isTurn) {
       const { offsetX, offsetY } = nativeEvent;
       contextRef.current.beginPath();
@@ -102,52 +91,30 @@ const Canvas = () => {
   };
 
   const draw = ({ nativeEvent }) => {
-    // console.log('draw function', isDrawing)
     if (!isDrawing) {
       return;
     }
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
-    // socket.emit("send_canvas", {x: offsetX, y: offsetY });
   };
 
   return (
     <div className="App">
-      {/* <input onChange={(e) => setMessage(e.target.value)} /> */}
-      {/* <button onClick={sendMessage}> send message</button> */}
-      {/* <h1> Message </h1> */}
-      {/* {messageReceived} */}
-
-      <Container display="flex" flexDirection="column" p="10">
-        <Box>
-          <canvas
-            onMouseDown={startDrawing}
-            onMouseUp={finishDrawing}
-            onMouseMove={draw}
-            ref={canvasRef}
-            height={"500px"}
-            width={"500px"}
-            style={{ border: "1px solid black" }}
-          />
-        </Box>
-
-        <Word />
-        {/* <button onClick={handleSetMyTurn}>handleSetMyTurn</button> */}
-      </Container>
-      {/* <input
-        type="text"
-        onChange={(e) => setRoom(e.target.value)}
-        placeholder="room"
+      <canvas
+        onMouseDown={startDrawing}
+        onMouseUp={finishDrawing}
+        onMouseMove={draw}
+        ref={canvasRef}
+        height={250}
+        width={250}
+        style={{ border: "1px solid black" }}
       />
-      <input
-        type="text"
-        placeholder="username"
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <button onClick={handleRoomSelect}> Goto room </button> */}
+      <button onClick={handleSetMyTurn}>handleSetMyTurn</button>
+      <br></br>
+      We Are In Room: {room}
     </div>
   );
-};
+}
 
 export default Canvas;

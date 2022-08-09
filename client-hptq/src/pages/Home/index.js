@@ -1,9 +1,47 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import { SocketContext } from "../../SocketContext";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
 
-export default Home
+  const handleRoomSelect = (e) => {
+    if (userName && room) {
+      setAvailablePlayers((list) => [...list, userName]);
+      socket.emit("join_room", userName, room);
+    }
+  };
+
+  return (
+    <div className="home">
+      <div className="joinGameContainer">
+        <h3>Join Room</h3>
+        <input
+          type="text"
+          placeholder="Username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          type="text"
+          onChange={(e) => setRoom(e.target.value)}
+          placeholder="Room"
+        />
+        <NavLink to="/game-room">
+          <button onClick={handleRoomSelect}>CONNECT</button>
+        </NavLink>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
