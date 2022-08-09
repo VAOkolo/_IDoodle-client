@@ -2,8 +2,17 @@ import { useEffect, useState, useRef, useContext } from "react";
 import { SocketContext } from "../../SocketContext";
 
 function Canvas() {
-  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
-    useContext(SocketContext);
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
 
   const [userGameState, setUserGameState] = useState({
     username: userID,
@@ -58,6 +67,7 @@ function Canvas() {
     });
     socket.emit("set_all_other_turns_false", room);
     refreshCanvas();
+    console.log("players in this room are", availablePlayers);
   };
 
   const refreshCanvas = (data) => {

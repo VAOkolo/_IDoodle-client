@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
+import { list } from "@chakra-ui/react";
 
 const Home = () => {
   const [
@@ -18,7 +19,7 @@ const Home = () => {
   const handleRoomSelect = (e) => {
     if (userName && room) {
       setAvailablePlayers((list) => [...list, userName]);
-      socket.emit("join_room", userName, room);
+      socket.emit("join_room", userName, availablePlayers, room);
     }
   };
 
