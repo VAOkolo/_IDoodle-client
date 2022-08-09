@@ -1,56 +1,69 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Flex, Heading, Link } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { AnimatedHover } from "../../animations/animatedHover";
+import { AnimatedLink } from "../../animations/animatedLink";
+import BurgerMenu from "../BurgerMenu";
 
 const NavBar = () => {
   return (
     <Flex
       as={motion.nav}
-      bgImage="linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);"
-      minH="10vh"
+      bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
+      minH={["20vh", "15vh"]}
       p={3}
-      boxShadow="xl"
-      justifyContent="space-between"
-      initial={{ opacity: 0 }}
+      boxShadow="0px 1px 10px #999"
+      justifyContent={["center", "space-between", "start", "space-between"]}
+      alignItems={["center", "center", "center", "center"]}
+      initial={{ opacity: 0.33 }}
       animate={{ opacity: 1 }}
-      transition="1.5s ease-in"
+      transition="1.3s ease-in-out"
       _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
+      // flexDirection={{ base: "row", lg: "row", md: "column", sm: "row" }}
+      flexDirection={["row", "row", "column", "row"]}
+      shrink="1"
     >
-      <Heading
-        as={motion.h1}
-        fontSize="4xl"
-        bgImage="linear-gradient(60deg, #E21143, #FFB03A)"
-        bgClip="text"
-        color="transparent"
-        letterSpacing={2}
-        initial={{ opacity: 0, y: -220 }}
-        animate={{ opacity: 1, y: 0, fontSize: "40px" }}
-        transition="1.5s ease-in"
-      >
-        Scribble Do
-      </Heading>
-      <Flex alignItems="center" justifyContent="space-between" minW="30%">
-        {/*this should lead to somewhere else, preferrably the lobby or sth */}
-        <Flex
-          as="ul"
-          alignItems="center"
-          justifyContent="space-between"
-          minW="30%"
+      <Flex alignSelf="start" mb={{ md: "5px" }}>
+        <Heading
+          display="flex"
+          as={motion.h1}
+          fontSize={["12px", "sm", "3xl"]}
+          fontWeight={"thin"}
+          bg="white"
+          bgClip="text"
+          letterSpacing={2}
+          initial={{ opacity: 0, y: -220 }}
+          animate={{ opacity: 1, y: 0, fontSize: "40px" }}
+          transition="1s fade-in"
+          p={3}
+          order={["2", "1", "1", "1"]}
         >
-          <AnimatedHover>
-            <NavLink to="/">Home</NavLink>
-            {/*this should lead to somewhere else, preferrably the lobby or sth */}
-          </AnimatedHover>
-          <AnimatedHover>
-            <NavLink to="/lobby">New Game</NavLink>
-          </AnimatedHover>
-          <AnimatedHover>
-            <NavLink to="/leaderboard">LeaderBoard</NavLink>
-          </AnimatedHover>
-        </Flex>
+          Scribble Do
+        </Heading>
       </Flex>
+      <Flex
+        as="ul"
+        alignItems="space-between"
+        justifyContent="space-between"
+        minW="30%"
+        p={1}
+        mr={5}
+        mt={["3%", "0"]}
+        display={["none", "none", "flex"]}
+        order={["2", "1"]}
+        minWidth={{ sm: "70vw", md: "90vw", lg: "30vw" }}
+      >
+        <AnimatedLink>
+          <NavLink to="/">Home</NavLink>
+        </AnimatedLink>
+        <AnimatedLink>
+          <NavLink to="/lobby">New Game</NavLink>
+        </AnimatedLink>
+        <AnimatedLink>
+          <NavLink to="/leaderboard">LeaderBoard</NavLink>
+        </AnimatedLink>
+      </Flex>
+      <BurgerMenu />
     </Flex>
   );
 };
