@@ -1,32 +1,10 @@
-.App {
-  text-align: center;
+body,
+html {
+  /* background-image: url("../src/assets/bg-img.jpeg");*/
+  height: 100vh;
+  width: 100vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -38,12 +16,13 @@
   }
 }
 
+
 /* Home Page */
 
 .home {
   width: 100vw;
-  height: 100vh;
-  background: #fff;
+  /* height: 100vh; */
+  /* background: #fff; */
   color: #212121;
   font-family: "Open Sans", sans-serif;
   display: grid;
@@ -63,7 +42,8 @@
   margin-bottom: 1rem;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
-.joinGameContainer input {
+
+/* .joinGameContainer input {
   width: 210px;
   height: 40px;
   margin: 7px;
@@ -71,9 +51,9 @@
   border-radius: 5px;
   padding: 5px;
   font-size: 16px;
-}
+} */
 
-.joinGameContainer button {
+/* .joinGameContainer button {
   width: 225px;
   height: 50px;
   margin: 7px;
@@ -84,11 +64,11 @@
   background: #43a047;
   color: #fff;
   cursor: pointer;
-}
+} */
 
-.joinGameContainer button:hover {
+/* .joinGameContainer button:hover {
   background: #2e7d32;
-}
+} */
 
 /* Chat Box */
 
@@ -100,6 +80,7 @@
 .chat-window p {
   margin: 0;
 }
+
 .chat-window .chat-header {
   height: 45px;
   border-radius: 6px;
@@ -107,6 +88,7 @@
   position: relative;
   cursor: pointer;
 }
+
 .chat-window .chat-header p {
   display: block;
   padding: 0 1em 0 2em;
@@ -122,6 +104,7 @@
 
   position: relative;
 }
+
 .chat-window .chat-body .message-container {
   width: 100%;
   height: 100%;
@@ -132,6 +115,7 @@
 .chat-window .chat-body .message-container::-webkit-scrollbar {
   display: none;
 }
+
 .chat-window .chat-body .message {
   height: auto;
   padding: 10px;
@@ -228,12 +212,16 @@
 .chat-window .chat-footer button:hover {
   color: #43a047;
 }
+
 .hide {
   opacity: 0 !important;
 }
+
+
+/* Nav bar */
 .active {
-  color: rgb(0, 208, 255);
-  transform: scale(1);
+  color: #FFC75F;
+  /* transform: scale(1); */
 }
 
 nav ul {
@@ -242,4 +230,5 @@ nav ul {
 
 nav ul li {
   cursor: pointer;
+  text-transform: uppercase;
 }

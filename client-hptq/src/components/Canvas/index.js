@@ -19,13 +19,16 @@ function Canvas() {
   //socket to send message, message goes to server and then it returned to everyone apart from sender using 'broadcast'
   useEffect(() => {
     socket.on("recieved_canvas", newDrawing);
-    socket.on("refreshed_canvas", refreshCanvas);
+    // socket.on("refreshed_canvas", (data) => {
+    //   newDrawing(data);
+    // });
     socket.on("recieved_id", (data) => {
       setUserID(data);
     });
 
     socket.on("make_all_other_turns_false", (id) => {
       setUserGameState({ isTurn: false });
+      refreshCanvas();
     });
   }, [socket]);
 
@@ -54,11 +57,10 @@ function Canvas() {
       isTurn: !userGameState.isTurn,
     });
     socket.emit("set_all_other_turns_false", room);
-
     refreshCanvas();
   };
 
-  const refreshCanvas = () => {
+  const refreshCanvas = (data) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
