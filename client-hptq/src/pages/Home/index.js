@@ -29,19 +29,30 @@ const Home = () => {
       size="md"
       justifyContent="center"
       alignItems="center"
+      w="80vw"
+      h="80vh"
     >
-      <Box className="joinGameContainer">
+      <Box
+        className="joinGameContainer"
+        boxShadow="5px 5px 25px 5px"
+        w="25vw"
+        h="50vh"
+        borderRadius="1em"
+        justifyContent="space-evenly"
+      >
         <Heading>Join Room</Heading>
-        <Input
-          type="text"
-          placeholder="Username"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <Input
-          type="text"
-          onChange={(e) => setRoom(e.target.value)}
-          placeholder="Room"
-        />
+        <Box>
+          <Input
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <Input
+            type="text"
+            onChange={(e) => setRoom(e.target.value)}
+            placeholder="Room"
+          />
+        </Box>
         <NavLink to="/game-room">
           <Button color="dark" bg="facebook" onClick={handleRoomSelect}>
             CONNECT

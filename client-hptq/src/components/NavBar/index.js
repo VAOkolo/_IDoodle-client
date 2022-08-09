@@ -12,7 +12,7 @@ const NavBar = () => {
       bgImage="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%);"
       minH={["20vh", "15vh"]}
       p={3}
-      boxShadow="xl"
+      boxShadow="0px 1px 10px #999"
       // justifyContent={["space-between", "space-between", "space-between"]}
       // alignItems={{ sm: "center", md: "start", lg: "space-between" }}
       // alignItems={["center", "space-between", "space-between"]}
@@ -21,7 +21,7 @@ const NavBar = () => {
       initial={{ opacity: 0.33 }}
       animate={{ opacity: 1 }}
       transition="1.3s ease-in-out"
-      _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
+      // _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
       // flexDirection={{ base: "row", lg: "row", md: "column", sm: "row" }}
       flexDirection={["row", "row", "column", "row"]}
     >
