@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <Flex
       as={motion.nav}
-      bgImage="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%);"
+      bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
       minH={["20vh", "15vh"]}
       p={3}
       boxShadow="0px 1px 10px #999"
@@ -23,7 +23,7 @@ const NavBar = () => {
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"
     >
-      <Flex alignSelf="start" mb={{md: "5px"}}>
+      <Flex alignSelf="start" mb={{ md: "5px" }}>
         <Heading
           display="flex"
           as={motion.h1}
@@ -51,7 +51,7 @@ const NavBar = () => {
         mt={["3%", "0"]}
         display={["none", "none", "flex"]}
         order={["2", "1"]}
-        minWidth={{ sm: "70vw", md:"90vw", lg: "30vw" }}
+        minWidth={{ sm: "70vw", md: "90vw", lg: "30vw" }}
       >
         <AnimatedLink>
           <NavLink to="/">Home</NavLink>
