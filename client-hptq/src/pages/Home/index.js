@@ -18,7 +18,9 @@ const Home = () => {
 
   const handleRoomSelect = (e) => {
     if (userName && room) {
-      setAvailablePlayers((list) => [...list, userName]);
+      console.log('home index username:', userName)
+      // setAvailablePlayers((list) => [...list, userName]);
+      console.log('home index availablePlayers:', availablePlayers)
       socket.emit("join_room", userName, availablePlayers, room);
     }
   };

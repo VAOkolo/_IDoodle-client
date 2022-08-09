@@ -45,12 +45,16 @@ const PlayersBoard = () => {
   };
 
   useEffect(() => {
+    console.log('useEffect on playersboard')
     // setAvailablePlayers([
     //   { id: 1, username: "Florencia Pezcara", points: 2 },
     //   { id: 2, username: "Florence Welch", points: 5 },
     // ]);
     socket.on("players_in_room", (data) => {
-      setAvailablePlayers((list) => [...list, data]);
+      console.log('*******Players in room ' + data)
+      setAvailablePlayers(data);
+      console.log('player board players in the room', availablePlayers)
+      // setAvailablePlayers(data);
     });
 
     console.log("The current players in this room are:", availablePlayers);

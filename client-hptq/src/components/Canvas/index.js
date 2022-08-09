@@ -27,18 +27,36 @@ function Canvas() {
 
   //socket to send message, message goes to server and then it returned to everyone apart from sender using 'broadcast'
   useEffect(() => {
+    // console.log('sock.on recieved_idi also show availablePlayers',  availablePlayers);
     socket.on("recieved_canvas", newDrawing);
     // socket.on("refreshed_canvas", (data) => {
     //   newDrawing(data);
     // });
     socket.on("recieved_id", (data) => {
+      // setAvailablePlayers((list) => [...list, userName]);
       setUserID(data);
+      
+    })
+        socket.on("players_in_room", (data) => {
+      console.log('*******Players in room ' + data)
+      // setAvailablePlayers(data);
+      console.log('****players in the room£££££££', availablePlayers)
     });
+
+    socket.on('send_gameArray', (data) => {
+console.log('send game array', data)
+    })
 
     socket.on("make_all_other_turns_false", (id) => {
       setUserGameState({ isTurn: false });
       refreshCanvas();
     });
+
+      // socket.on("players_in_room", (data) => {
+    //   console.log('*******Players in room ' + data)
+    //   setAvailablePlayers((list) => [...list, data]);
+    //   console.log('players in the room', availablePlayers)
+    // });
   }, [socket]);
 
   //newDrawing is called when the socket receives 'recieved_canvas' data value form server.
