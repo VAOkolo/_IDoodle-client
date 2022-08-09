@@ -30,32 +30,30 @@ const NavBar = () => {
         transition="1.5s ease-in"
       >
         Scribble Do
-
-      </Text>
+      </Heading>
       <Flex alignItems="center" justifyContent="space-between" minW="30%">
         <Link to="/">Home</Link>
         {/*this should lead to somewhere else, preferrably the lobby or sth */}
         <Link to="/lobby">Create Game</Link>
         <Link to="/leaderboard">Leaderboard</Link>
 
-      </Heading>
-      <Flex
-        as="ul"
-        alignItems="center"
-        justifyContent="space-between"
-        minW="30%"
-      >
-        <AnimatedHover>
-          <NavLink to="/home">Home</NavLink>
-          {/*this should lead to somewhere else, preferrably the lobby or sth */}
-        </AnimatedHover>
-        <AnimatedHover>
-          <NavLink to="/lobby">New Game</NavLink>
-        </AnimatedHover>
-        <AnimatedHover>
-          <NavLink to="/leaderboard">Leader Board</NavLink>
-        </AnimatedHover>
-
+        <Flex
+          as="ul"
+          alignItems="center"
+          justifyContent="space-between"
+          minW="30%"
+        >
+          <AnimatedHover>
+            <NavLink to="/home">Home</NavLink>
+            {/*this should lead to somewhere else, preferrably the lobby or sth */}
+          </AnimatedHover>
+          <AnimatedHover>
+            <NavLink to="/lobby">New Game</NavLink>
+          </AnimatedHover>
+          <AnimatedHover>
+            <NavLink to="/leaderboard">Leader Board</NavLink>
+          </AnimatedHover>
+        </Flex>
       </Flex>
     </Flex>
   );

@@ -38,7 +38,6 @@
   }
 }
 
-
 /* Home Page */
 
 .home {
@@ -231,7 +230,7 @@
 }
 .hide {
   opacity: 0 !important;
-
+}
 .active {
   color: rgb(0, 208, 255);
   transform: scale(1);
