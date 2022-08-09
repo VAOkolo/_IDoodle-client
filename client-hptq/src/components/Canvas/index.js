@@ -55,10 +55,7 @@ function Canvas() {
     });
     socket.emit("set_all_other_turns_false", room);
 
-    if (userGameState.isTurn) {
-      console.log("IM STILL IN HERE!");
-      refreshCanvas();
-    }
+    refreshCanvas();
   };
 
   const refreshCanvas = () => {

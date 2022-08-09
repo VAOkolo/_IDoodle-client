@@ -3,11 +3,21 @@ import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
-    useContext(SocketContext);
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
 
   const handleRoomSelect = (e) => {
     if (userName && room) {
+      setAvailablePlayers((list) => [...list, userName]);
       socket.emit("join_room", userName, room);
     }
   };

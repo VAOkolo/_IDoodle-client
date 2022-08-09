@@ -19,10 +19,17 @@ import {
 import { SocketContext } from "../../SocketContext";
 
 const PlayersBoard = () => {
-  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
-    useContext(SocketContext);
-
-  const [availablePlayers, setAvailablePlayers] = useState([userName]);
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
   const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
 
   // const fetchPlayers = async () => {
@@ -37,6 +44,8 @@ const PlayersBoard = () => {
     return players.sort((a, b) => b.points - a.points);
   };
 
+  // console.log(availablePlayers);
+
   useEffect(() => {
     // setAvailablePlayers([
     //   { id: 1, username: "Florencia Pezcara", points: 2 },
@@ -46,8 +55,6 @@ const PlayersBoard = () => {
     socket.on("players_in_room", (data) => {
       setAvailablePlayers((list) => [...list, data]);
     });
-
-    console.log(availablePlayers);
 
     // setSortedAvailablePlayers(sortByPosition(availablePlayers));
   }, [socket]);
