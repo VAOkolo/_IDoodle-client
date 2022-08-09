@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
@@ -17,10 +17,12 @@ const Home = () => {
     setAvailablePlayers,
   ] = useContext(SocketContext);
 
+  const [player, setPlayer] = useState({});
+
   const handleRoomSelect = (e) => {
-    if (userName && room) {
-      setAvailablePlayers((list) => [...list, userName]);
-      socket.emit("join_room", userName, room);
+    if (player.username && room) {
+      setAvailablePlayers((list) => [...list, player.username]);
+      socket.emit("join_room", player, room);
     }
   };
 
@@ -54,7 +56,9 @@ const Home = () => {
           <Input
             type="text"
             placeholder="Username"
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) =>
+              setPlayer({ username: e.target.value, points: 0, room: room })
+            }
             isRequired
             width="210px"
             height="40px"

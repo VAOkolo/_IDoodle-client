@@ -30,34 +30,14 @@ const PlayersBoard = () => {
     availablePlayers,
     setAvailablePlayers,
   ] = useContext(SocketContext);
-  const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
 
-  // const fetchPlayers = async () => {
-  //   const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
+  // useEffect(() => {
+  //   socket.on("room_data", (users) => {
+  //     setAvailablePlayers([...users]);
+  //   });
 
-  //   setAvailablePlayers(data);
-  //   console.log(data);
-  // };
-
-  //   fetchPlayers();
-  const sortByPosition = (players) => {
-    return players.sort((a, b) => b.points - a.points);
-  };
-
-  // console.log(availablePlayers);
-
-  useEffect(() => {
-    // setAvailablePlayers([
-    //   { id: 1, username: "Florencia Pezcara", points: 2 },
-    //   { id: 2, username: "Florence Welch", points: 5 },
-    // ]);
-
-    socket.on("players_in_room", (data) => {
-      setAvailablePlayers((list) => [...list, data]);
-    });
-
-    // setSortedAvailablePlayers(sortByPosition(availablePlayers));
-  }, [socket]);
+  //   console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
+  // }, [socket]);
 
   return (
     <>
@@ -74,20 +54,23 @@ const PlayersBoard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {availablePlayers.map((user, i) => (
-              <Tr key={i}>
-                <Td>#{i + 1}</Td>
+            {availablePlayers.map((user, index) => (
+              <Tr key={index}>
+                <Td>#{index + 1}</Td>
                 <Td>
                   <Wrap p="1">
                     <WrapItem>
-                      <Avatar name={user} src="https://bit.ly/broken-link">
+                      <Avatar
+                        name={user.username}
+                        src="https://bit.ly/broken-link"
+                      >
                         <AvatarBadge bg="green.500" boxSize="1em" />
                       </Avatar>
                     </WrapItem>
                   </Wrap>
-                  <span>{user}</span>
+                  <span>{user.username}</span>
                 </Td>
-                {/* <Td>{user.points}</Td> */}
+                <Td>{user.points}</Td>
               </Tr>
             ))}
           </Tbody>
