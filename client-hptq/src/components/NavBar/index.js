@@ -32,11 +32,7 @@ const NavBar = () => {
         Scribble Do
       </Heading>
       <Flex alignItems="center" justifyContent="space-between" minW="30%">
-        <Link to="/">Home</Link>
         {/*this should lead to somewhere else, preferrably the lobby or sth */}
-        <Link to="/lobby">Create Game</Link>
-        <Link to="/leaderboard">Leaderboard</Link>
-
         <Flex
           as="ul"
           alignItems="center"
@@ -44,14 +40,14 @@ const NavBar = () => {
           minW="30%"
         >
           <AnimatedHover>
-            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
             {/*this should lead to somewhere else, preferrably the lobby or sth */}
           </AnimatedHover>
           <AnimatedHover>
             <NavLink to="/lobby">New Game</NavLink>
           </AnimatedHover>
           <AnimatedHover>
-            <NavLink to="/leaderboard">Leader Board</NavLink>
+            <NavLink to="/leaderboard">LeaderBoard</NavLink>
           </AnimatedHover>
         </Flex>
       </Flex>
