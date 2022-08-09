@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Box
       as="footer"
-      bg="linear-gradient(135deg, #D65DB1   10%, #845EC2 100%)"
+      bg="linear-gradient(135deg, #FBEAFF 10%, #845EC2 50%, #FBEAFF 100%)"
       minH={["10vh", "5vh"]}
       position="absolute"
       b="0"
