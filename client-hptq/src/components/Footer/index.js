@@ -1,10 +1,10 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-
+import { motion } from "framer-motion";
 const Footer = () => {
   return (
     <Box
-      as="footer"
+      as={motion.footer}
       bg="linear-gradient(135deg, #FBEAFF 10%, #845EC2 50%, #FBEAFF 100%)"
       minH={["10vh", "5vh"]}
       position="absolute"
@@ -16,6 +16,9 @@ const Footer = () => {
       alignItems="center"
       justifyContent={"center"}
       display="flex"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition="10s ease-in"
     >
       Created by Vincent Okolo, Taro Schenker, Muhammed Ismael Ali & Florencia
       Pezcara

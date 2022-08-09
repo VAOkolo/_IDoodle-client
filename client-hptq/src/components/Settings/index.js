@@ -60,7 +60,8 @@ export default function Settings() {
     >
       <FormControl
         as={motion.form}
-        p="10"
+        px="10"
+        py="8"
         display="flex"
         flexDirection="column"
         justifyContent="space-between"

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Flex, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { AnimatedLink } from "../../animations/animatedLink";
@@ -19,7 +19,6 @@ const NavBar = () => {
       animate={{ opacity: 1 }}
       transition="1.3s ease-in-out"
       _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
-      // flexDirection={{ base: "row", lg: "row", md: "column", sm: "row" }}
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"
     >
@@ -34,11 +33,12 @@ const NavBar = () => {
           letterSpacing={2}
           initial={{ opacity: 0, y: -220 }}
           animate={{ opacity: 1, y: 0, fontSize: "40px" }}
-          transition="1s fade-in"
+          transition="2s fade-in"
           p={3}
           order={["2", "1", "1", "1"]}
+          whileHover={{ scale: 1.22,rotate: 180, duration: 10, color:"#FFC75F", x: "22px" }}
         >
-          Scribble Do
+          <Link to="/">Scribble Do</Link>
         </Heading>
       </Flex>
       <Flex

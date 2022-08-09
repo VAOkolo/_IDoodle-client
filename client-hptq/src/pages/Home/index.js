@@ -37,7 +37,6 @@ const Home = () => {
       transition="0.5s linear"
       initial={{ opacity: 0.55, x: 390 }}
       animate={{ opacity: 1, x: 0 }}
-      // transition={{ type: "tween", delay: 5.5 }}
     >
       <Box
         className="joinGameContainer"
@@ -49,7 +48,7 @@ const Home = () => {
         borderRadius="1em"
         justifyContent="space-evenly"
       >
-        <Heading>Join Room</Heading>
+        <Heading letterSpacing={1}>Join Room</Heading>
         <Box justifyContent="space-between" alignItems="space-between">
           <Input
             type="text"

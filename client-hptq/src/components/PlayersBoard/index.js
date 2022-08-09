@@ -8,11 +8,9 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Text,
 } from "@chakra-ui/react";
@@ -32,31 +30,18 @@ const PlayersBoard = () => {
   ] = useContext(SocketContext);
   const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
 
-  // const fetchPlayers = async () => {
-  //   const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
-
-  //   setAvailablePlayers(data);
-  //   console.log(data);
-  // };
-
-  //   fetchPlayers();
   const sortByPosition = (players) => {
     return players.sort((a, b) => b.points - a.points);
   };
 
-  // console.log(availablePlayers);
+
 
   useEffect(() => {
-    // setAvailablePlayers([
-    //   { id: 1, username: "Florencia Pezcara", points: 2 },
-    //   { id: 2, username: "Florence Welch", points: 5 },
-    // ]);
 
     socket.on("players_in_room", (data) => {
       setAvailablePlayers((list) => [...list, data]);
     });
 
-    // setSortedAvailablePlayers(sortByPosition(availablePlayers));
   }, [socket]);
 
   return (
