@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {
+  Container,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 
 export default function Settings() {
   const [categories, setCategories] = useState();
@@ -13,7 +22,6 @@ export default function Settings() {
     const categories = data.trivia_categories;
     setCategories(categories);
   };
-  console.log(categories);
 
   useEffect(() => {
     fetchData();
@@ -31,53 +39,81 @@ export default function Settings() {
     setDifficulty(e.target.form[2].value);
     setCategory(e.target.form[3].value);
   };
+  const createOptions = (minNum, maxNum, increase) => {
+    const optionsToLoop = [];
+    while (minNum <= maxNum) {
+      console.log(minNum);
+      optionsToLoop.push(minNum);
+      minNum = minNum + increase;
+    }
+    return optionsToLoop;
+  };
 
   return (
-    <div className="lobbySectionSettings">
-      <form>
-        <h1 className="Title">Settings</h1>
-        <div className="mainselection">
-          <label htmlFor="rounds">Rounds</label>
-          <select onChange={updateInput} class="rounds-control" id="rounds">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </div>
-        <div className="mainselection">
-          <label htmlFor="seconds">Seconds</label>
-          <select onChange={updateInput} class="seconds-control" id="seconds">
-            <option>30</option>
-            <option>40</option>
-            <option>50</option>
-            <option>60</option>
-            <option>70</option>
-          </select>
-        </div>
-        <div className="mainselection">
-          <label htmlFor="difficulty">Difficulty</label>
-          <select
-            onChange={updateInput}
-            class="difficulty-control"
-            id="difficulty"
-          >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
-        </div>
-        <div className="mainselection">
-          <label htmlFor="difficulty">Category</label>
-          <select onChange={updateInput} class="category-control" id="category">
-            {categories && categories.map((c) => <option>{c.name}</option>)}
-          </select>
-        </div>
+    <Container
+      display="flex"
+      h="80vh"
+      minH="100%"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <FormControl
+        p={4}
+        display="flex"
+        flexDirection="column"
+        alignContent="center"
+        justifyItems="center"
+        justifyContent="center"
+        alignItems="center"
+        h="80%"
+        w="70%"
+        boxShadow="rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px"
 
-        <div className="button">
-          <button onClick={handleSubmit}>Start Game</button>
-        </div>
-      </form>
-    </div>
+      >
+        <FormLabel fontSize="xl" className="Title" alignSelf="start" p="2">
+          Settings
+        </FormLabel>
+
+        <Text as="label" htmlFor="rounds">
+          Rounds
+        </Text>
+        <Select onChange={updateInput} className="rounds-control" id="rounds">
+          {createOptions(1, 4, 1).map((option) => (
+            <option>{option}</option>
+          ))}
+        </Select>
+
+        <Text as="label" htmlFor="seconds">
+          Seconds
+        </Text>
+        <Select onChange={updateInput} className="seconds-control" id="seconds">
+          {createOptions(30, 70, 10).map((option) => (
+            <option>{option}</option>
+          ))}
+        </Select>
+
+        <Text as="label" htmlFor="difficulty">
+          Difficulty
+        </Text>
+        <Select
+          onChange={updateInput}
+          className="difficulty-control"
+          id="difficulty"
+        >
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </Select>
+
+        <Text as="label" htmlFor="difficulty">
+          Category
+        </Text>
+        <Select onChange={updateInput} class="category-control" id="category">
+          {categories && categories.map((c) => <option>{c.name}</option>)}
+        </Select>
+
+        <Button onClick={handleSubmit}>Start Game</Button>
+      </FormControl>
+    </Container>
   );
 }

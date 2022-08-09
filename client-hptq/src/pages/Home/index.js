@@ -34,7 +34,7 @@ const Home = () => {
       minW="83vw"
       h="80vh"
       w="800px"
-      transition="0.8s linear"
+      transition="0.5s linear"
       initial={{ opacity: 0.55, x: 390 }}
       animate={{ opacity: 1, x: 0 }}
       // transition={{ type: "tween", delay: 5.5 }}
