@@ -44,17 +44,16 @@ const PlayersBoard = () => {
     return players.sort((a, b) => b.points - a.points);
   };
 
-  // console.log(availablePlayers);
-
   useEffect(() => {
     // setAvailablePlayers([
     //   { id: 1, username: "Florencia Pezcara", points: 2 },
     //   { id: 2, username: "Florence Welch", points: 5 },
     // ]);
-
     socket.on("players_in_room", (data) => {
       setAvailablePlayers((list) => [...list, data]);
     });
+
+    console.log("The current players in this room are:", availablePlayers);
 
     // setSortedAvailablePlayers(sortByPosition(availablePlayers));
   }, [socket]);
@@ -80,9 +79,9 @@ const PlayersBoard = () => {
                 <Td>
                   <Wrap p="1">
                     <WrapItem>
-                      <Avatar name={user} src="https://bit.ly/broken-link">
+                      {/* <Avatar name={user} src="https://bit.ly/broken-link">
                         <AvatarBadge bg="green.500" boxSize="1em" />
-                      </Avatar>
+                      </Avatar> */}
                     </WrapItem>
                   </Wrap>
                   <span>{user}</span>
