@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
+import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 
 const Home = () => {
   const [
@@ -23,24 +24,31 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <div className="joinGameContainer">
-        <h3>Join Room</h3>
-        <input
+    <Container
+      className="home"
+      size="md"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Box className="joinGameContainer">
+        <Heading>Join Room</Heading>
+        <Input
           type="text"
           placeholder="Username"
           onChange={(e) => setUserName(e.target.value)}
         />
-        <input
+        <Input
           type="text"
           onChange={(e) => setRoom(e.target.value)}
           placeholder="Room"
         />
         <NavLink to="/game-room">
-          <button onClick={handleRoomSelect}>CONNECT</button>
+          <Button color="dark" bg="facebook" onClick={handleRoomSelect}>
+            CONNECT
+          </Button>
         </NavLink>
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
 

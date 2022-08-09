@@ -31,10 +31,6 @@ const BurgerMenu = () => {
           justifyContent="center"
           borderRadius="20px"
           background="white"
-          // variants={menuBarVariants}
-          whileHover={{ color: "#fcf" }}
-          initial="open"
-          animate="close"
         />
       </AnimatedMenuButton>
       <MenuList>
