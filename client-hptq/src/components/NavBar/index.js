@@ -30,6 +30,14 @@ const NavBar = () => {
         transition="1.5s ease-in"
       >
         Scribble Do
+
+      </Text>
+      <Flex alignItems="center" justifyContent="space-between" minW="30%">
+        <Link to="/">Home</Link>
+        {/*this should lead to somewhere else, preferrably the lobby or sth */}
+        <Link to="/lobby">Create Game</Link>
+        <Link to="/leaderboard">Leaderboard</Link>
+
       </Heading>
       <Flex
         as="ul"
@@ -47,6 +55,7 @@ const NavBar = () => {
         <AnimatedHover>
           <NavLink to="/leaderboard">Leader Board</NavLink>
         </AnimatedHover>
+
       </Flex>
     </Flex>
   );
