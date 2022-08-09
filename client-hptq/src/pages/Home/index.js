@@ -55,6 +55,16 @@ const Home = () => {
         <Box justifyContent="space-between" alignItems="space-between">
           <Input
             type="text"
+            onChange={(e) => setRoom(e.target.value)}
+            placeholder="Room"
+            focusBorderColor="#FFC75F"
+            width="210px"
+            height="40px"
+            isRequired
+            mt="2"
+          />
+          <Input
+            type="text"
             placeholder="Username"
             onChange={(e) =>
               setPlayer({ username: e.target.value, points: 0, room: room })
@@ -65,16 +75,6 @@ const Home = () => {
             mb="2"
             focusBorderColor="#FFC75F"
             errorBorderColor="crimson"
-          />
-          <Input
-            type="text"
-            onChange={(e) => setRoom(e.target.value)}
-            placeholder="Room"
-            focusBorderColor="#FFC75F"
-            width="210px"
-            height="40px"
-            isRequired
-            mt="2"
           />
         </Box>
         <NavLink to="/game-room">

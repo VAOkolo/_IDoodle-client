@@ -31,13 +31,13 @@ const PlayersBoard = () => {
     setAvailablePlayers,
   ] = useContext(SocketContext);
 
-  // useEffect(() => {
-  //   socket.on("room_data", (users) => {
-  //     setAvailablePlayers([...users]);
-  //   });
+  useEffect(() => {
+    socket.on("room_data", (users) => {
+      setAvailablePlayers([...users]);
+    });
 
-  //   console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
-  // }, [socket]);
+    console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
+  }, [socket]);
 
   return (
     <>
