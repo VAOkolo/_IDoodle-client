@@ -1,20 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SocketContext } from "../../SocketContext";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
-  const [socket, room, setRoom, userName, setUserName] =
+  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
     useContext(SocketContext);
 
   const handleRoomSelect = (e) => {
     if (userName && room) {
-      console.log("IN THIS if");
-      socket.emit("join_room", room);
+      socket.emit("join_room", userName, room);
     }
   };
 
   return (
-    <div class="home">
+    <div className="home">
       <div className="joinGameContainer">
         <h3>Join Room</h3>
         <input
@@ -27,7 +26,7 @@ const Home = () => {
           onChange={(e) => setRoom(e.target.value)}
           placeholder="Room"
         />
-        <NavLink to="/start-game">
+        <NavLink to="/game-room">
           <button onClick={handleRoomSelect}>CONNECT</button>
         </NavLink>
       </div>

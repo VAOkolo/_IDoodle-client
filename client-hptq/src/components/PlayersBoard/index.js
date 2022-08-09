@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import {
   Wrap,
@@ -16,31 +16,41 @@ import {
   TableContainer,
   Text,
 } from "@chakra-ui/react";
+import { SocketContext } from "../../SocketContext";
 
 const PlayersBoard = () => {
-  const [availablePlayers, setAvailablePlayers] = useState([]);
+  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
+    useContext(SocketContext);
+
+  const [availablePlayers, setAvailablePlayers] = useState([userName]);
   const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
 
-  // this will change to reflect the connected users rather than all users
-  const fetchPlayers = async () => {
-    const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
+  // const fetchPlayers = async () => {
+  //   const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
 
-    setAvailablePlayers(data);
-    console.log(data);
-  };
+  //   setAvailablePlayers(data);
+  //   console.log(data);
+  // };
+
   //   fetchPlayers();
   const sortByPosition = (players) => {
     return players.sort((a, b) => b.points - a.points);
   };
 
   useEffect(() => {
-    // fetchPlayers();
-    setAvailablePlayers([
-      { id: 1, username: "Florencia Pezcara", points: 2 },
-      { id: 2, username: "Florence Welch", points: 5 },
-    ]);
-    setSortedAvailablePlayers(sortByPosition(availablePlayers));
-  }, []);
+    // setAvailablePlayers([
+    //   { id: 1, username: "Florencia Pezcara", points: 2 },
+    //   { id: 2, username: "Florence Welch", points: 5 },
+    // ]);
+
+    socket.on("players_in_room", (data) => {
+      setAvailablePlayers((list) => [...list, data]);
+    });
+
+    console.log(availablePlayers);
+
+    // setSortedAvailablePlayers(sortByPosition(availablePlayers));
+  }, [socket]);
 
   return (
     <>
@@ -57,24 +67,20 @@ const PlayersBoard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {sortedAvailablePlayers.map((user, i) => (
-              <Tr>
-                <Td># {i + 1}</Td>
+            {availablePlayers.map((user, i) => (
+              <Tr key={i}>
+                <Td>#{i + 1}</Td>
                 <Td>
                   <Wrap p="1">
                     <WrapItem>
-                      <Avatar
-                        name={user.username}
-                        src="https://bit.ly/broken-link"
-                        key={user.id}
-                      >
+                      <Avatar name={user} src="https://bit.ly/broken-link">
                         <AvatarBadge bg="green.500" boxSize="1em" />
                       </Avatar>
                     </WrapItem>
                   </Wrap>
-                  <span>{user.username}</span>
+                  <span>{user}</span>
                 </Td>
-                <Td>{user.points}</Td>
+                {/* <Td>{user.points}</Td> */}
               </Tr>
             ))}
           </Tbody>

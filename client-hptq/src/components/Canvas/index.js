@@ -26,11 +26,6 @@ function Canvas() {
 
     socket.on("make_all_other_turns_false", (id) => {
       setUserGameState({ isTurn: false });
-      console.log(
-        "make all other turns false user state",
-        userGameState.isTurn,
-        "and id is " + id
-      );
     });
   }, [socket]);
 
@@ -38,7 +33,6 @@ function Canvas() {
   function newDrawing(data) {
     const canvas = canvasRef.current;
     let image = new Image();
-    // let canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     image.src = data;
     image.onload = () => {
@@ -60,7 +54,11 @@ function Canvas() {
       isTurn: !userGameState.isTurn,
     });
     socket.emit("set_all_other_turns_false", room);
-    refreshCanvas();
+
+    if (userGameState.isTurn) {
+      console.log("IM STILL IN HERE!");
+      refreshCanvas();
+    }
   };
 
   const refreshCanvas = () => {

@@ -36,9 +36,9 @@ export default function Chat() {
     <div className="chat-window">
       <div className="chat-body">
         <ScrollToBottom className="message-container">
-          {messageList.map((message) => {
+          {messageList.map((message, index) => {
             return (
-              <div className="message">
+              <div className="message" key={index}>
                 <div>
                   <div className="message-content">
                     <p>{message.guess}</p>
