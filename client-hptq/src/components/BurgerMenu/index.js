@@ -1,8 +1,47 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  chakra,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { motion } from "framer-motion";
+import { AnimatedMenuButton } from "../../animations/animatedMenuButton";
 
 const BurgerMenu = () => {
-  return <Flex as="aside">BurgerMenu</Flex>;
+  return (
+    <Menu
+      as={motion.div}
+      display={["flex", "flex", "none"]}
+      alignItems="center"
+      justifyContent="center"
+      whileHover="hover"
+    >
+      <AnimatedMenuButton>
+        <MenuButton
+          as={IconButton}
+          aria-label="Options"
+          icon={<HamburgerIcon />}
+          variant="outline"
+          display={["flex", "flex", "none"]}
+          alignItems="center"
+          justifyContent="center"
+          borderRadius="20px"
+          background="white"
+          // variants={menuBarVariants}
+          whileHover={{ color: "#fcf" }}
+          initial="open"
+          animate="close"
+        />
+      </AnimatedMenuButton>
+      <MenuList>
+        <MenuItem icon={<CloseIcon />}></MenuItem>
+      </MenuList>
+    </Menu>
+  );
 };
 
 export default BurgerMenu;
