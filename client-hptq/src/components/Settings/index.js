@@ -45,7 +45,7 @@ export default function Settings() {
     fetchData();
   }, []);
 
-  socket.on("redirect_start_game", () => {
+  socket.on("redirect_start_game", (room) => {
     navigate("/game-room", { replace: true });
   });
 
