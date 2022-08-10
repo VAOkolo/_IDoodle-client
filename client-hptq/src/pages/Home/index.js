@@ -3,8 +3,10 @@ import { SocketContext } from "../../SocketContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+
 import { list } from "@chakra-ui/react";
 import { io } from "socket.io-client";
+
 
 const Home = () => {
   const [

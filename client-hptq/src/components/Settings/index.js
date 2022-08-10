@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Socket } from "socket.io-client";
 import { SocketContext } from "../../SocketContext";
 
@@ -49,10 +49,23 @@ export default function Settings() {
     navigate("/game-room", { replace: true });
   });
 
+  const dummyArray = ["hello", "how", "are", "you"];
+  const selectRandomWord = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+  };
+  const startGame = () => {
+    socket.emit("start_game", room);
+    navigate("/game-room", { replace: true });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(rounds, gameTime, difficulty, category);
     //pass variables to fetch calls or other components used for game settings
+    //**temporarily here, may need moving
+    const wordToDisplay = selectRandomWord(dummyArray);
+    
+    socket.emit("generate_random_word", wordToDisplay, room);
   };
 
   const updateInput = (e) => {
@@ -64,16 +77,10 @@ export default function Settings() {
   const createOptions = (minNum, maxNum, increase) => {
     const optionsToLoop = [];
     while (minNum <= maxNum) {
-      console.log(minNum);
       optionsToLoop.push(minNum);
       minNum = minNum + increase;
     }
     return optionsToLoop;
-  };
-
-  const startGame = () => {
-    socket.emit("start_game", room);
-    navigate("/game-room", { replace: true });
   };
 
   return (
@@ -162,7 +169,6 @@ export default function Settings() {
         >
           {categories && categories.map((c) => <option>{c.name}</option>)}
         </Select>
-        {/* <NavLink to="/home"> */}
         <Button
           mt={4}
           onClick={handleSubmit}
@@ -179,13 +185,9 @@ export default function Settings() {
             fontWeight: "bold",
           }}
         >
-          Start Game
+          <Link to="/game-room">Start Game</Link>
         </Button>
-        {/* </NavLink> */}
       </FormControl>
-      <NavLink to="/game-room">
-        <button onClick={startGame}>CLICK</button>
-      </NavLink>
     </Container>
   );
 }
