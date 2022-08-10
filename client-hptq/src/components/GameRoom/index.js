@@ -3,8 +3,12 @@ import { Grid, GridItem, Container } from "@chakra-ui/react";
 import PlayersBoard from "../PlayersBoard";
 import Canvas from "../Canvas";
 import Chat from "../Chat";
+
+import Countdown from "../Countdown";
+
 import Word from '../Word'
 import { SocketContext } from "../../SocketContext";
+
 
 const GameRoom = () => {
   const [
@@ -54,6 +58,7 @@ const GameRoom = () => {
           </GridItem>
 
           <GridItem colSpan={4}>
+          <Countdown startingMinutes={0} startingSeconds={4}/>
             <Canvas />
             <Word />
           </GridItem>
