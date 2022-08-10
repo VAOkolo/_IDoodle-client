@@ -30,6 +30,12 @@ export default function Lobby() {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
   ] = useContext(SocketContext);
 
   useEffect(() => {
@@ -39,6 +45,8 @@ export default function Lobby() {
 
     console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
   }, [socket]);
+
+  const checkHost = () => {};
 
   return (
     <div className="lobby">
@@ -51,11 +59,13 @@ export default function Lobby() {
                 <AvatarBadge bg="green.500" boxSize="1em" />
               </Avatar>
               <p>{user.username}</p>
+              <p>host: {user.host}</p>
             </>
           ))}
         </div>
       </div>
       <Settings />
+      <button onClick={checkHost}>gfdgfgfd</button>
     </div>
   );
 }

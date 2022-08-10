@@ -12,8 +12,11 @@ export default function SocketProvider(props) {
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState();
   const [availablePlayers, setAvailablePlayers] = useState([]);
+  const [player, setPlayer] = useState({});
+
   const [activePlayer, setActivePlayer] = useState(false);
   const [wordToGuess, setWordToGuess] = useState("");
+
   return (
     <SocketContext.Provider
       value={[
@@ -30,6 +33,8 @@ export default function SocketProvider(props) {
         setActivePlayer,
         wordToGuess,
         setWordToGuess,
+        player,
+        setPlayer,
       ]}
     >
       {props.children}
