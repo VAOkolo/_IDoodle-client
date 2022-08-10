@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   FormControl,
@@ -9,13 +9,30 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Socket } from "socket.io-client";
+import { SocketContext } from "../../SocketContext";
 
 export default function Settings() {
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
+
   const [categories, setCategories] = useState();
   const [rounds, setGameRounds] = useState();
   const [gameTime, setGameTime] = useState();
   const [difficulty, setDifficulty] = useState();
   const [category, setCategory] = useState();
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const response = await fetch("https://opentdb.com/api_category.php");
@@ -27,6 +44,10 @@ export default function Settings() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  socket.on("redirect_start_game", () => {
+    navigate("/game-room", { replace: true });
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +69,11 @@ export default function Settings() {
       minNum = minNum + increase;
     }
     return optionsToLoop;
+  };
+
+  const startGame = () => {
+    socket.emit("start_game", room);
+    navigate("/game-room", { replace: true });
   };
 
   return (
@@ -136,7 +162,7 @@ export default function Settings() {
         >
           {categories && categories.map((c) => <option>{c.name}</option>)}
         </Select>
-
+        {/* <NavLink to="/home"> */}
         <Button
           mt={4}
           onClick={handleSubmit}
@@ -155,7 +181,11 @@ export default function Settings() {
         >
           Start Game
         </Button>
+        {/* </NavLink> */}
       </FormControl>
+      <NavLink to="/game-room">
+        <button onClick={startGame}>CLICK</button>
+      </NavLink>
     </Container>
   );
 }

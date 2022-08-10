@@ -5,7 +5,6 @@ import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { list } from "@chakra-ui/react";
 
-
 const Home = () => {
   const [
     socket,
@@ -25,7 +24,6 @@ const Home = () => {
     if (player.username && room) {
       setAvailablePlayers((list) => [...list, player.username]);
       socket.emit("join_room", player, room);
-
     }
   };
 
@@ -70,7 +68,12 @@ const Home = () => {
             type="text"
             placeholder="Username"
             onChange={(e) =>
-              setPlayer({ username: e.target.value, points: 0, room: room })
+              setPlayer({
+                id: "",
+                username: e.target.value,
+                points: 0,
+                room: room,
+              })
             }
             isRequired
             width="210px"
@@ -80,7 +83,7 @@ const Home = () => {
             errorBorderColor="crimson"
           />
         </Box>
-        <NavLink to="/game-room">
+        <NavLink to="/lobby">
           <Button
             as={motion.button}
             borderRadius="50px"

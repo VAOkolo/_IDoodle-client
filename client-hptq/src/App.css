@@ -5,7 +5,6 @@ html {
   width: 100vw;
 }
 
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -15,7 +14,6 @@ html {
     transform: rotate(360deg);
   }
 }
-
 
 /* Home Page */
 
@@ -217,10 +215,9 @@ html {
   opacity: 0 !important;
 }
 
-
 /* Nav bar */
 .active {
-  color: #FFC75F;
+  color: #ffc75f;
   /* transform: scale(1); */
 }
 
@@ -231,4 +228,14 @@ nav ul {
 nav ul li {
   cursor: pointer;
   text-transform: uppercase;
+}
+
+.lobby {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+}
+
+.lobbyPlayersContainer {
+  display: flex;
+  justify-content: center;
 }
