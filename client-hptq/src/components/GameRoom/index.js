@@ -1,10 +1,34 @@
-import React from "react";
-import { Box, Grid, GridItem, Container } from "@chakra-ui/react";
+import React, { useContext, useEffect } from "react";
+import { Grid, GridItem, Container } from "@chakra-ui/react";
 import PlayersBoard from "../PlayersBoard";
 import Canvas from "../Canvas";
 import Chat from "../Chat";
+import Word from '../Word'
+import { SocketContext } from "../../SocketContext";
 
 const GameRoom = () => {
+  const [
+    socket,
+    room,
+    setRoom,
+    userName,
+    setUserName,
+    userID,
+    setUserID,
+    availablePlayers,
+    setAvailablePlayers,
+  ] = useContext(SocketContext);
+
+  // socket.on("received_word_to_guess", (word) => {
+  //   console.log(word);
+  // });
+
+  // useEffect(() => {
+  //   socket.on("received_word_to_guess", (word) => {
+  //     console.log(word);
+  //   });
+  // }, [socket]);
+
   return (
     <>
       <Container
@@ -16,8 +40,6 @@ const GameRoom = () => {
         px={"50px"}
         gap={12}
       >
-        {/* <GameRoom /> */}
-
         <Grid
           templateColumns="repeat(6, 1fr)"
           templateRows="repeat(1, 1fr)"
@@ -33,6 +55,7 @@ const GameRoom = () => {
 
           <GridItem colSpan={4}>
             <Canvas />
+            <Word />
           </GridItem>
           <GridItem colSpan={1}>
             <Chat />

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useEffect, useContext } from "react";
+
 import {
   Wrap,
   WrapItem,
@@ -36,7 +36,7 @@ const PlayersBoard = () => {
       setAvailablePlayers([...users]);
     });
 
-    console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
+    // console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
   }, [socket]);
 
   return (
