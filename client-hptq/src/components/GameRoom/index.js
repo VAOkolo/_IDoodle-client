@@ -3,6 +3,7 @@ import { Box, Grid, GridItem, Container } from "@chakra-ui/react";
 import PlayersBoard from "../PlayersBoard";
 import Canvas from "../Canvas";
 import Chat from "../Chat";
+import Countdown from "../Countdown";
 
 const GameRoom = () => {
   return (
@@ -32,6 +33,7 @@ const GameRoom = () => {
           </GridItem>
 
           <GridItem colSpan={4}>
+          <Countdown startingMinutes={0} startingSeconds={4}/>
             <Canvas />
           </GridItem>
           <GridItem colSpan={1}>
