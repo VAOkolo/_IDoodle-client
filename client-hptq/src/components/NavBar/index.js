@@ -66,8 +66,11 @@ const NavBar = () => {
         <AnimatedLink>
           <NavLink to="/">Home</NavLink>
         </AnimatedLink>
-        <AnimatedLink>
+        {/* <AnimatedLink>
           <NavLink to="/lobby">New Game</NavLink>
+        </AnimatedLink> */}
+        <AnimatedLink>
+          <NavLink to="/rules">Rules</NavLink>
         </AnimatedLink>
         <AnimatedLink>
           <NavLink to="/leaderboard">LeaderBoard</NavLink>

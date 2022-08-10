@@ -5,6 +5,7 @@ import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { AnimatedBackground } from "../../animations/animatedBackground";
 
+
 const Home = () => {
   console.log(AnimatedBackground);
   const [
