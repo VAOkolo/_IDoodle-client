@@ -24,8 +24,6 @@ export default function Settings() {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
-    roomState,
-    setRoomState,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState();
@@ -48,7 +46,6 @@ export default function Settings() {
   }, []);
 
   socket.on("redirect_start_game", (room) => {
-    setRoomState({ roomNumber: room, gameState: true });
     navigate("/game-room", { replace: true });
   });
 

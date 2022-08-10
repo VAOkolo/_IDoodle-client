@@ -17,8 +17,6 @@ const Home = () => {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
-    roomState,
-    setRoomState,
   ] = useContext(SocketContext);
 
   const [player, setPlayer] = useState({});
@@ -32,14 +30,10 @@ const Home = () => {
   socket.on("accept_connection", () => {});
 
   const handleRoomSelect = (e) => {
-    console.log("in here");
-    if (roomState.gameState == false) {
-      console.log("in here2");
-      if (player.username && room) {
-        console.log("in here3");
-        setAvailablePlayers((list) => [...list, player.username]);
-        socket.emit("join_room", player, room, roomState);
-      }
+    if (player.username && room) {
+      console.log("in here3");
+      setAvailablePlayers((list) => [...list, player.username]);
+      socket.emit("join_room", player, room);
     }
   };
 
