@@ -1,18 +1,17 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Flex, Heading } from "@chakra-ui/react";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { AnimatedLink } from "../../animations/animatedLink";
 import BurgerMenu from "../BurgerMenu";
 
 const NavBar = () => {
-
   return (
     <Flex
       as={motion.nav}
-      bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
+      bg="linear-gradient( 135deg, #845EC2 10%, #008E9B 100%)"
       minH={["20vh", "15vh"]}
-      p={3}
+      p={{ sm: 8, md: 3 }}
       boxShadow="0px 1px 10px #999"
       justifyContent={["center", "space-between", "start", "space-between"]}
       alignItems={["center", "center", "center", "center"]}
@@ -23,7 +22,6 @@ const NavBar = () => {
         //   // "linear-gradient( 35deg, #008E9B 100%, #845EC2 50%, #FF6F91 10%)",
         // ],
       }}
-    
       whileHover={{ filter: "brightness(107%)", delay: 1, duration: 1 }}
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"

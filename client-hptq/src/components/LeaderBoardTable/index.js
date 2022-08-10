@@ -28,13 +28,9 @@ export default function LeaderBoardTable() {
 
   function dateTransformer(date) {
     const d = new Date(date);
-    console.log(d);
     return d.toString();
   }
 
-  console.log(
-    dateTransformer("Mon Aug 08 2022 15:19:50 GMT+0100 (British Summer Time)")
-  );
 
   return (
     <Container
@@ -42,7 +38,6 @@ export default function LeaderBoardTable() {
       initial={{ opacity: 0.2 }}
       animate={{ opacity: 1 }}
       exit={{ x: "-300px", opacity: 0 }}
-      overflow="visible"
       // transition="2s linear"
     >
       <TableContainer
@@ -55,7 +50,7 @@ export default function LeaderBoardTable() {
         exit={{ x: 10, opacity: 0 }}
         m={6}
       >
-        <Table variant="striped" colorScheme="purple" p="2" fontSize="sm">
+        <Table variant="striped" colorScheme="blue" p="2" fontSize="sm">
           <Thead>
             <Tr>
               <Th>Rank</Th>
