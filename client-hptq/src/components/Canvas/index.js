@@ -33,6 +33,7 @@ function Canvas() {
   });
 
   const [isDrawing, setIsDrawing] = useState(false);
+  const [turnCount, setTurnCount] = useState(0)
 
   //canvas - sets state of canvas. useRef stores state without triggering a re-render
   const canvasRef = useRef(null);
@@ -48,7 +49,12 @@ function Canvas() {
       setUserID(data);
     });
 
-    socket.on("make_all_other_turns_false", refreshCanvas);
+   // socket.on("make_all_other_turns_false", refreshCanvas);
+    socket.on("make_all_other_turns_false", (id) => {
+      setUserGameState({ isTurn: false });
+      setActivePlayer(false)
+      refreshCanvas();
+    });
   }, [socket]);
 
   //newDrawing is called when the socket receives 'recieved_canvas' data value form server.
@@ -72,6 +78,7 @@ function Canvas() {
   }, []);
 
   const handleSetMyTurn = () => {
+
     setUserGameState({
       isTurn: !userGameState.isTurn,
       id: activePlayer.id,
@@ -80,6 +87,11 @@ function Canvas() {
     socket.emit("set_all_other_turns_false", room);
     refreshCanvas();
     console.log("available players details: ", availablePlayers);
+
+    // console.log("players in this room are...turncount!!", availablePlayers[turnCount]);
+    // setTurnCount((prev) =>  prev < availablePlayers.length-1 ? prev + 1 : prev = 0)
+    // console.log("active palyer", activePlayer);
+    
   };
 
   const refreshCanvas = (data) => {
