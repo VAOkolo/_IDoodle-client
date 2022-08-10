@@ -13,8 +13,9 @@ export default function SocketProvider(props) {
   const [userID, setUserID] = useState();
   const [availablePlayers, setAvailablePlayers] = useState([]);
   const [player, setPlayer] = useState({});
-
-  const [activePlayer, setActivePlayer] = useState(false);
+  const [canDraw, setCanDraw] = useState(false);
+  const [activePlayer, setActivePlayer] = useState({});
+  const [activePlayerBool, setActivePlayerBool] = useState(false);
   const [wordToGuess, setWordToGuess] = useState("");
 
   return (
@@ -35,6 +36,10 @@ export default function SocketProvider(props) {
         setWordToGuess,
         player,
         setPlayer,
+        activePlayerBool,
+        setActivePlayerBool,
+        canDraw,
+        setCanDraw,
       ]}
     >
       {props.children}

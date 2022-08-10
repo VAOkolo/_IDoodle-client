@@ -12,7 +12,20 @@ function Canvas() {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
+    activePlayerBool,
+    setActivePlayerBool,
+    canDraw,
+    setCanDraw,
   ] = useContext(SocketContext);
+
+  //send userGameState to socket
+  //emit to everyone in room, set user game state for everyone else false
 
   const [userGameState, setUserGameState] = useState({
     username: userID,
@@ -35,10 +48,7 @@ function Canvas() {
       setUserID(data);
     });
 
-    socket.on("make_all_other_turns_false", (id) => {
-      setUserGameState({ isTurn: false });
-      refreshCanvas();
-    });
+    socket.on("make_all_other_turns_false", refreshCanvas);
   }, [socket]);
 
   //newDrawing is called when the socket receives 'recieved_canvas' data value form server.
@@ -64,10 +74,12 @@ function Canvas() {
   const handleSetMyTurn = () => {
     setUserGameState({
       isTurn: !userGameState.isTurn,
+      id: activePlayer.id,
     });
+
     socket.emit("set_all_other_turns_false", room);
     refreshCanvas();
-    console.log("players in this room are", availablePlayers);
+    console.log("available players details: ", availablePlayers);
   };
 
   const refreshCanvas = (data) => {
@@ -79,13 +91,7 @@ function Canvas() {
   };
 
   const startDrawing = ({ nativeEvent }) => {
-    console.log(
-      "startdrawing user state",
-      userGameState.isTurn,
-      "in room",
-      room
-    );
-    if (userGameState.isTurn) {
+    if (canDraw) {
       const { offsetX, offsetY } = nativeEvent;
       contextRef.current.beginPath();
       contextRef.current.moveTo(offsetX, offsetY);

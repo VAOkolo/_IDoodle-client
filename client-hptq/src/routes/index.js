@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Leaderboard, Lobby } from "../pages";
-import { GameRoom } from "../components";
+import { Home, Leaderboard, Lobby, GameRoom } from "../pages";
 
 const AppRoutes = () => {
   return (

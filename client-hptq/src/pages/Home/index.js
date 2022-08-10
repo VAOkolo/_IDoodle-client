@@ -90,6 +90,7 @@ const Home = () => {
                 points: 0,
                 room: room,
                 host: true,
+                active: false,
               })
             }
             isRequired

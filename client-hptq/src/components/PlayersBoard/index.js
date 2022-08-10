@@ -29,6 +29,16 @@ const PlayersBoard = () => {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
+    activePlayerBool,
+    setActivePlayerBool,
+    canDraw,
+    setCanDraw,
   ] = useContext(SocketContext);
 
   useEffect(() => {
@@ -69,6 +79,10 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
+                  <p>
+                    {user.active ? setCanDraw(true) : setCanDraw(false)}
+                    Active: {user.active.toString()}
+                  </p>
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>
