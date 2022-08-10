@@ -9,9 +9,14 @@ export const SocketContext = createContext();
 
 export default function SocketProvider(props) {
   const [room, setRoom] = useState("");
+  const [roomState, setRoomState] = useState({
+    roomNumber: "",
+    gameState: false,
+  });
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState();
   const [availablePlayers, setAvailablePlayers] = useState([]);
+
   return (
     <SocketContext.Provider
       value={[
@@ -24,6 +29,8 @@ export default function SocketProvider(props) {
         setUserID,
         availablePlayers,
         setAvailablePlayers,
+        roomState,
+        setRoomState,
       ]}
     >
       {props.children}

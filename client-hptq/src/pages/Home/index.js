@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { SocketContext } from "../../SocketContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { list } from "@chakra-ui/react";
+import { io } from "socket.io-client";
 
 const Home = () => {
   const [
@@ -16,14 +17,31 @@ const Home = () => {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    roomState,
+    setRoomState,
   ] = useContext(SocketContext);
 
   const [player, setPlayer] = useState({});
 
+  const navigate = useNavigate();
+
+  socket.on("refuse_connection", () => {
+    navigate("/", { replace: true });
+  });
+
+  socket.on("accept_connection", () => {});
+
   const handleRoomSelect = (e) => {
-    if (player.username && room) {
-      setAvailablePlayers((list) => [...list, player.username]);
-      socket.emit("join_room", player, room);
+    setRoomState({ roomNumber: room });
+    console.log(roomState);
+    console.log("in here");
+    if (roomState.gameState == false) {
+      console.log("in here2");
+      if (player.username && room) {
+        console.log("in here3");
+        setAvailablePlayers((list) => [...list, player.username]);
+        socket.emit("join_room", player, room, roomState);
+      }
     }
   };
 
