@@ -24,6 +24,12 @@ export default function Settings() {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState();
@@ -59,12 +65,13 @@ export default function Settings() {
   };
 
   const handleSubmit = (e) => {
+    startGame();
     e.preventDefault();
     console.log(rounds, gameTime, difficulty, category);
     //pass variables to fetch calls or other components used for game settings
     //**temporarily here, may need moving
     const wordToDisplay = selectRandomWord(dummyArray);
-    
+
     socket.emit("generate_random_word", wordToDisplay, room);
   };
 

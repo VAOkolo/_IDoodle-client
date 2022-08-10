@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { list } from "@chakra-ui/react";
 import { io } from "socket.io-client";
 
-
 const Home = () => {
   const [
     socket,
@@ -19,9 +18,13 @@ const Home = () => {
     setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
   ] = useContext(SocketContext);
-
-  const [player, setPlayer] = useState({});
 
   const navigate = useNavigate();
 
@@ -32,6 +35,7 @@ const Home = () => {
   socket.on("accept_connection", () => {});
 
   const handleRoomSelect = (e) => {
+    console.log(player.host);
     if (player.username && room) {
       console.log("in here3");
       setAvailablePlayers((list) => [...list, player.username]);
@@ -85,6 +89,7 @@ const Home = () => {
                 username: e.target.value,
                 points: 0,
                 room: room,
+                host: true,
               })
             }
             isRequired
