@@ -32,8 +32,6 @@ const Home = () => {
   socket.on("accept_connection", () => {});
 
   const handleRoomSelect = (e) => {
-    setRoomState({ roomNumber: room });
-    console.log(roomState);
     console.log("in here");
     if (roomState.gameState == false) {
       console.log("in here2");
