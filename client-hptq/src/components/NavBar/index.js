@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Flex, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { AnimatedLink } from "../../animations/animatedLink";
@@ -9,17 +9,20 @@ const NavBar = () => {
   return (
     <Flex
       as={motion.nav}
-      bg="linear-gradient( 135deg, #845EC2 10%, #D65DB1 100%)"
+      bg="linear-gradient( 135deg, #845EC2 10%, #008E9B 100%)"
       minH={["20vh", "15vh"]}
-      p={3}
+      p={{ sm: 8, md: 3 }}
       boxShadow="0px 1px 10px #999"
       justifyContent={["center", "space-between", "start", "space-between"]}
       alignItems={["center", "center", "center", "center"]}
-      initial={{ opacity: 0.33 }}
-      animate={{ opacity: 1 }}
-      transition="1.3s ease-in-out"
-      _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
-      // flexDirection={{ base: "row", lg: "row", md: "column", sm: "row" }}
+      animate={{
+        opacity: 1,
+        // background: [
+        //   "linear-gradient( 135deg, #845EC2 10%, #008E9B 100%)",
+        //   // "linear-gradient( 35deg, #008E9B 100%, #845EC2 50%, #FF6F91 10%)",
+        // ],
+      }}
+      whileHover={{ filter: "brightness(107%)", delay: 1, duration: 1 }}
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"
     >
@@ -34,11 +37,18 @@ const NavBar = () => {
           letterSpacing={2}
           initial={{ opacity: 0, y: -220 }}
           animate={{ opacity: 1, y: 0, fontSize: "40px" }}
-          transition="1s fade-in"
+          transition="2s fade-in"
           p={3}
           order={["2", "1", "1", "1"]}
+          whileHover={{
+            scale: 1.22,
+            rotate: 180,
+            duration: 10,
+            color: "#FFC75F",
+            x: "22px",
+          }}
         >
-          Scribble Do
+          <Link to="/">Scribble Do</Link>
         </Heading>
       </Flex>
       <Flex
