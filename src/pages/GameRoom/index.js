@@ -1,12 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import {
-  Grid,
-  GridItem,
-  Container,
-  Flex,
-  HStack,
-  VStack,
-} from "@chakra-ui/react";
+import { Text, Flex, HStack, Divider, Box } from "@chakra-ui/react";
 import {
   PlayersBoard,
   Canvas,
@@ -49,34 +42,72 @@ const GameRoom = () => {
   return (
     <>
       <CorrectPlayer />
-      <HStack
+      <Flex
         textAlign="center"
-        h="100%"
+        h={["50%", "80%", "50%", "80vh"]}
         display="flex"
+        flexDirection="column"
         justifyContent="center"
+        alignItems="center"
         maxW="container.2xl"
-        py={"50px"}
-        px={"50px"}
+        w="container.2xl"
+        py={"5%"}
+        px={"5%"}
         spacing="2"
       >
-        <Flex>
-          <Flex flexDirection="column" h="20em" minH="25em">
+        <Box
+          gap={2}
+          display="flex"
+          w={{ lg: "85%", xl: "87%", "2xl": "90%" }}
+          bg="white"
+          rounded="xl"
+        >
+          <Flex
+            w={{ lg: "26%" }}
+            justifyContent="center"
+            alignItems="center"
+            rounded="xl"
+            mb={{ lg: "-8px" }}
+            overflow="hidden"
+            spacing="7"
+          >
+            <Text as="h3" fontSize="2xl" fontWeight="bold">
+              Connected Players
+            </Text>
+          </Flex>
+          <Flex w="40%" ml="4%">
+            <Countdown startingMinutes={0} startingSeconds={4} />
+            <Divider orientation="vertical" />
+            <Word />
+          </Flex>
+        </Box>
+        <HStack
+          bg="white"
+          border="0.5px solid black"
+          minH="23.4em"
+          h="23.5em"
+          justifySelf="stretch"
+          wrap="wrap"
+        >
+          <Flex
+            flexDirection="column"
+            h="22em"
+            alignSelf="stretch"
+            alignItems="center"
+          >
             <PlayersBoard />
           </Flex>
 
-          <Flex flexDirection="column" h="100%" minH="25em">
-            <VStack>
-              <Countdown startingMinutes={0} startingSeconds={4} />
-              <Canvas />
-              <Word />
-            </VStack>
+          <Flex flexDirection="column" h="22em" alignSelf="stretch">
+            <Canvas />
           </Flex>
-          <Flex h="100%" minH="25em">
+          <Flex h="22em" alignSelf="stretch" justifySelf="stretch">
             <Chat />
           </Flex>
-        </Flex>
-      </HStack>
+        </HStack>
+      </Flex>
       {/* </Container> */}
+      {/* </Flex> */}
     </>
   );
 };

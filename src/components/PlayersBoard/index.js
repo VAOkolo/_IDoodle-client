@@ -53,24 +53,32 @@ const PlayersBoard = () => {
   console.log(socket.id === activePlayer);
   return (
     <>
-      <Text as="h3" textAlign="start" m="3">
-        Connected Players
-      </Text>
-      <TableContainer w={["100%", "80%", "80%"]} boxShadow="xs">
-        <Table variant="striped" colorScheme="gray" size="md">
-          <Thead border="1px solid gray" fontSize="4px">
-            <Tr  fontSize="4px">
+      <TableContainer
+        w={{ lg: "18em" }}
+        boxShadow="xs"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        alignSelf="center"
+      >
+        <Table colorScheme="gray" fontSize="2em">
+          <Thead>
+            <Tr fontSize="0.8em">
               {/* <Th>Position</Th> */}
-              <Th fontSize="0.5rem">Name</Th>
-              <Th fontSize="0.5rem">Points</Th>
+              <Th fontSize="0.5em">Name</Th>
+              <Th fontSize="0.5em">Points</Th>
             </Tr>
           </Thead>
-          <Tbody fontSize="sm">
+          <Tbody fontSize="0.5em" fontWeight="bold">
             {availablePlayers.map((user, index) => (
               <Tr key={index}>
                 {/* <Td>#{index + 1}</Td> */}
-                <Td display="flex">
-                  <Wrap>
+                <Td
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Wrap display="flex" flexDirection="column">
                     <WrapItem>
                       <Avatar
                         name={user.username}
@@ -82,9 +90,7 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-
-                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}
-ß
+                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}ß
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

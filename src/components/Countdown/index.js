@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../SocketContext";
+import { Flex } from "@chakra-ui/react";
 
 export default function Countdown(props) {
   const [
@@ -86,7 +87,7 @@ export default function Countdown(props) {
       if (secs === 0) {
         if (mins === 0) {
           clearInterval(sampleInterval);
-          // socket.emit("send_time_up", room);
+          socket.emit("send_time_up", room);
         } else {
           setMinutes(mins - 1);
           setSeconds(59);
@@ -106,7 +107,7 @@ export default function Countdown(props) {
   }, [socket]);
 
   return (
-    <>
+    <Flex direction="column" fontSize="2xl" fontWeight="bold">
       {secs}
       {!(mins && secs) ? (
         ""
@@ -118,6 +119,6 @@ export default function Countdown(props) {
       )}
       <button onClick={startTimer}> start timer</button>
       {/* <p>{activePlayer}</p> */}
-    </>
+    </Flex>
   );
 }
