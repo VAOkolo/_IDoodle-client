@@ -308,6 +308,7 @@ export default function Settings() {
       justifyContent="center"
       alignItems="center"
     >
+      <h1>Room Number: {room}</h1>
       <FormControl
         as={motion.form}
         p="10"

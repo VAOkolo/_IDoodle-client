@@ -97,6 +97,7 @@ function Canvas() {
         height={250}
         width={250}
         style={{ border: "1px solid black" }}
+        className="canvas"
       />
       <br></br>
       We Are In Room: {room}

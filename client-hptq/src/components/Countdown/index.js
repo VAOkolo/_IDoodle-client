@@ -27,22 +27,23 @@ export default function Countdown(props) {
 
   const startTimer = () => {
     setResetGames(!resetGames);
-    setSeconds(5);
+    setSeconds(25);
 
     nextTurn();
   };
+
+  useEffect(() => {
+    socket.on("reset_round", () => {
+      startTimer();
+    });
+  }, [socket]);
 
   let _turn = 0;
   let current_turn = 0;
 
   function nextTurn() {
-    // console.log("CALLED :)");
     _turn = current_turn++ % availablePlayers.length;
-    // console.log(availablePlayers[_turn].id);
     setActivePlayer(availablePlayers[_turn].id);
-    // setUserId(availablePlayers[_turn].id);
-    console.log("active player: ", activePlayer);
-    // console.log("active player id: ", userId);
   }
 
   useEffect(() => {

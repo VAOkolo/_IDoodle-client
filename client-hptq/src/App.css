@@ -239,3 +239,9 @@ nav ul li {
   display: flex;
   justify-content: center;
 }
+
+/* Canvas */
+
+.canvas {
+  cursor: url(pencil.png), auto;
+}

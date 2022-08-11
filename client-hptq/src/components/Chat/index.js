@@ -3,8 +3,19 @@ import { SocketContext } from "../../SocketContext";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 export default function Chat() {
-  const [socket, room, setRoom, userName, setUserName, userID, setUserID] =
-    useContext(SocketContext);
+  const [
+    socket,
+    room,
+    setRoom,
+    availablePlayers,
+    setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
+  ] = useContext(SocketContext);
 
   const [currentMessage, setCurrentMessage] = useState({
     guess: "",
@@ -14,12 +25,23 @@ export default function Chat() {
 
   const [messageList, setMessageList] = useState([]);
 
+  let _turn = 0;
+  let current_turn = 0;
+
+  function nextTurn() {
+    _turn = current_turn++ % availablePlayers.length;
+    setActivePlayer(availablePlayers[_turn].id);
+  }
+
   const sendMessage = async () => {
     if (currentMessage.guess !== "") {
       await socket.emit("send_message", currentMessage, room);
 
       if (currentMessage.guess === correctAnswer) {
-        alert("Activate Fireworks You Are The Winner !!!!!!!!!!!!!!");
+        let userWithCorrectAns = socket.id;
+        nextTurn();
+        // alert("Activate Fireworks You Are The Winner !");
+        socket.emit("set_user_points", room, userWithCorrectAns);
       }
       setMessageList((list) => [...list, currentMessage]);
       setCurrentMessage({ guess: "" });
