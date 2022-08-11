@@ -9,6 +9,7 @@ import {
   CorrectPlayer,
 } from "../../components";
 import { SocketContext } from "../../SocketContext";
+import { postUser, postUsers } from "../../helperFunctions/helpers";
 
 const GameRoom = () => {
   const [
@@ -39,8 +40,20 @@ const GameRoom = () => {
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
+  let testArray = [{username: "test", scores: 999},
+  {username: "test", scores: 999},
+  {username: "test", scores: 999},
+  {username: "test", scores: 999},
+  {username: "test", scores: 999}]
+
+
+
   return (
     <>
+    <button onClick={ (e) => {
+      console.log(e)
+      postUsers(testArray)
+      }}>Click ME</button>
       <CorrectPlayer />
       <Container
         display="flex"
