@@ -92,7 +92,7 @@ const Word = () => {
   // };
 
   return (
-    <Container bg="teal">
+    <Container backdropFilter="auto" alignSelf="center" justifySelf="center" fontSize="2xl" fontWeight="bold">
       {isActivePlayer ? (
         <Text as="h4" fontSize="xl" textAlign="start" order="1">
           Word to draw: {wordToGuess}

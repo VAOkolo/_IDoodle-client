@@ -1,5 +1,19 @@
+
 import React, { useEffect, useContext } from "react";
 import { SocketContext } from "../../SocketContext";
+import { Stack, Text, Container } from "@chakra-ui/react";
+
+<Container
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minW="80%"
+      minH="70vh"
+    >
+      <Stack display="flex" justifyContent="center" alignItems="center" boxShadow="dark-lg" minW="20em" minH="20em" rounded="lg" bg="white">
+        <Text fontSize="7xl" color="crimson" fontWeight="bold">Game Over</Text>
+      </Stack>
+    </Container>
 
 export default function GameOver() {
   const [
