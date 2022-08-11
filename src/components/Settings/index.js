@@ -43,7 +43,7 @@ export default function Settings() {
 
   let isHost = false;
 
-  const checkIsHot = () => {
+  const checkIsHost = () => {
     if (host == socket.id) {
       isHost = true;
     }
@@ -60,14 +60,11 @@ export default function Settings() {
       gameRounds * availablePlayers.length
     }&category=${categoryID}&difficulty=${gameDifficulty}&type=multiple`;
     const { data } = await axios.get(url);
-    setQuiz(data);
-    console.log(data);
     return data;
   };
 
-  console.log("dsfsdf:", quiz);
   useEffect(() => {
-    checkIsHot();
+    checkIsHost();
     fetchCategories();
     setActivePlayer(availablePlayers[0].id);
   }, []);
@@ -76,29 +73,20 @@ export default function Settings() {
     navigate("/game-room", { replace: true });
   });
 
-  // const createWordArray = (arr) => {
-  //   // arr.length !== 0 && arr.map((cat) => findTheWord.push(cat.correct_answer));
-  //   // setWordToGuessArray(...findTheWord);
-  //   // return findTheWord;
-  //   const arrMap = arr.map((cat) => cat.correct_answer);
-  //   // setWordToGuessArray([...arrMap]);
-  // };
+  const createWordArray = (arr) => {
+    const arrMap = arr.map((cat) => cat.correct_answer);
+    setWordToGuessArray([...arrMap]);
+  };
 
   const startGame = () => {
     socket.emit("start_game", room);
     navigate("/game-room", { replace: true });
-    // console.log("****ARRAY******", wordToGuessArray);
-    // console.log("findthewordddddd", findTheWord);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await fetchQuiz();
-    console.log("*****************", wordToGuessArray);
-
-    //  socket.emit("generate_word_array", wordToDisplay, room);
-
-    // socket.emit("generate_words_array", wordToGuessArray, room);
+    createWordArray(data.results);
     startGame();
   };
 

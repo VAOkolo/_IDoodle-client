@@ -33,13 +33,11 @@ const GameRoom = () => {
 
   //Make First Person In Room Active Player
   useEffect(() => {
+    console.log("*****************", wordToGuessArray);
+    // socket.emit("generate_word_array", wordToDisplay, room);
+    // socket.emit("generate_words_array", wordToGuessArray, room);
     setActivePlayer(availablePlayers[0].id);
   }, []);
-
-  const handleClick = () => {
-    setWordToGuess(["please", "help"]);
-    console.log(wordToGuess);
-  };
 
   return (
     <>
@@ -75,7 +73,6 @@ const GameRoom = () => {
             <Chat />
           </GridItem>
         </Grid>
-        <button>CLICK!</button>
       </Container>
     </>
   );

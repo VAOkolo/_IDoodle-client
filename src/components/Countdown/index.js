@@ -15,8 +15,12 @@ export default function Countdown(props) {
     setWordToGuess,
     player,
     setPlayer,
-    userGameState,
-    setUserGameState,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -28,7 +32,6 @@ export default function Countdown(props) {
   const startTimer = () => {
     setResetGames(!resetGames);
     setSeconds(25);
-
     nextTurn();
   };
 
@@ -38,13 +41,17 @@ export default function Countdown(props) {
     });
   }, [socket]);
 
+  useEffect(() => {
+    socket.emit("generate_words_array", wordToGuessArray, room);
+  }, [activePlayer]);
+
   let _turn = 0;
   let current_turn = 0;
 
   function nextTurn() {
     _turn = current_turn++ % availablePlayers.length;
     setActivePlayer(availablePlayers[_turn].id);
-    // socket.emit("generate_words_array");
+    socket.off("received_word_to_guess");
     socket.on("received_word_to_guess", (word) => {
       console.log(word);
       setWordToGuess(word);
