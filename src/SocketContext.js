@@ -15,6 +15,7 @@ export default function SocketProvider(props) {
   const [host, setHost] = useState("");
   const [wordToGuessArray, setWordToGuessArray] = useState([]);
   const [correctPlayer, setCorrectPlayer] = useState("");
+  const [isActivePlayer, setIsActivePlayer] = useState(false);
 
   return (
     <SocketContext.Provider
@@ -36,6 +37,8 @@ export default function SocketProvider(props) {
         setWordToGuessArray,
         correctPlayer,
         setCorrectPlayer,
+        isActivePlayer,
+        setIsActivePlayer,
       ]}
     >
       {props.children}

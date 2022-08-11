@@ -63,8 +63,9 @@ const Word = () => {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
   ] = useContext(SocketContext);
-  const [isActivePlayer, setIsActivePlayer] = useState(false);
 
   useEffect(() => {
     socket.on("received_word_to_guess", (word) => {

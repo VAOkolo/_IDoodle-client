@@ -31,6 +31,14 @@ const PlayersBoard = () => {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
   ] = useContext(SocketContext);
 
   useEffect(() => {
@@ -71,7 +79,7 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  <p>Active: {user.active.toString()}</p>
+                  {user.id == activePlayer ? <p>"✏️"</p> : <p>""</p>}
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>
