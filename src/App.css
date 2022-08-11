@@ -1,11 +1,8 @@
-
-
 body,
 html {
   /* background-image: url("../src/assets/bg-img.jpeg");*/
   height: 100vh;
   width: 100vw;
-
 
 }
 
@@ -76,7 +73,7 @@ html {
 
 .chat-window {
   width: 300px;
-  height: 420px;
+  height: 300px;
 }
 
 .chat-window p {
@@ -84,7 +81,7 @@ html {
 }
 
 .chat-window .chat-header {
-  height: 45px;
+  height: 40px;
   border-radius: 6px;
   background: #263238;
   position: relative;
@@ -254,9 +251,8 @@ nav ul li {
   cursor: url(pencil.png), auto;
 }
 
-.hidden{
+.hidden {
   display: none
-
 }
 
 @keyframes rotate {

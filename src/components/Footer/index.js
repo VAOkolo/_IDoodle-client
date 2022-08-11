@@ -9,6 +9,7 @@ const Footer = () => {
       minH={["10vh", "5vh"]}
       b="0"
       w="100vw"
+      // h=""
       p={1}
       color="white"
       fontSize="11px"

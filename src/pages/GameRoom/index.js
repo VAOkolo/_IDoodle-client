@@ -1,5 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import { Grid, GridItem, Container } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Container,
+  Flex,
+  HStack,
+  VStack,
+} from "@chakra-ui/react";
 import {
   PlayersBoard,
   Canvas,
@@ -60,39 +67,44 @@ const GameRoom = () => {
       postUsers(testArray)
       }}>Click ME</button>
       <CorrectPlayer />
-      <Container
+      <HStack
+        textAlign="center"
+        h="100%"
         display="flex"
         justifyContent="center"
-        flexDirection="column"
         maxW="container.2xl"
         py={"50px"}
         px={"50px"}
-        gap={12}
+        spacing="2"
       >
-        <Grid
-          templateColumns="repeat(6, 1fr)"
-          templateRows="repeat(1, 1fr)"
-          // gap={"15%"}
-          //   alignItems="center"
-          // bg="yellow"
-          textAlign="center"
-          h="100%"
-        >
-          <GridItem>
+        <Flex>
+          <Flex flexDirection="column" h="20em" minH="25em">
             <PlayersBoard />
-          </GridItem>
+          </Flex>
 
-          <GridItem colSpan={4}>
 
-            <Countdown startingMinutes={0} startingSeconds={0} />
-            <Canvas />
-            <Word />
-          </GridItem>
-          <GridItem colSpan={1}>
+          <Flex flexDirection="column" h="100%" minH="25em">
+            <VStack>
+              <Countdown startingMinutes={0} startingSeconds={4} />
+              <Canvas />
+              <Word />
+            </VStack>
+          </Flex>
+          <Flex h="100%" minH="25em">
+//Commented out to merge from flo
+          // <GridItem colSpan={4}>
+
+            // <Countdown startingMinutes={0} startingSeconds={0} />
+            // <Canvas />
+            // <Word />
+          // </GridItem>
+          // <GridItem colSpan={1}>
+
             <Chat />
-          </GridItem>
-        </Grid>
-      </Container>
+          </Flex>
+        </Flex>
+      </HStack>
+      {/* </Container> */}
     </>
   );
 };

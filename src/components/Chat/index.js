@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { SocketContext } from "../../SocketContext";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { Container } from "@chakra-ui/react";
 
 export default function Chat() {
   const [
