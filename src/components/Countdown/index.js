@@ -44,6 +44,12 @@ export default function Countdown(props) {
   function nextTurn() {
     _turn = current_turn++ % availablePlayers.length;
     setActivePlayer(availablePlayers[_turn].id);
+    // socket.emit("generate_words_array");
+    socket.on("received_word_to_guess", (word) => {
+      console.log(word);
+      setWordToGuess(word);
+    });
+    console.log(wordToGuess);
   }
 
   useEffect(() => {

@@ -235,6 +235,7 @@ export default function Settings() {
   const [gameCategory, setGameCategory] = useState("General Knowledge");
   const [categoryID, setCategoryID] = useState(9);
   const [quiz, setQuiz] = useState([]);
+  const [wordToGuessArray, setWordToGuessArray] = useState([]);
 
   const navigate = useNavigate();
 
@@ -246,13 +247,15 @@ export default function Settings() {
   };
   const fetchQuiz = async () => {
     const url = `https://opentdb.com/api.php?amount=${
-      gameRounds * 5
+      gameRounds * availablePlayers.length
     }&category=${categoryID}&difficulty=${gameDifficulty}&type=multiple`;
     const { data } = await axios.get(url);
     setQuiz(data);
+    console.log(data);
     return data;
   };
 
+  console.log(quiz);
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -261,27 +264,33 @@ export default function Settings() {
     navigate("/game-room", { replace: true });
   });
 
-  const selectRandomWord = (arr) => {
-    const findTheWord = [];
-    arr.length !== 0 &&
-      arr.map(
-        (cat) =>
-          isNaN(cat.correct_answer) && findTheWord.push(cat.correct_answer)
-      );
-    return findTheWord[Math.floor(Math.random() * findTheWord.length)];
-  };
+  let findTheWord = [];
+  // const createWordArray = (arr) => {
+  //   // arr.length !== 0 && arr.map((cat) => findTheWord.push(cat.correct_answer));
+  //   // setWordToGuessArray(...findTheWord);
+  //   // return findTheWord;
+  //   const arrMap = arr.map((cat) => cat.correct_answer);
+  //   // setWordToGuessArray([...arrMap]);
+  // };
 
   const startGame = () => {
     socket.emit("start_game", room);
     navigate("/game-room", { replace: true });
+    setWordToGuessArray(["please", "help"]);
+    // console.log("****ARRAY******", wordToGuessArray);
+    // console.log("findthewordddddd", findTheWord);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await fetchQuiz();
-    const wordToDisplay = selectRandomWord(data.results);
+    // createWordArray(data.results);
+    console.log("*****************", wordToGuessArray);
+    // const wordToDisplay = selectRandomWord(data.results);
 
-    socket.emit("generate_random_word", wordToDisplay, room);
+    //  socket.emit("generate_word_array", wordToDisplay, room);
+
+    socket.emit("generate_words_array", wordToGuessArray, room);
     startGame();
   };
   const createOptions = (minNum, maxNum, increase) => {
@@ -344,7 +353,7 @@ export default function Settings() {
           cursor="pointer"
           value={gameRounds}
         >
-          {createOptions(1, 4, 1).map((option) => (
+          {createOptions(1, 5, 1).map((option) => (
             <option>{option}</option>
           ))}
         </Select>
