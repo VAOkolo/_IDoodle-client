@@ -65,10 +65,10 @@ export default function Chat() {
         // }
         // console.log(correctPlayer)
 
-        alert(
-          "Activate Fireworks You Are The Winner ! ---- " +
-            correctPlayerArray[0].username
-        );
+        // alert(
+        //   "Activate Fireworks You Are The Winner ! ---- " +
+        //     correctPlayerArray[0].username
+        // );
         socket.emit("set_user_points", room, userWithCorrectAns);
       }
       setMessageList((list) => [...list, currentMessage]);
