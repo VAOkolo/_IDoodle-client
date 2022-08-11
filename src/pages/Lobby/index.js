@@ -32,17 +32,36 @@ export default function Lobby() {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
   ] = useContext(SocketContext);
 
   useEffect(() => {
     socket.on("room_data", (users) => {
       setAvailablePlayers([...users]);
     });
-
-    console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
+    // socket.on("set_host", (host) => {
+    //   setHost(host);
+    // });
   }, [socket]);
 
-  const checkHost = () => {};
+  useEffect(() => {
+    socket.on("set_host", (host) => {
+      setHost(host);
+    });
+    socket.on("initial_room_data", (player) => { 
+      setPlayer(player)
+    })
+    console.log(player)
+    // setHost(availablePlayers);
+    console.log("host is: ", host);
+    // setWordToGuess(["please", "help"]);
+  }, []);
+
 
   return (
     <div className="lobby">
@@ -61,7 +80,6 @@ export default function Lobby() {
         </div>
       </div>
       <Settings />
-      <button onClick={checkHost}>gfdgfgfd</button>
     </div>
   );
 }

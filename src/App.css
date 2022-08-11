@@ -245,3 +245,7 @@ nav ul li {
 .canvas {
   cursor: url(pencil.png), auto;
 }
+
+.hidden{
+  display: none
+}

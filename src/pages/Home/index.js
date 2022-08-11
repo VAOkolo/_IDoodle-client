@@ -20,8 +20,8 @@ const Home = () => {
     setWordToGuess,
     player,
     setPlayer,
-    userGameState,
-    setUserGameState,
+    host,
+    setHost,
   ] = useContext(SocketContext);
 
   const navigate = useNavigate();
