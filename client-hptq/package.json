@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.6",
     "@chakra-ui/react": "^2.2.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -15,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-scroll-to-bottom": "^4.2.0",
     "socket.io-client": "^4.5.1",
     "web-vitals": "^2.1.4"
   },

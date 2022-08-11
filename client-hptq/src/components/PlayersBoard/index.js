@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useContext } from "react";
+
 import {
   Wrap,
   WrapItem,
@@ -16,31 +16,30 @@ import {
   TableContainer,
   Text,
 } from "@chakra-ui/react";
+import { SocketContext } from "../../SocketContext";
 
 const PlayersBoard = () => {
-  const [availablePlayers, setAvailablePlayers] = useState([]);
-  const [sortedAvailablePlayers, setSortedAvailablePlayers] = useState([]);
-
-  // this will change to reflect the connected users rather than all users
-  const fetchPlayers = async () => {
-    const { data } = await axios.get("http://hptq-backend.herokuapp.com/users");
-
-    setAvailablePlayers(data);
-    console.log(data);
-  };
-  //   fetchPlayers();
-  const sortByPosition = (players) => {
-    return players.sort((a, b) => b.points - a.points);
-  };
+  const [
+    socket,
+    room,
+    setRoom,
+    availablePlayers,
+    setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
+  ] = useContext(SocketContext);
 
   useEffect(() => {
-    // fetchPlayers();
-    setAvailablePlayers([
-      { id: 1, username: "Florencia Pezcara", points: 2 },
-      { id: 2, username: "Florence Welch", points: 5 },
-    ]);
-    setSortedAvailablePlayers(sortByPosition(availablePlayers));
-  }, []);
+    socket.on("room_data", (users) => {
+      setAvailablePlayers([...users]);
+    });
+
+    // console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
+  }, [socket]);
 
   return (
     <>
@@ -57,22 +56,22 @@ const PlayersBoard = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {sortedAvailablePlayers.map((user, i) => (
-              <Tr>
-                <Td># {i + 1}</Td>
+            {availablePlayers.map((user, index) => (
+              <Tr key={index}>
+                <Td>#{index + 1}</Td>
                 <Td>
                   <Wrap p="1">
                     <WrapItem>
                       <Avatar
                         name={user.username}
                         src="https://bit.ly/broken-link"
-                        key={user.id}
                       >
                         <AvatarBadge bg="green.500" boxSize="1em" />
                       </Avatar>
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
+                  <p>Active: {user.active.toString()}</p>
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

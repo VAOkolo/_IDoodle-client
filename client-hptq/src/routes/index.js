@@ -1,13 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../pages";
-import { GameRoom } from "../components";
+import { Home, Leaderboard, Lobby, GameRoom } from "../pages";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/start-game" element={<GameRoom />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/game-room" element={<GameRoom />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/lobby" element={<Lobby />} />
     </Routes>
   );
 };
