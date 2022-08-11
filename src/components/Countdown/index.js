@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../SocketContext";
 
 export default function Countdown(props) {
@@ -34,10 +35,23 @@ export default function Countdown(props) {
   const [secs, setSeconds] = useState(startingSeconds);
   const [resetGames, setResetGames] = useState(false);
   const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
   const startTimer = () => {
     setResetGames(!resetGames);
     setSeconds(gameTime);
+    // setSeconds(10);
+    console.log("currently:", current_turn);
+    console.log(
+      "to reach for game over:",
+      current_turn == gameRounds * availablePlayers.length
+    );
+    if (current_turn == gameRounds * availablePlayers.length) {
+      socket.emit("end_game", room);
+      socket.on("redirect_end_game", () => {
+        navigate("/game-over", { replace: true });
+      });
+    }
     nextTurn();
   };
 
@@ -62,11 +76,6 @@ export default function Countdown(props) {
       console.log(word);
       setWordToGuess(word);
     });
-
-    console.log("_turn:", _turn);
-    console.log("_current_turn:", current_turn);
-
-    // if (current_turn * (gameRounds * availablePlayers.length))
   }
 
   useEffect(() => {
