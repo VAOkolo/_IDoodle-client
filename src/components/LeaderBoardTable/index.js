@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { dateTransformer, sortUsers } from "../../helperFunctions/helpers";
+import dayjs from 'dayjs';
 
 export default function LeaderBoardTable() {
   const [userScores, setUserScores] = useState();
@@ -31,7 +32,7 @@ export default function LeaderBoardTable() {
                 <td>{index + 1}</td>
                 <td>{user.username}</td>
                 <td>{user.scores}</td>
-                <td>{dateTransformer(user.createdAt)}</td>
+                <td>{dayjs(user.createdAt).format('DD/MM/YYYY')}</td>
               </tr>
             </>
           ))}
