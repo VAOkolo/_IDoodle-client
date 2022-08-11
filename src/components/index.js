@@ -7,3 +7,4 @@ export { default as PlayersBoard } from "./PlayersBoard";
 export { default as Countdown } from "./Countdown";
 export { default as Canvas } from "./Canvas";
 export { default as Word } from "./Word";
+export { default as CorrectPlayer } from "./CorrectPlayer";

@@ -10,7 +10,11 @@ export const theme = extendTheme({
         lineHeight: "base",
         letterSpacing: "5px",
         fontFamily: `'Amatic SC', cursive`,
+        fontSize: "1em"
       },
+      select:{
+        fontSize: "2em"
+      }
     }),
   },
 });

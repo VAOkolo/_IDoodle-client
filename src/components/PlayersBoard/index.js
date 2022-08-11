@@ -31,6 +31,14 @@ const PlayersBoard = () => {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
   ] = useContext(SocketContext);
 
   useEffect(() => {
@@ -48,19 +56,19 @@ const PlayersBoard = () => {
       <Text as="h3" textAlign="start" m="3">
         Connected Players
       </Text>
-      <TableContainer w={["100%", "60%", "80%"]} boxShadow="xs">
-        <Table variant="striped" colorScheme="gray" size="sm">
-          <Thead border="1px solid gray" fontSize="3xl">
-            <Tr>
-              <Th>Position</Th>
-              <Th>Name</Th>
-              <Th>Points</Th>
+      <TableContainer w={["100%", "80%", "80%"]} boxShadow="xs">
+        <Table variant="striped" colorScheme="gray" size="md">
+          <Thead border="1px solid gray" fontSize="4px">
+            <Tr  fontSize="4px">
+              {/* <Th>Position</Th> */}
+              <Th fontSize="0.5rem">Name</Th>
+              <Th fontSize="0.5rem">Points</Th>
             </Tr>
           </Thead>
           <Tbody fontSize="sm">
             {availablePlayers.map((user, index) => (
               <Tr key={index}>
-                <Td>#{index + 1}</Td>
+                {/* <Td>#{index + 1}</Td> */}
                 <Td display="flex">
                   <Wrap>
                     <WrapItem>
@@ -74,7 +82,9 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  {/* <p>Active: {user.active.toString()}</p> */}
+
+                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}
+ß
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

@@ -57,8 +57,15 @@ const Word = () => {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
   ] = useContext(SocketContext);
-  const [isActivePlayer, setIsActivePlayer] = useState(false);
 
   useEffect(() => {
     socket.on("received_word_to_guess", (word) => {
@@ -69,8 +76,12 @@ const Word = () => {
   useEffect(() => {
     if (activePlayer == socket.id) {
       setIsActivePlayer(true);
+    } else {
+      setIsActivePlayer(false);
     }
+    console.log("RUNNING! USEEFFECT HOOK");
   }, [activePlayer]);
+
   // const [guess, setGuess] = useState("");
   // const haha = "florencia";
   // let lettersReplaced = [];
@@ -79,26 +90,25 @@ const Word = () => {
   //     lettersReplaced.push(letter.replace(/^[a-zA-Z]+$/g, "_"));
   //   }
   // };
-  // console.log(lettersReplaced);
-  // console.log(haha);
-  // console.log("yay");
-  // hangman();
-  // // console.log(guess);
-
-  //boolean variable. if activplayer id === socket.id => set booleanVariable to true
 
   return (
     <Container bg="teal">
-      {/* <Text as="h4" fontSize="xl" textAlign="start" order="1">
-        Word to draw: {wordToGuess}
-      </Text> */}
-      {/* {isActivePlayer ? (
+      {isActivePlayer ? (
         <Text as="h4" fontSize="xl" textAlign="start" order="1">
           Word to draw: {wordToGuess}
         </Text>
       ) : (
         <Text>Length of word: {wordToGuess.length}</Text>
-      )} */}
+      )}
+      <button
+        onClick={() => {
+          console.log(wordToGuess);
+          console.log(isActivePlayer);
+          console.log(activePlayer);
+        }}
+      >
+        CLICK ME
+      </button>
     </Container>
   );
 };

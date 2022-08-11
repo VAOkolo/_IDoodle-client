@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../SocketContext";
 
 export default function Countdown(props) {
@@ -15,8 +16,18 @@ export default function Countdown(props) {
     setWordToGuess,
     player,
     setPlayer,
-    userGameState,
-    setUserGameState,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -24,11 +35,23 @@ export default function Countdown(props) {
   const [secs, setSeconds] = useState(startingSeconds);
   const [resetGames, setResetGames] = useState(false);
   const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
   const startTimer = () => {
     setResetGames(!resetGames);
-    setSeconds(25);
-
+    setSeconds(gameTime);
+    // setSeconds(10);
+    console.log("currently:", current_turn);
+    console.log(
+      "to reach for game over:",
+      current_turn == gameRounds * availablePlayers.length
+    );
+    if (current_turn == gameRounds * availablePlayers.length) {
+      socket.emit("end_game", room);
+      socket.on("redirect_end_game", () => {
+        navigate("/game-over", { replace: true });
+      });
+    }
     nextTurn();
   };
 
@@ -38,18 +61,21 @@ export default function Countdown(props) {
     });
   }, [socket]);
 
+  useEffect(() => {
+    socket.emit("generate_words_array", wordToGuessArray, room);
+  }, [activePlayer]);
+
   let _turn = 0;
   let current_turn = 0;
 
   function nextTurn() {
     _turn = current_turn++ % availablePlayers.length;
     setActivePlayer(availablePlayers[_turn].id);
-    // socket.emit("generate_words_array");
+    socket.off("received_word_to_guess");
     socket.on("received_word_to_guess", (word) => {
       console.log(word);
       setWordToGuess(word);
     });
-    console.log(wordToGuess);
   }
 
   useEffect(() => {
@@ -60,7 +86,7 @@ export default function Countdown(props) {
       if (secs === 0) {
         if (mins === 0) {
           clearInterval(sampleInterval);
-          socket.emit("send_time_up", room);
+          // socket.emit("send_time_up", room);
         } else {
           setMinutes(mins - 1);
           setSeconds(59);

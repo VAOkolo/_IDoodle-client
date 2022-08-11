@@ -3,7 +3,7 @@ html {
   /* background-image: url("../src/assets/bg-img.jpeg");*/
   height: 100vh;
   width: 100vw;
-  background-image: 'url("bg-img.jpg")' !important;
+
 }
 
 @keyframes App-logo-spin {
@@ -81,7 +81,7 @@ html {
 }
 
 .chat-window .chat-header {
-  height: 45px;
+  height: 40px;
   border-radius: 6px;
   background: #263238;
   position: relative;
@@ -241,8 +241,16 @@ nav ul li {
   justify-content: center;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 /* Canvas */
 
 .canvas {
   cursor: url(pencil.png), auto;
+}
+
+.hidden {
+  display: none
 }
