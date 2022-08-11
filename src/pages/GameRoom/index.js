@@ -1,6 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { Grid, GridItem, Container } from "@chakra-ui/react";
-import { PlayersBoard, Canvas, Chat, Countdown, Word } from "../../components";
+import {
+  PlayersBoard,
+  Canvas,
+  Chat,
+  Countdown,
+  Word,
+  CorrectPlayer,
+} from "../../components";
 import { SocketContext } from "../../SocketContext";
 
 const GameRoom = () => {
@@ -16,8 +23,12 @@ const GameRoom = () => {
     setWordToGuess,
     player,
     setPlayer,
-    userGameState,
-    setUserGameState,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
@@ -25,8 +36,14 @@ const GameRoom = () => {
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
+  const handleClick = () => {
+    setWordToGuess(["please", "help"]);
+    console.log(wordToGuess);
+  };
+
   return (
     <>
+      <CorrectPlayer />
       <Container
         display="flex"
         justifyContent="center"
@@ -58,6 +75,7 @@ const GameRoom = () => {
             <Chat />
           </GridItem>
         </Grid>
+        <button>CLICK!</button>
       </Container>
     </>
   );
