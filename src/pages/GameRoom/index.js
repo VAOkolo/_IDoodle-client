@@ -29,13 +29,18 @@ const GameRoom = () => {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
+    roundsForPlayers,
+    setRoundsForPlayers,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
   useEffect(() => {
-    console.log("*****************", wordToGuessArray);
-    // socket.emit("generate_word_array", wordToDisplay, room);
-    // socket.emit("generate_words_array", wordToGuessArray, room);
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
@@ -65,7 +70,7 @@ const GameRoom = () => {
           </GridItem>
 
           <GridItem colSpan={4}>
-            <Countdown startingMinutes={0} startingSeconds={4} />
+            <Countdown startingMinutes={0} startingSeconds={0} />
             <Canvas />
             <Word />
           </GridItem>
