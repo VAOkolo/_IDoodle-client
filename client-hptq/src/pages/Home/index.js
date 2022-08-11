@@ -7,7 +7,9 @@ import { motion } from "framer-motion";
 import { list } from "@chakra-ui/react";
 import { io } from "socket.io-client";
 
+
 const Home = () => {
+  console.log(AnimatedBackground);
   const [
     socket,
     room,
@@ -42,30 +44,21 @@ const Home = () => {
   };
 
   return (
-    <Container
-      as={motion.div}
-      className="home"
-      size="md"
-      justifyContent="center"
-      alignItems="center"
-      minW="83vw"
-      h="80vh"
-      w="800px"
-      transition="0.5s linear"
-      initial={{ opacity: 0.55, x: 390 }}
-      animate={{ opacity: 1, x: 0 }}
-      // transition={{ type: "tween", delay: 5.5 }}
-    >
-      <Box
-        className="joinGameContainer"
-        boxShadow="rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px"
-        w="25vw"
-        h="50vh"
-        minW="19em"
-        minH="20em"
-        borderRadius="1em"
-        justifyContent="space-evenly"
+    <AnimatedBackground>
+      <Container
+        as={motion.main}
+        display="flex"
+        size="md"
+        justifyContent="center"
+        alignItems="center"
+        minW="83vw"
+        h="80vh"
+        w="800px"
+        transition="0.2s"
+        initial={{ opacity: 0, x: 300 }}
+        animate={{ opacity: 1, x: 0 }}
       >
+
         <Heading>Join Room</Heading>
         <Box justifyContent="space-between" alignItems="space-between">
           <Input
@@ -118,11 +111,34 @@ const Home = () => {
               fontWeight: "bold",
             }}
           >
-            CONNECT
-          </Button>
-        </NavLink>
-      </Box>
-    </Container>
+            <Input
+              type="text"
+              onChange={(e) => setRoom(e.target.value)}
+              placeholder="Room"
+              focusBorderColor="#FFC75F"
+              width="210px"
+              height="40px"
+              isRequired
+              mt="2"
+            />
+            <Input
+              type="text"
+              placeholder="Username"
+              onChange={(e) =>
+                setPlayer({ username: e.target.value, points: 0, room: room })
+              }
+              isRequired
+              width="210px"
+              height="40px"
+              mb="2"
+              focusBorderColor="#FFC75F"
+              errorBorderColor="crimson"
+            />
+          </Box>
+     
+        </Box>
+      </Container>
+    </AnimatedBackground>
   );
 };
 

@@ -9,6 +9,7 @@ export const AnimatedLink = ({ children }) => {
         color: "#fcf2ef",
         scale: [1.1, 1.2, 1.1, 1.2, 1],
         textShadow: "0px 0px 1px rgb(255, 255, 255)",
+        opacity: 2,
       }}
       transition={{ type: "spring", delay: 0.1 }}
       initial={{ opacity: 0 }}

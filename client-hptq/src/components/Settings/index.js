@@ -303,7 +303,7 @@ export default function Settings() {
   return (
     <Container
       display="flex"
-      h="93vh"
+      h="89vh"
       minH="100%"
       justifyContent="center"
       alignItems="center"
@@ -311,12 +311,12 @@ export default function Settings() {
       <h1>Room Number: {room}</h1>
       <FormControl
         as={motion.form}
-        p="10"
+        p={8}
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
         alignItems="center"
-        h="82%"
+        h="80%"
         w="70%"
         boxShadow="rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"
         initial={{ opacity: 0 }}
