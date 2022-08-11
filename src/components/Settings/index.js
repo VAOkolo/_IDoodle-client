@@ -321,7 +321,6 @@ export default function Settings() {
       alignItems="center"
     >
       <h1>Room Number: {room}</h1>
-      {isHost ? (
         <FormControl
           as={motion.form}
           p="10"
@@ -422,9 +421,6 @@ export default function Settings() {
             <Link to="/game-room">Start Game</Link>
           </Button>
         </FormControl>
-      ) : (
-        <div>Waiting For Host To Start!</div>
-      )}
     </Container>
   );
 }
