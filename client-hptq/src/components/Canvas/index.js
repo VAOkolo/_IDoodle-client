@@ -17,6 +17,7 @@ function Canvas() {
   ] = useContext(SocketContext);
 
   const [isDrawing, setIsDrawing] = useState(false);
+  const [turnCount, setTurnCount] = useState(0);
 
   //canvas - sets state of canvas. useRef stores state without triggering a re-render
   const canvasRef = useRef(null);
@@ -48,7 +49,6 @@ function Canvas() {
   }, []);
 
   useEffect(() => {
-    console.log("being called");
     refreshCanvas();
   }, [activePlayer]);
 
