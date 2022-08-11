@@ -25,6 +25,8 @@ export default function Countdown(props) {
     setIsActivePlayer,
     gameTime,
     setGameTime,
+    gameRounds,
+    setGameRounds,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -63,7 +65,8 @@ export default function Countdown(props) {
 
     console.log("_turn:", _turn);
     console.log("_current_turn:", current_turn);
-    console.log(wordToGuess);
+
+    // if (current_turn * (gameRounds * availablePlayers.length))
   }
 
   useEffect(() => {

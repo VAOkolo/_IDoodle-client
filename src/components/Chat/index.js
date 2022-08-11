@@ -27,8 +27,6 @@ export default function Chat() {
     guess: "",
   });
 
-  const [correctAnswer, setcorrectAnswer] = useState("carrot");
-
   const [messageList, setMessageList] = useState([]);
 
   let _turn = 0;
@@ -37,7 +35,7 @@ export default function Chat() {
   function nextTurn() {
     _turn = current_turn++ % availablePlayers.length;
     setActivePlayer(availablePlayers[_turn].id);
-    socket.emit("generate_words_array", wordToGuessArray, room);
+    // socket.emit("generate_words_array");
     socket.on("received_word_to_guess", (word) => {
       setWordToGuess(word);
     });
@@ -94,36 +92,44 @@ export default function Chat() {
   // }, [socket]);
 
   return (
-    <div className="chat-window">
-      <div className="chat-body">
-        <ScrollToBottom className="message-container">
-          {messageList.map((message, index) => {
-            return (
-              <div className="message" key={index}>
-                <div>
-                  <div className="message-content">
-                    <p>{message.guess}</p>
+    <>
+      <div className="chat-window">
+        <div className="chat-body">
+          <ScrollToBottom className="message-container">
+            {messageList.map((message, index) => {
+              return (
+                <div className="message" key={index}>
+                  <div>
+                    <div className="message-content">
+                      <p>{message.guess}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </ScrollToBottom>
+              );
+            })}
+          </ScrollToBottom>
+        </div>
+        <div className="chat-footer">
+          {activePlayer != player.id ? (
+            <>
+              <input
+                type="text"
+                value={currentMessage.guess}
+                placeholder="Enter Guess"
+                onChange={(e) => {
+                  setCurrentMessage({ guess: e.target.value });
+                }}
+                onKeyPress={(e) => {
+                  e.key === "Enter" && sendMessage();
+                }}
+              ></input>
+              <button onClick={sendMessage}>&#9658;</button>
+            </>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
-      <div className="chat-footer">
-        <input
-          type="text"
-          value={currentMessage.guess}
-          placeholder="Enter Guess"
-          onChange={(e) => {
-            setCurrentMessage({ guess: e.target.value });
-          }}
-          onKeyPress={(e) => {
-            e.key === "Enter" && sendMessage();
-          }}
-        ></input>
-        <button onClick={sendMessage}>&#9658;</button>
-      </div>
-    </div>
+    </>
   );
 }

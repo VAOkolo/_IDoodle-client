@@ -35,10 +35,11 @@ export default function Settings() {
     setIsActivePlayer,
     gameTime,
     setGameTime,
+    gameRounds,
+    setGameRounds,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState([]);
-  const [gameRounds, setGameRounds] = useState(1);
   const [gameDifficulty, setGameDifficulty] = useState("easy");
   const [gameCategory, setGameCategory] = useState("General Knowledge");
   const [categoryID, setCategoryID] = useState(9);
