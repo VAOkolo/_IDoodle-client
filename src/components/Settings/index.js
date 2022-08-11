@@ -29,11 +29,16 @@ export default function Settings() {
     setHost,
     wordToGuessArray,
     setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState([]);
   const [gameRounds, setGameRounds] = useState(1);
-  const [gameTime, setGameTime] = useState(10);
   const [gameDifficulty, setGameDifficulty] = useState("easy");
   const [gameCategory, setGameCategory] = useState("General Knowledge");
   const [categoryID, setCategoryID] = useState(9);
@@ -144,7 +149,12 @@ export default function Settings() {
           Rounds
         </Text>
         <Select
-          onChange={(e) => setGameRounds(e.target.value)}
+          onChange={(e) => {
+            setGameRounds(e.target.value);
+            console.log(gameRounds);
+            console.log(availablePlayers.length);
+            console.log("Number: ", gameRounds * availablePlayers.length);
+          }}
           className="rounds-control"
           id="rounds"
           cursor="pointer"

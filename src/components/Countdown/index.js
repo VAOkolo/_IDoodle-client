@@ -21,6 +21,10 @@ export default function Countdown(props) {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -31,7 +35,7 @@ export default function Countdown(props) {
 
   const startTimer = () => {
     setResetGames(!resetGames);
-    setSeconds(25);
+    setSeconds(gameTime);
     nextTurn();
   };
 
@@ -56,6 +60,9 @@ export default function Countdown(props) {
       console.log(word);
       setWordToGuess(word);
     });
+
+    console.log("_turn:", _turn);
+    console.log("_current_turn:", current_turn);
     console.log(wordToGuess);
   }
 

@@ -79,7 +79,7 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  {user.id == activePlayer ? <p>"✏️"</p> : <p>""</p>}
+                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

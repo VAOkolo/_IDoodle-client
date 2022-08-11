@@ -47,7 +47,7 @@ export default function Chat() {
     if (currentMessage.guess !== "") {
       await socket.emit("send_message", currentMessage, room);
 
-      if (currentMessage.guess === correctAnswer) {
+      if (currentMessage.guess.toLowerCase() === wordToGuess.toLowerCase()) {
         let userWithCorrectAns = socket.id;
         nextTurn();
         console.log(availablePlayers);
