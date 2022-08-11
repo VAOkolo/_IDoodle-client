@@ -8,10 +8,6 @@ const GameRoom = () => {
     socket,
     room,
     setRoom,
-    userName,
-    setUserName,
-    userID,
-    setUserID,
     availablePlayers,
     setAvailablePlayers,
     activePlayer,
@@ -20,29 +16,14 @@ const GameRoom = () => {
     setWordToGuess,
     player,
     setPlayer,
-    activePlayerBool,
-    setActivePlayerBool,
+    userGameState,
+    setUserGameState,
   ] = useContext(SocketContext);
 
-  // socket.on("received_word_to_guess", (word) => {
-  //   console.log(word);
-  // });
-
-  // useEffect(() => {
-  //   socket.on("received_word_to_guess", (word) => {
-  //     console.log(word);
-  //   });
-  // }, [socket]);
-
+  //Make First Person In Room Active Player
   useEffect(() => {
-    socket.on("recieve_active_player", (user) => {
-      setActivePlayer(user);
-    });
-  }, [socket]);
-
-  // useEffect(() => {
-  //   socket.on("set_active_player", player);
-  // });
+    setActivePlayer(availablePlayers[0].id);
+  }, []);
 
   return (
     <>

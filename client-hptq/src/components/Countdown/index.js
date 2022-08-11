@@ -7,25 +7,44 @@ export default function Countdown(props) {
     socket,
     room,
     setRoom,
-    userName,
-    setUserName,
-    userID,
-    setUserID,
     availablePlayers,
     setAvailablePlayers,
+    activePlayer,
+    setActivePlayer,
+    wordToGuess,
+    setWordToGuess,
+    player,
+    setPlayer,
+    userGameState,
+    setUserGameState,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
   const [mins, setMinutes] = useState(startingMinutes);
   const [secs, setSeconds] = useState(startingSeconds);
   const [resetGames, setResetGames] = useState(false);
+  const [userId, setUserId] = useState("");
 
   const startTimer = () => {
     setResetGames(!resetGames);
     setSeconds(5);
 
-    // console.log("available players details: ", availablePlayers);
+    nextTurn();
   };
+
+  let _turn = 0;
+  let current_turn = 0;
+
+  function nextTurn() {
+    // console.log("CALLED :)");
+    _turn = current_turn++ % availablePlayers.length;
+    // console.log(availablePlayers[_turn].id);
+    setActivePlayer(availablePlayers[_turn].id);
+    // setUserId(availablePlayers[_turn].id);
+    console.log("active player: ", activePlayer);
+    // console.log("active player id: ", userId);
+  }
+
   useEffect(() => {
     let sampleInterval = setInterval(() => {
       if (secs > 0) {
@@ -65,6 +84,7 @@ export default function Countdown(props) {
         </p>
       )}
       <button onClick={startTimer}> start timer</button>
+      {/* <p>{activePlayer}</p> */}
     </div>
   );
 }

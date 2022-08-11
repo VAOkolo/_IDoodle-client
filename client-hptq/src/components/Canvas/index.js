@@ -6,10 +6,6 @@ function Canvas() {
     socket,
     room,
     setRoom,
-    userName,
-    setUserName,
-    userID,
-    setUserID,
     availablePlayers,
     setAvailablePlayers,
     activePlayer,
@@ -18,19 +14,7 @@ function Canvas() {
     setWordToGuess,
     player,
     setPlayer,
-    activePlayerBool,
-    setActivePlayerBool,
-    canDraw,
-    setCanDraw,
   ] = useContext(SocketContext);
-
-  //send userGameState to socket
-  //emit to everyone in room, set user game state for everyone else false
-
-  const [userGameState, setUserGameState] = useState({
-    username: userID,
-    isTurn: false,
-  });
 
   const [isDrawing, setIsDrawing] = useState(false);
 
@@ -41,14 +25,6 @@ function Canvas() {
   //socket to send message, message goes to server and then it returned to everyone apart from sender using 'broadcast'
   useEffect(() => {
     socket.on("recieved_canvas", newDrawing);
-    // socket.on("refreshed_canvas", (data) => {
-    //   newDrawing(data);
-    // });
-    socket.on("recieved_id", (data) => {
-      setUserID(data);
-    });
-
-    socket.on("make_all_other_turns_false", refreshCanvas);
   }, [socket]);
 
   //newDrawing is called when the socket receives 'recieved_canvas' data value form server.
@@ -71,16 +47,10 @@ function Canvas() {
     contextRef.current = context;
   }, []);
 
-  const handleSetMyTurn = () => {
-    setUserGameState({
-      isTurn: !userGameState.isTurn,
-      id: activePlayer.id,
-    });
-
-    socket.emit("set_all_other_turns_false", room);
+  useEffect(() => {
+    console.log("being called");
     refreshCanvas();
-    console.log("available players details: ", availablePlayers);
-  };
+  }, [activePlayer]);
 
   const refreshCanvas = (data) => {
     const canvas = canvasRef.current;
@@ -91,7 +61,7 @@ function Canvas() {
   };
 
   const startDrawing = ({ nativeEvent }) => {
-    if (canDraw) {
+    if (activePlayer == socket.id) {
       const { offsetX, offsetY } = nativeEvent;
       contextRef.current.beginPath();
       contextRef.current.moveTo(offsetX, offsetY);
@@ -128,7 +98,6 @@ function Canvas() {
         width={250}
         style={{ border: "1px solid black" }}
       />
-      <button onClick={handleSetMyTurn}>handleSetMyTurn</button>
       <br></br>
       We Are In Room: {room}
     </div>

@@ -9,13 +9,9 @@ export const SocketContext = createContext();
 
 export default function SocketProvider(props) {
   const [room, setRoom] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userID, setUserID] = useState();
   const [availablePlayers, setAvailablePlayers] = useState([]);
   const [player, setPlayer] = useState({});
-  const [canDraw, setCanDraw] = useState(false);
   const [activePlayer, setActivePlayer] = useState({});
-  const [activePlayerBool, setActivePlayerBool] = useState(false);
   const [wordToGuess, setWordToGuess] = useState("");
 
   return (
@@ -24,10 +20,6 @@ export default function SocketProvider(props) {
         socket,
         room,
         setRoom,
-        userName,
-        setUserName,
-        userID,
-        setUserID,
         availablePlayers,
         setAvailablePlayers,
         activePlayer,
@@ -36,10 +28,6 @@ export default function SocketProvider(props) {
         setWordToGuess,
         player,
         setPlayer,
-        activePlayerBool,
-        setActivePlayerBool,
-        canDraw,
-        setCanDraw,
       ]}
     >
       {props.children}
