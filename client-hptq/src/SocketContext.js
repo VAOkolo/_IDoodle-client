@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import io from "socket.io-client";
+import CorrectPlayer from "./components/CorrectPlayer";
 
 // const socket = io.connect("https://hptq-backend.herokuapp.com/");
 
@@ -13,6 +14,7 @@ export default function SocketProvider(props) {
   const [player, setPlayer] = useState({});
   const [activePlayer, setActivePlayer] = useState({});
   const [wordToGuess, setWordToGuess] = useState("");
+  const [correctPlayer, setCorrectPlayer] = useState('')
 
   return (
     <SocketContext.Provider
@@ -28,6 +30,8 @@ export default function SocketProvider(props) {
         setWordToGuess,
         player,
         setPlayer,
+        correctPlayer,
+        setCorrectPlayer
       ]}
     >
       {props.children}

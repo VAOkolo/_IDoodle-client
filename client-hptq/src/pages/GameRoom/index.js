@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Grid, GridItem, Container } from "@chakra-ui/react";
-import { PlayersBoard, Canvas, Chat, Countdown, Word } from "../../components";
+import { PlayersBoard, Canvas, Chat, Countdown, Word, CorrectPlayer } from "../../components";
 import { SocketContext } from "../../SocketContext";
 
 const GameRoom = () => {
@@ -18,6 +18,8 @@ const GameRoom = () => {
     setPlayer,
     userGameState,
     setUserGameState,
+    correctPlayer,
+    setCorrectPlayer
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
@@ -25,8 +27,16 @@ const GameRoom = () => {
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
+  // useEffect(() => {
+  //   console.log("gameRoom Useeffect running")
+  //   socket.on('receive_correct_player', (player) => {
+  //     setCorrectPlayer(player)
+  //   })
+  // }, [socket]);
+
   return (
     <>
+    <CorrectPlayer />
       <Container
         display="flex"
         justifyContent="center"
