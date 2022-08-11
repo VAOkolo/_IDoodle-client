@@ -24,31 +24,33 @@ export default function CorrectPlayer() {
   ] = useContext(SocketContext);
 
   let [hidden, setHidden] = useState(true);
-
-  function fadeOutElement(e) {
+  const fadeOutElement = async (e) => {
     console.log(e);
     setHidden(false);
 
     setTimeout(() => {
       setHidden(true);
-      // setCorrectPlayer('')
+      setCorrectPlayer("")
     }, 8000);
+
+
   }
 
   useEffect(() => {
     console.log("Useeffect correctplayer");
     fadeOutElement();
+    console.log("hidden: ", hidden, "correctPlayer: ", correctPlayer)
+    console.log(hidden && correctPlayer == "")
+    
+    // return () => { clearTimeout(fadeOutElement)}
   }, [correctPlayer]);
 
   return (
     <>
-      <div className={hidden && "hidden"}>
-        <p>{"correct player: " + correctPlayer}</p>
+      <div className={hidden && correctPlayer == "" ? "hidden" : ""}>
+       { correctPlayer != "" ? <p>{`${correctPlayer} wins`} </p> : "" } 
       </div>
-      <p>{"correct player: " + correctPlayer}</p>
-      <button onClick={() => {
-        console.log(correctPlayer)
-      }}>click</button>
+      {/* <button onClick={fadeOutElement}>click</button> */}
     </>
   );
 }
