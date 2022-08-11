@@ -13,6 +13,7 @@ export default function SocketProvider(props) {
   const [player, setPlayer] = useState({});
   const [activePlayer, setActivePlayer] = useState({});
   const [wordToGuess, setWordToGuess] = useState("");
+  const [host, setHost] = useState("");
 
   return (
     <SocketContext.Provider
@@ -28,6 +29,8 @@ export default function SocketProvider(props) {
         setWordToGuess,
         player,
         setPlayer,
+        host,
+        setHost,
       ]}
     >
       {props.children}
