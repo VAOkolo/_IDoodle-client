@@ -17,7 +17,8 @@ export default function SocketProvider(props) {
   const [correctPlayer, setCorrectPlayer] = useState("");
   const [isActivePlayer, setIsActivePlayer] = useState(false);
   const [gameTime, setGameTime] = useState(30);
-  const [gameRounds, setGameRounds] = useState(1);
+  const [gameRounds, setGameRounds] = useState(0);
+  const [roundsForPlayers, setRoundsForPlayers] = useState(0);
 
   return (
     <SocketContext.Provider
@@ -45,6 +46,8 @@ export default function SocketProvider(props) {
         setGameTime,
         gameRounds,
         setGameRounds,
+        roundsForPlayers,
+        setRoundsForPlayers,
       ]}
     >
       {props.children}

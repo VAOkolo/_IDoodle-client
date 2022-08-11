@@ -70,10 +70,24 @@ export default function Settings() {
   };
 
   useEffect(() => {
+    if (availablePlayers[0].id == socket.id) {
+      console.log("I EMITTED!!");
+      socket.emit("set_game_rounds", gameRounds, room);
+    }
+    socket.on("recieve_game_rounds", (data) => {
+      setGameRounds(data);
+    });
+
+    console.log(gameRounds);
+  }, [gameRounds]);
+
+  useEffect(() => {
     checkIsHost();
     fetchCategories();
     setActivePlayer(availablePlayers[0].id);
   }, []);
+
+  useEffect(() => {});
 
   socket.on("redirect_start_game", () => {
     navigate("/game-room", { replace: true });
