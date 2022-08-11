@@ -5,8 +5,6 @@ import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { io } from "socket.io-client";
 
-
-
 const Home = () => {
   const [
     socket,
@@ -53,7 +51,7 @@ const Home = () => {
       w="100%"
       transition="0.5s linear"
       initial={{ opacity: 0.55, x: 390 }}
-      animate={{ opacity: 1, x: 0 }}
+      animate={{ opacity: 2, x: 0 }}
       // transition={{ type: "tween", delay: 5.5 }}
     >
       <Box
@@ -66,14 +64,17 @@ const Home = () => {
         minH="20em"
         rounded="lg"
         justifyContent="space-evenly"
+        fontFamily="Amatic SC"
       >
-        <Heading>Join Room</Heading>
+        <Heading fontFamily="Amatic SC">Join Room</Heading>
         <Box
           display="flex"
           flexDirection="column"
           h="8em"
           justifyContent="space-between"
           alignItems="center"
+          opacity={2}
+          bg="white.200"
         >
           <Input
             type="text"
@@ -82,8 +83,9 @@ const Home = () => {
             focusBorderColor="#FFC75F"
             width="210px"
             height="40px"
-            isRequired
             mt="2"
+            bg="white"
+            fontSize="1.5em"
           />
           <Input
             type="text"
@@ -98,11 +100,12 @@ const Home = () => {
                 active: false,
               })
             }
-            isRequired
             width="210px"
             height="40px"
             mb="2"
             focusBorderColor="#FFC75F"
+            bg="white"
+            fontSize="1.5em"
           />
         </Box>
         <NavLink to="/lobby">
@@ -111,17 +114,18 @@ const Home = () => {
             borderRadius="50px"
             cursor="pointer"
             onClick={handleRoomSelect}
-            letterSpacing="0.094em"
+            letterSpacing="0.1em"
+            w="8em"
             boxShadow="10px 10px 14px 1px rgb(0, 0, 0 / 20%)"
             bg="#845ec2"
-            w="12em"
+            // w="12em"
             color="white"
-            fontWeight="normal"
+            fontWeight="bold"
+            fontSize="1.6em"
             whileHover={{
               color: "#845ec2",
               background: "white",
               border: "#845ec2",
-              fontWeight: "bold",
             }}
           >
             CONNECT

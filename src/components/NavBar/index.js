@@ -22,6 +22,9 @@ const NavBar = () => {
       _hover={{ transform: "scale(1)", filter: "brightness(105%)" }}
       flexDirection={["row", "row", "column", "row"]}
       shrink="1"
+      fontFamily="Amatic SC"
+      fontSize="3xl"
+      fontWeight="bold"
     >
       <Flex
         alignSelf={["center", "start", "start", "center"]}
@@ -30,16 +33,16 @@ const NavBar = () => {
         <Heading
           display="flex"
           as={motion.h1}
-          fontSize={["5xl", "lg", "5xl"]}
-          fontWeight={"thin"}
+          fontSize={["5xl", "4xl", "6xl"]}
           bgClip="text"
           letterSpacing={2}
           initial={{ opacity: 0, y: -220 }}
-          animate={{ opacity: 1, y: 0, fontSize: "40px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition="1s fade-in"
           p={3}
           order={["2", "1", "1", "1"]}
           color="white"
+          fontFamily="Amatic SC"
         >
           I Doodle
         </Heading>

@@ -48,7 +48,7 @@ const PlayersBoard = () => {
       <Text as="h3" textAlign="start" m="3">
         Connected Players
       </Text>
-      <TableContainer w={["100%", "50%", "80%"]} boxShadow="xs">
+      <TableContainer w={["100%", "60%", "80%"]} boxShadow="xs">
         <Table variant="striped" colorScheme="gray" size="sm">
           <Thead border="1px solid gray" fontSize="3xl">
             <Tr>

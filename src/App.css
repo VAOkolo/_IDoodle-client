@@ -3,6 +3,7 @@ html {
   /* background-image: url("../src/assets/bg-img.jpeg");*/
   height: 100vh;
   width: 100vw;
+  background-image: 'url("bg-img.jpg")' !important;
 }
 
 @keyframes App-logo-spin {
@@ -72,7 +73,7 @@ html {
 
 .chat-window {
   width: 300px;
-  height: 420px;
+  height: 300px;
 }
 
 .chat-window p {

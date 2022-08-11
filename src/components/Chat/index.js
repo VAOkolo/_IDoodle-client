@@ -60,7 +60,7 @@ export default function Chat() {
   }, [socket]);
 
   return (
-    <Container h="420px" w="300px" className="chat-window">
+    <div className="chat-window">
       <div className="chat-body">
         <ScrollToBottom className="message-container">
           {messageList.map((message, index) => {
@@ -90,6 +90,6 @@ export default function Chat() {
         ></input>
         <button onClick={sendMessage}>&#9658;</button>
       </div>
-    </Container>
+    </div>
   );
 }
