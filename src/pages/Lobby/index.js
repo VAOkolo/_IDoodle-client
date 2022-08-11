@@ -38,6 +38,10 @@ export default function Lobby() {
     setPlayer,
     host,
     setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
   ] = useContext(SocketContext);
 
   useEffect(() => {
@@ -53,9 +57,15 @@ export default function Lobby() {
     socket.on("set_host", (host) => {
       setHost(host);
     });
+    socket.on("initial_room_data", (player) => { 
+      setPlayer(player)
+    })
+    console.log(player)
     // setHost(availablePlayers);
     console.log("host is: ", host);
+    // setWordToGuess(["please", "help"]);
   }, []);
+
 
   return (
     <>

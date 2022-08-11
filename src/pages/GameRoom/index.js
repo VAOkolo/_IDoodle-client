@@ -1,6 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { Grid, GridItem, Container } from "@chakra-ui/react";
-import { PlayersBoard, Canvas, Chat, Countdown, Word } from "../../components";
+import {
+  PlayersBoard,
+  Canvas,
+  Chat,
+  Countdown,
+  Word,
+  CorrectPlayer,
+} from "../../components";
 import { SocketContext } from "../../SocketContext";
 
 const GameRoom = () => {
@@ -16,17 +23,25 @@ const GameRoom = () => {
     setWordToGuess,
     player,
     setPlayer,
-    userGameState,
-    setUserGameState,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
   useEffect(() => {
+    console.log("*****************", wordToGuessArray);
+    // socket.emit("generate_word_array", wordToDisplay, room);
+    // socket.emit("generate_words_array", wordToGuessArray, room);
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
   return (
     <>
+      <CorrectPlayer />
       <Container
         display="flex"
         justifyContent="center"
