@@ -9,6 +9,7 @@ import {
   CorrectPlayer,
 } from "../../components";
 import { SocketContext } from "../../SocketContext";
+import { postUser, postUsers } from "../../helperFunctions/helpers";
 
 const GameRoom = () => {
   const [
@@ -29,18 +30,39 @@ const GameRoom = () => {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
   useEffect(() => {
-    console.log("*****************", wordToGuessArray);
-    // socket.emit("generate_word_array", wordToDisplay, room);
-    // socket.emit("generate_words_array", wordToGuessArray, room);
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
+  let testArray = [
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+  ];
+
   return (
     <>
+      <button
+        onClick={(e) => {
+          console.log(e);
+          postUsers(testArray);
+        }}
+      >
+        Click ME
+      </button>
       <CorrectPlayer />
       <Flex
         textAlign="center"
@@ -98,10 +120,32 @@ const GameRoom = () => {
             <PlayersBoard />
           </Flex>
 
+
           <Flex flexDirection="column" h="22em" alignSelf="stretch">
             <Canvas />
           </Flex>
           <Flex h="22em" alignSelf="stretch" justifySelf="stretch">
+
+         // <Flex flexDirection="column" h="100%" minH="25em">
+            // <VStack>
+              // <div>{`Round ${currentRound} OF ${
+               // gameRounds * availablePlayers.length
+             // }`}</div>
+             // <Countdown startingMinutes={0} startingSeconds={0} />
+             // <Canvas />
+             // <Word />
+           // </VStack>
+          //</Flex>
+         // <Flex h="100%" minH="25em">
+            {/* // <GridItem colSpan={4}>
+
+            // <Countdown startingMinutes={0} startingSeconds={0} />
+            // <Canvas />
+            // <Word />
+          // </GridItem>
+          // <GridItem colSpan={1}> */}
+
+
             <Chat />
           </Flex>
         </HStack>
