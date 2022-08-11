@@ -70,10 +70,24 @@ export default function Settings() {
   };
 
   useEffect(() => {
+    if (availablePlayers[0].id == socket.id) {
+      console.log("I EMITTED!!");
+      socket.emit("set_game_rounds", gameRounds, room);
+    }
+    socket.on("recieve_game_rounds", (data) => {
+      setGameRounds(data);
+    });
+
+    console.log(gameRounds);
+  }, [gameRounds]);
+
+  useEffect(() => {
     checkIsHost();
     fetchCategories();
     setActivePlayer(availablePlayers[0].id);
   }, []);
+
+  useEffect(() => {});
 
   socket.on("redirect_start_game", () => {
     navigate("/game-room", { replace: true });
@@ -113,7 +127,9 @@ export default function Settings() {
   };
 
   return (
-    <Container
+
+{player.id == availablePlayers[0].id ?
+<Container
       display="flex"
       h="80vh"
       minH="100%"
@@ -138,6 +154,12 @@ export default function Settings() {
         transition="1.2s ease"
         borderRadius="1em"
         fontWeight="bold"
+        
+        whileHover={{
+              color: "#845ec2",
+              background: "white",
+              border: "#845ec2",
+              fontWeight: "bold",
       >
         <FormLabel fontSize="2xl" className="Title" p="2" fontWeight="bold">
           {`Choose your settings for room: ${room}`}
@@ -205,33 +227,39 @@ export default function Settings() {
           cursor="pointer"
           value={gameCategory}
           bg="white"
-        >
-          {categories && categories.map((c) => <option>{c.name}</option>)}
-        </Select>
-
-        {player.id == availablePlayers[0].id ? (
-          <Button
-            mt={4}
-            onClick={handleSubmit}
-            letterSpacing="0.094em"
-            boxShadow="10px 10px 14px 1px rgb(0, 0, 0 / 20%)"
-            bg="#845ec2"
-            w="100%"
-            color="white"
-            fontWeight="normal"
-            whileHover={{
-              color: "#845ec2",
-              background: "white",
-              border: "#845ec2",
-              fontWeight: "bold",
-            }}
-          >
-            Start Game
-          </Button>
         ) : (
           <div>WAIT FOR HOST TO START</div>
         )}
       </FormControl>
     </Container>
+            {categories && categories.map((c) => <option>{c.name}</option>)}
+          </Select>
+            <Button
+              mt={4}
+              onClick={handleSubmit}
+              letterSpacing="0.094em"
+              boxShadow="10px 10px 14px 1px rgb(0, 0, 0 / 20%)"
+              bg="#845ec2"
+              w="100%"
+              color="white"
+              fontWeight="normal"
+              whileHover={{
+                color: "#845ec2",
+                background: "white",
+                border: "#845ec2",
+                fontWeight: "bold",
+              }}
+            ></Button>
+        </FormControl>
+      </Container>
+      : (
+        <>
+        <div className="loadContainer">
+          <p>WAIT FOR HOST TO START</p>
+        <div className="load"></div>
+        </div>
+      </>
+      )}
+    </>
   );
 }
