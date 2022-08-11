@@ -15,6 +15,10 @@ export default function CorrectPlayer() {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
   ] = useContext(SocketContext);
@@ -41,6 +45,10 @@ export default function CorrectPlayer() {
       <div className={hidden && "hidden"}>
         <p>{"correct player: " + correctPlayer}</p>
       </div>
+      <p>{"correct player: " + correctPlayer}</p>
+      <button onClick={() => {
+        console.log(correctPlayer)
+      }}>click</button>
     </>
   );
 }
