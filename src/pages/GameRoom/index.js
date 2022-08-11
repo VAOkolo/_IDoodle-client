@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Grid, GridItem, Container } from "@chakra-ui/react";
+import { Grid, GridItem, Container, Text } from "@chakra-ui/react";
 import { PlayersBoard, Canvas, Chat, Countdown, Word } from "../../components";
 import { SocketContext } from "../../SocketContext";
 
@@ -26,40 +26,62 @@ const GameRoom = () => {
   }, []);
 
   return (
-    <>
-      <Container
-        display="flex"
+    <Container
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      maxW="container.2xl"
+      h="80%"
+      m="0"
+      bg="yellow"
+    >
+      <Grid
+        templateColumns={["repeat(4, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]}
+        templateRows={"repeat(2, 1fr)"}
+        textAlign="center"
+        w="95%"
+        bg="blue"
+        height="auto"
         justifyContent="center"
-        flexDirection="column"
-        maxW="container.2xl"
-        py={"50px"}
-        px={"50px"}
-        gap={12}
+        alignItems="center"
+        gap={1}
+        h="25em"
+        
       >
-        <Grid
-          templateColumns="repeat(6, 1fr)"
-          templateRows="repeat(1, 1fr)"
-          // gap={"15%"}
-          //   alignItems="center"
-          // bg="yellow"
-          textAlign="center"
-          h="100%"
+        <GridItem
+          colSpan={4}
+          rowSpan={1}
+          bg="green"
+          h="5em"
+          m="auto"
+          pt="8px"
+          
         >
-          <GridItem>
-            <PlayersBoard />
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Countdown startingMinutes={0} startingSeconds={4} />
-            <Canvas />
-            <Word />
-          </GridItem>
-          <GridItem colSpan={1}>
-            <Chat />
-          </GridItem>
-        </Grid>
-      </Container>
-    </>
+          <Countdown startingMinutes={0} startingSeconds={4} />
+          <Text> Room No. {room}</Text>
+        </GridItem>
+        <GridItem colSpan={1} rowSpan={2} bg="orange" h="20em" m="auto">
+          <PlayersBoard />
+        </GridItem>
+        <GridItem colSpan={2} rowSpan={2} bg="red" h="20em"
+        justifyContent="center" alignItems="center" textAlign="center" m="auto">
+          <Canvas />
+          <Word />
+        </GridItem>
+        <GridItem
+          colSpan={1}
+          rowSpan={2}
+          bg="pink"
+          h="20em"
+          justifyContent="center"
+          alignItems="center"
+          m="auto"
+        >
+          <Chat />
+        </GridItem>
+      </Grid>
+    </Container>
   );
 };
 

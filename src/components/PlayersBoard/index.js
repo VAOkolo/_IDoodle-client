@@ -40,38 +40,41 @@ const PlayersBoard = () => {
 
     // console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
   }, [socket]);
-
+  console.log(activePlayer);
+  console.log(availablePlayers);
+  console.log(socket.id === activePlayer);
   return (
     <>
       <Text as="h3" textAlign="start" m="3">
         Connected Players
       </Text>
-      <TableContainer w="100%">
-        <Table variant="simple" colorScheme="gray">
-          <Thead bg="gray" color="white">
+      <TableContainer w={["100%", "50%", "80%"]} boxShadow="xs">
+        <Table variant="striped" colorScheme="gray" size="sm">
+          <Thead border="1px solid gray" fontSize="3xl">
             <Tr>
               <Th>Position</Th>
               <Th>Name</Th>
               <Th>Points</Th>
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody fontSize="sm">
             {availablePlayers.map((user, index) => (
               <Tr key={index}>
                 <Td>#{index + 1}</Td>
-                <Td>
-                  <Wrap p="1">
+                <Td display="flex">
+                  <Wrap>
                     <WrapItem>
                       <Avatar
                         name={user.username}
                         src="https://bit.ly/broken-link"
+                        size="sm"
                       >
-                        <AvatarBadge bg="green.500" boxSize="1em" />
+                        <AvatarBadge bg="green.500" boxSize="0.9em" />
                       </Avatar>
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  <p>Active: {user.active.toString()}</p>
+                  {/* <p>Active: {user.active.toString()}</p> */}
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

@@ -3,9 +3,9 @@ import { SocketContext } from "../../SocketContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Container, Input, Button, Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-
-import { list } from "@chakra-ui/react";
 import { io } from "socket.io-client";
+
+
 
 const Home = () => {
   const [
@@ -50,7 +50,7 @@ const Home = () => {
       alignItems="center"
       minW="83vw"
       h="80vh"
-      w="800px"
+      w="100%"
       transition="0.5s linear"
       initial={{ opacity: 0.55, x: 390 }}
       animate={{ opacity: 1, x: 0 }}
@@ -58,16 +58,23 @@ const Home = () => {
     >
       <Box
         className="joinGameContainer"
-        boxShadow="rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px"
+        boxShadow="dark-lg"
         w="25vw"
-        h="50vh"
+        h="35vh"
         minW="19em"
+        maxW="40vw"
         minH="20em"
-        borderRadius="1em"
+        rounded="lg"
         justifyContent="space-evenly"
       >
         <Heading>Join Room</Heading>
-        <Box justifyContent="space-between" alignItems="space-between">
+        <Box
+          display="flex"
+          flexDirection="column"
+          h="8em"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Input
             type="text"
             onChange={(e) => setRoom(e.target.value)}
@@ -96,7 +103,6 @@ const Home = () => {
             height="40px"
             mb="2"
             focusBorderColor="#FFC75F"
-            errorBorderColor="crimson"
           />
         </Box>
         <NavLink to="/lobby">

@@ -5,11 +5,11 @@ import {
   MenuList,
   MenuItem,
   IconButton,
-  chakra,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
 import { AnimatedMenuButton } from "../../animations/animatedMenuButton";
+import { Link } from "react-router-dom";
 
 const BurgerMenu = () => {
   return (
@@ -38,9 +38,11 @@ const BurgerMenu = () => {
           icon={<CloseIcon textAlign="right" fontSize="10px" w="12px" />}
         ></MenuItem>
         <MenuItem>
-          <a href="/lobby">New Game</a>
+          <Link to="/">New Game</Link>
         </MenuItem>
-        <MenuItem>Leader Board</MenuItem>
+        <MenuItem>
+          <Link to="/leaderboard">Leader Board</Link>
+        </MenuItem>
       </MenuList>
     </Menu>
   );

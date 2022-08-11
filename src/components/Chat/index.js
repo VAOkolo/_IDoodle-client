@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { SocketContext } from "../../SocketContext";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { Container } from "@chakra-ui/react";
 
 export default function Chat() {
   const [
@@ -59,7 +60,7 @@ export default function Chat() {
   }, [socket]);
 
   return (
-    <div className="chat-window">
+    <Container h="420px" w="300px" className="chat-window">
       <div className="chat-body">
         <ScrollToBottom className="message-container">
           {messageList.map((message, index) => {
@@ -89,6 +90,6 @@ export default function Chat() {
         ></input>
         <button onClick={sendMessage}>&#9658;</button>
       </div>
-    </div>
+    </Container>
   );
 }

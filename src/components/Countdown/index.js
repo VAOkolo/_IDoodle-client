@@ -80,7 +80,7 @@ export default function Countdown(props) {
   }, [socket]);
 
   return (
-    <div>
+    <>
       {secs}
       {!(mins && secs) ? (
         ""
@@ -92,6 +92,6 @@ export default function Countdown(props) {
       )}
       <button onClick={startTimer}> start timer</button>
       {/* <p>{activePlayer}</p> */}
-    </div>
+    </>
   );
 }

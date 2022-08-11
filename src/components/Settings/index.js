@@ -237,7 +237,6 @@ export default function Settings() {
   const [gameCategory, setGameCategory] = useState("General Knowledge");
   const [categoryID, setCategoryID] = useState(9);
   const [quiz, setQuiz] = useState([]);
-  const [wordToGuessArray, setWordToGuessArray] = useState([]);
 
   const navigate = useNavigate();
 
@@ -257,15 +256,13 @@ export default function Settings() {
   };
   const fetchQuiz = async () => {
     const url = `https://opentdb.com/api.php?amount=${
-      gameRounds * availablePlayers.length
+      gameRounds * 5
     }&category=${categoryID}&difficulty=${gameDifficulty}&type=multiple`;
     const { data } = await axios.get(url);
     setQuiz(data);
-    console.log(data);
     return data;
   };
 
-  console.log(quiz);
   useEffect(() => {
     checkIsHot();
     fetchCategories();
@@ -276,33 +273,27 @@ export default function Settings() {
     navigate("/game-room", { replace: true });
   });
 
-  let findTheWord = [];
-  // const createWordArray = (arr) => {
-  //   // arr.length !== 0 && arr.map((cat) => findTheWord.push(cat.correct_answer));
-  //   // setWordToGuessArray(...findTheWord);
-  //   // return findTheWord;
-  //   const arrMap = arr.map((cat) => cat.correct_answer);
-  //   // setWordToGuessArray([...arrMap]);
-  // };
+  const selectRandomWord = (arr) => {
+    const findTheWord = [];
+    arr.length !== 0 &&
+      arr.map(
+        (cat) =>
+          isNaN(cat.correct_answer) && findTheWord.push(cat.correct_answer)
+      );
+    return findTheWord[Math.floor(Math.random() * findTheWord.length)];
+  };
 
   const startGame = () => {
     socket.emit("start_game", room);
     navigate("/game-room", { replace: true });
-    setWordToGuessArray(["please", "help"]);
-    // console.log("****ARRAY******", wordToGuessArray);
-    // console.log("findthewordddddd", findTheWord);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await fetchQuiz();
-    // createWordArray(data.results);
-    console.log("*****************", wordToGuessArray);
-    // const wordToDisplay = selectRandomWord(data.results);
+    const wordToDisplay = selectRandomWord(data.results);
 
-    //  socket.emit("generate_word_array", wordToDisplay, room);
-
-    socket.emit("generate_words_array", wordToGuessArray, room);
+    socket.emit("generate_random_word", wordToDisplay, room);
     startGame();
   };
   const createOptions = (minNum, maxNum, increase) => {
@@ -365,8 +356,8 @@ export default function Settings() {
           cursor="pointer"
           value={gameRounds}
         >
-          {createOptions(1, 5, 1).map((option) => (
-            <option>{option}</option>
+          {createOptions(1, 5, 1).map((option, i) => (
+            <option key={i}>{option}</option>
           ))}
         </Select>
 
@@ -379,8 +370,8 @@ export default function Settings() {
           id="seconds"
           value={gameTime}
         >
-          {createOptions(30, 70, 10).map((option) => (
-            <option>{option}</option>
+          {createOptions(30, 70, 10).map((option, i) => (
+            <option key={i}>{option}</option>
           ))}
         </Select>
 
@@ -404,7 +395,7 @@ export default function Settings() {
         </Text>
         <Select
           onChange={handleCategory}
-          class="category-control"
+          className="category-control"
           id="category"
           cursor="pointer"
           value={gameCategory}
@@ -426,7 +417,10 @@ export default function Settings() {
             border: "#845ec2",
             fontWeight: "bold",
           }}
-        </FormControl>
+        >
+          <Link to="/game-room">Start Game</Link>
+        </Button>
+      </FormControl>
     </Container>
   );
 }
