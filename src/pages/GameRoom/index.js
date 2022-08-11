@@ -65,7 +65,7 @@ const GameRoom = () => {
           </GridItem>
 
           <GridItem colSpan={4}>
-            <Countdown startingMinutes={0} startingSeconds={4} />
+            <Countdown />
             <Canvas />
             <Word />
           </GridItem>
