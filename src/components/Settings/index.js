@@ -15,20 +15,22 @@ import axios from "axios";
 export default function Settings() {
   const [
     socket,
-    room,
-    setRoom,
-    availablePlayers,
-    setAvailablePlayers,
-    activePlayer,
-    setActivePlayer,
-    wordToGuess,
-    setWordToGuess,
-    player,
-    setPlayer,
-    host,
-    setHost,
-    wordToGuessArray,
-    setWordToGuessArray,
+        room,
+        setRoom,
+        availablePlayers,
+        setAvailablePlayers,
+        activePlayer,
+        setActivePlayer,
+        wordToGuess,
+        setWordToGuess,
+        player,
+        setPlayer,
+        host,
+        setHost,
+        wordToGuessArray,
+        setWordToGuessArray,
+        correctPlayer,
+        setCorrectPlayer,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState([]);
@@ -119,14 +121,14 @@ export default function Settings() {
   };
 
   return (
-    <Container
+    <>
+     <Container
       display="flex"
       h="93vh"
       minH="100%"
       justifyContent="center"
       alignItems="center"
     >
-      <h1>Room Number: {room}</h1>
       <FormControl
         as={motion.form}
         p="10"
@@ -149,7 +151,7 @@ export default function Settings() {
           color="gray"
           fontWeight="normal"
         >
-          Choose your settings
+          {`Choose your settings for room: ${room}`}
         </FormLabel>
 
         <Text alignSelf="start" as="label" htmlFor="rounds" fontSize="sm">
@@ -208,6 +210,8 @@ export default function Settings() {
         >
           {categories && categories.map((c) => <option>{c.name}</option>)}
         </Select>
+
+        { player.id == availablePlayers[0].id ?
         <Button
           mt={4}
           onClick={handleSubmit}
@@ -223,8 +227,11 @@ export default function Settings() {
             border: "#845ec2",
             fontWeight: "bold",
           }}
-        ></Button>
+        ></Button> : <div>WAIT FOR HOST TO START</div>}
+
       </FormControl>
-    </Container>
+    </Container> 
+    
+    </>
   );
 }
