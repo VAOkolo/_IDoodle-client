@@ -226,6 +226,8 @@ export default function Settings() {
     setWordToGuess,
     player,
     setPlayer,
+    host,
+    setHost,
   ] = useContext(SocketContext);
 
   const [categories, setCategories] = useState([]);
@@ -238,6 +240,14 @@ export default function Settings() {
   const [wordToGuessArray, setWordToGuessArray] = useState([]);
 
   const navigate = useNavigate();
+
+  let isHost = false;
+
+  const checkIsHot = () => {
+    if (host == socket.id) {
+      isHost = true;
+    }
+  };
 
   const fetchCategories = async () => {
     const response = await fetch("https://opentdb.com/api_category.php");
@@ -257,7 +267,9 @@ export default function Settings() {
 
   console.log(quiz);
   useEffect(() => {
+    checkIsHot();
     fetchCategories();
+    setActivePlayer(availablePlayers[0].id);
   }, []);
 
   socket.on("redirect_start_game", () => {
@@ -414,10 +426,7 @@ export default function Settings() {
             border: "#845ec2",
             fontWeight: "bold",
           }}
-        >
-          <Link to="/game-room">Start Game</Link>
-        </Button>
-      </FormControl>
+        </FormControl>
     </Container>
   );
 }
