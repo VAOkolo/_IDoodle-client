@@ -19,9 +19,30 @@ export default function CorrectPlayer() {
     setCorrectPlayer
   ] = useContext(SocketContext);
 
+  let [hidden, setHidden] = useState(true)
+
+  function fadeOutElement(e){
+      
+    console.log(e)
+    setHidden(false)
+
+    setTimeout(() => {
+        setHidden(true)
+        setCorrectPlayer('')
+    }, 8000)
+
+  }
+
+  useEffect(() => {
+      console.log("Useeffect correctplayer")
+    fadeOutElement()
+  },[correctPlayer])
+
   return(
       <>
-      <div>{"correct player: " + correctPlayer}</div>
+      <div className={ hidden && "hidden"}>
+          <p>{"correct player: " + correctPlayer}</p>
+    </div>
       </>
   )
 }
