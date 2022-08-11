@@ -43,6 +43,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Container, Box, Text, Input, Button } from "@chakra-ui/react";
 import { SocketContext } from "../../SocketContext";
+
 const Word = () => {
   const [
     socket,
@@ -57,14 +58,19 @@ const Word = () => {
     player,
     setPlayer,
   ] = useContext(SocketContext);
-  const [wToGuess, setWToGuess] = useState("");
+  const [isActivePlayer, setIsActivePlayer] = useState(false);
+
   useEffect(() => {
     socket.on("received_word_to_guess", (word) => {
-      console.log("hiiiii", word);
       setWordToGuess(word);
     });
   }, [socket]);
 
+  useEffect(() => {
+    if (activePlayer == socket.id) {
+      setIsActivePlayer(true);
+    }
+  }, [activePlayer]);
   // const [guess, setGuess] = useState("");
   // const haha = "florencia";
   // let lettersReplaced = [];
@@ -78,18 +84,21 @@ const Word = () => {
   // console.log("yay");
   // hangman();
   // // console.log(guess);
+
+  //boolean variable. if activplayer id === socket.id => set booleanVariable to true
+
   return (
     <Container bg="teal">
       {/* <Text as="h4" fontSize="xl" textAlign="start" order="1">
         Word to draw: {wordToGuess}
       </Text> */}
-      {activePlayer ? (
+      {/* {isActivePlayer ? (
         <Text as="h4" fontSize="xl" textAlign="start" order="1">
           Word to draw: {wordToGuess}
         </Text>
       ) : (
         <Text>Length of word: {wordToGuess.length}</Text>
-      )}
+      )} */}
     </Container>
   );
 };

@@ -31,6 +31,10 @@ export default function Chat() {
   function nextTurn() {
     _turn = current_turn++ % availablePlayers.length;
     setActivePlayer(availablePlayers[_turn].id);
+    // socket.emit("generate_words_array");
+    socket.on("received_word_to_guess", (word) => {
+      setWordToGuess(word);
+    });
   }
 
   const sendMessage = async () => {
