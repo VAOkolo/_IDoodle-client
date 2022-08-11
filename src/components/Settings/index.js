@@ -114,6 +114,8 @@ export default function Settings() {
 
   return (
     <>
+
+{player.id == availablePlayers[0].id ?
       <Container
         display="flex"
         h="93vh"
@@ -152,9 +154,8 @@ export default function Settings() {
           <Select
             onChange={(e) => {
               setGameRounds(e.target.value);
-              console.log(gameRounds);
-              console.log(availablePlayers.length);
-              console.log("Number: ", gameRounds * availablePlayers.length);
+              console.log(e)
+              console.log(gameRounds, "THIS IS GAME ROUNDS");
             }}
             className="rounds-control"
             id="rounds"
@@ -207,8 +208,6 @@ export default function Settings() {
           >
             {categories && categories.map((c) => <option>{c.name}</option>)}
           </Select>
-
-          {player.id == availablePlayers[0].id ? (
             <Button
               mt={4}
               onClick={handleSubmit}
@@ -225,11 +224,16 @@ export default function Settings() {
                 fontWeight: "bold",
               }}
             ></Button>
-          ) : (
-            <div>WAIT FOR HOST TO START</div>
-          )}
         </FormControl>
       </Container>
+      : (
+        <>
+        <div className="loadContainer">
+          <p>WAIT FOR HOST TO START</p>
+        <div className="load"></div>
+        </div>
+      </>
+      )}
     </>
   );
 }
