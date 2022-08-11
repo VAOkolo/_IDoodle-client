@@ -28,7 +28,7 @@ export default function CorrectPlayer() {
 
     setTimeout(() => {
         setHidden(true)
-        setCorrectPlayer('')
+        // setCorrectPlayer('')
     }, 8000)
 
   }
