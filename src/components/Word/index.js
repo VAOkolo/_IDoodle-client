@@ -98,7 +98,7 @@ const Word = () => {
           Word to draw: {wordToGuess}
         </Text>
       ) : (
-        <Text>Length of word: {wordToGuess.length}</Text>
+        <Text>Length of word: { wordToGuess && wordToGuess.length }</Text>
       )}
       <button
         onClick={() => {

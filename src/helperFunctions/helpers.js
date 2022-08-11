@@ -12,14 +12,30 @@ export function sortUsers(data) {
   });
 }
 
-export async function postUsers(data, url) {
-  const { username, scores } = data;
+export function postUsers(data) {
+
+  console.log(data)
+  data.forEach((player) => postUser(player))
+
+}
+
+async function postUser(data) {
+
+  // console.log(data)
+  let url = "https://hptq-backend.herokuapp.com/users"
+  // let url = "https://localhost:4000/users"
 
   const options = {
     method: "POST",
-    body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
+      "x-access-token": "token-value",
     },
-  };
-}
+    body: JSON.stringify(data),
+  }
+
+    fetch(url, options)
+    .then((res) => console.log("I have posted the user: " + res))
+    .catch((err) => console.log(err))
+
+  }
