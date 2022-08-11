@@ -52,20 +52,24 @@ const GameRoom = () => {
     setActivePlayer(availablePlayers[0].id);
   }, []);
 
-  let testArray = [{username: "test", scores: 999},
-  {username: "test", scores: 999},
-  {username: "test", scores: 999},
-  {username: "test", scores: 999},
-  {username: "test", scores: 999}]
-
-
+  let testArray = [
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+  ];
 
   return (
     <>
-    <button onClick={ (e) => {
-      console.log(e)
-      postUsers(testArray)
-      }}>Click ME</button>
+      <button
+        onClick={(e) => {
+          console.log(e);
+          postUsers(testArray);
+        }}
+      >
+        Click ME
+      </button>
       <CorrectPlayer />
       <HStack
         textAlign="center"
@@ -82,7 +86,6 @@ const GameRoom = () => {
             <PlayersBoard />
           </Flex>
 
-
           <Flex flexDirection="column" h="100%" minH="25em">
             <VStack>
               <Countdown startingMinutes={0} startingSeconds={4} />
@@ -91,14 +94,13 @@ const GameRoom = () => {
             </VStack>
           </Flex>
           <Flex h="100%" minH="25em">
-//Commented out to merge from flo
-          // <GridItem colSpan={4}>
+            {/* // <GridItem colSpan={4}>
 
             // <Countdown startingMinutes={0} startingSeconds={0} />
             // <Canvas />
             // <Word />
           // </GridItem>
-          // <GridItem colSpan={1}>
+          // <GridItem colSpan={1}> */}
 
             <Chat />
           </Flex>
