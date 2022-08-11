@@ -42,7 +42,7 @@ export default function GameOver() {
   }
 
   async function postUser(data) {
-    const { active, host, id, points, room, username } = data;
+    const { points, username } = data;
     const newObj = {
       username: username,
       scores: points,

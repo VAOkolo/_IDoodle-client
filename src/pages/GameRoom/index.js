@@ -43,8 +43,8 @@ const GameRoom = () => {
     setGameTime,
     gameRounds,
     setGameRounds,
-    roundsForPlayers,
-    setRoundsForPlayers,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
@@ -85,10 +85,12 @@ const GameRoom = () => {
           <Flex flexDirection="column" h="20em" minH="25em">
             <PlayersBoard />
           </Flex>
-
           <Flex flexDirection="column" h="100%" minH="25em">
             <VStack>
-              <Countdown startingMinutes={0} startingSeconds={4} />
+              <div>{`Round ${currentRound} OF ${
+                gameRounds * availablePlayers.length
+              }`}</div>
+              <Countdown startingMinutes={0} startingSeconds={0} />
               <Canvas />
               <Word />
             </VStack>

@@ -28,8 +28,8 @@ export default function Countdown(props) {
     setGameTime,
     gameRounds,
     setGameRounds,
-    roundsForPlayers,
-    setRoundsForPlayers,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -40,8 +40,10 @@ export default function Countdown(props) {
   const navigate = useNavigate();
 
   const startTimer = () => {
+    // socket.emit("set_current_round", currentRound, room);
     setResetGames(!resetGames);
     setSeconds(gameTime);
+    setCurrentRound(current_turn);
 
     console.log("currently on turn:", current_turn);
     console.log("available players length:", availablePlayers.length);
