@@ -91,7 +91,7 @@ const Word = () => {
     >
       {isActivePlayer ? (
         <Text as="h4" fontSize="xl" textAlign="start" order="1">
-          Word to draw: {wordToGuess}
+          Word to draw: <span className="wordToDraw">{wordToGuess}</span>
         </Text>
       ) : (
         <Text>Length of word: {wordToGuess && wordToGuess.length}</Text>

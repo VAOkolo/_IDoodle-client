@@ -86,7 +86,7 @@ const GameRoom = () => {
             spacing="7"
           >
             <Text as="h3" fontSize="2xl" fontWeight="bold">
-              Connected Players
+              PLAYERS
             </Text>
           </Flex>
           <Flex w="40%" ml="4%" fontWeight="bold">

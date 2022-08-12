@@ -1,6 +1,18 @@
 import React, { useEffect, useContext } from "react";
 import { SocketContext } from "../../SocketContext";
-import { Stack, Text, Container } from "@chakra-ui/react";
+import {
+  Stack,
+  Text,
+  Container,
+  TableContainer,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
 export default function GameOver() {
   const [
@@ -74,7 +86,7 @@ export default function GameOver() {
   }, []);
 
   return (
-    <>
+    <div className="gameOverContainer">
       <Container
         display="flex"
         justifyContent="center"
@@ -97,24 +109,51 @@ export default function GameOver() {
           </Text>
         </Stack>
       </Container>
-      <div className="tablediv">
-        <table className="table">
-          <tr>
-            <th>Rank</th>
-            <th>Username</th>
-            <th>Score</th>
-          </tr>
-          {availablePlayers.map((user, index) => (
-            <>
-              <tr>
-                <td>{index + 1}</td>
-                <td>{user.username}</td>
-                <td>{user.points}</td>
-              </tr>
-            </>
-          ))}
-        </table>
-      </div>
-    </>
+      <Container
+        as={motion.div}
+        // initial={{ opacity: 0.2 }}
+        // animate={{ opacity: 1 }}
+        // transition="2s linear"
+        // w="100vw"
+        minW="50vw"
+      >
+        <TableContainer
+          as={motion.div}
+          boxShadow="
+        rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset"
+          transition="0.5s"
+          initial={{ opacity: 0.2, delay: 1 }}
+          animate={{ opacity: 1 }}
+          m={6}
+          marginTop="8rem"
+        >
+          <Table
+            variant="striped"
+            colorScheme="purple"
+            p="2"
+            bg="white"
+            fontSize="lg"
+            fontWeight="bold"
+          >
+            <Thead>
+              <Tr>
+                <Th>Rank</Th>
+                <Th>UserName</Th>
+                <Th>Score</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {availablePlayers.map((user, index) => (
+                <Tr>
+                  <Td>{index + 1}</Td>
+                  <Td>{user.username}</Td>
+                  <Td>{user.points}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </Container>
+    </div>
   );
 }

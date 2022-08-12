@@ -321,3 +321,28 @@ nav ul li {
   font-weight: "700";
   text-align: center;
 }
+
+.wordToDraw {
+  color: rebeccapurple;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.correctPlayer {
+  color: #8822aa;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.correctPlayerNormalText {
+  color: black !important;
+}
+
+/* Game Over */
+
+.gameOverContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
