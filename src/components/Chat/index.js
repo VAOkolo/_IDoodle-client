@@ -22,6 +22,14 @@ export default function Chat() {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   const [currentMessage, setCurrentMessage] = useState({
@@ -96,7 +104,10 @@ export default function Chat() {
     <>
       <div className="chat-window">
         <div className="chat-body">
-          <ScrollToBottom className="message-container">
+          <ScrollToBottom
+            className="message-container"
+            data-testid="message-section"
+          >
             {messageList.map((message, index) => {
               return (
                 <div className="message" key={index}>
