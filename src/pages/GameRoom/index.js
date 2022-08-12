@@ -58,13 +58,13 @@ const GameRoom = () => {
       <CorrectPlayer />
       <Flex
         textAlign="center"
-        h={["50%", "80%", "50%", "80vh"]}
+        h={["50%", "80%", "90%", "90vh"]}
         display="flex"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        maxW="container.2xl"
-        w="container.2xl"
+        maxW="95%"
+        w="95%"
         py={"5%"}
         px={"5%"}
         spacing="2"
@@ -72,18 +72,17 @@ const GameRoom = () => {
         <Box
           gap={2}
           display="flex"
-          w={{ lg: "85%", xl: "87%", "2xl": "90%" }}
+          w={{ lg: "85%", xl: "92%", "2xl": "90%" }}
           bg="white"
           rounded="xl"
         >
           <Flex
-            w={{ lg: "26%" }}
+            w={{ lg: "5rem", xl: "19rem" }}
             justifyContent="center"
             alignItems="center"
             rounded="xl"
-            mb={{ lg: "-8px" }}
             overflow="hidden"
-            spacing="7"
+            // spacing="7"
           >
             <Text as="h3" fontSize="2xl" fontWeight="bold">
               PLAYERS
@@ -101,24 +100,24 @@ const GameRoom = () => {
         <HStack
           bg="white"
           border="0.5px solid black"
-          minH="23.4em"
-          h="23.5em"
+          minH="23.4rem"
+          h="23.5rem"
           justifySelf="stretch"
           wrap="wrap"
         >
           <Flex
             flexDirection="column"
-            h="22em"
+            h="22rem"
             alignSelf="stretch"
             alignItems="center"
           >
             <PlayersBoard />
           </Flex>
 
-          <Flex flexDirection="column" h="22em" alignSelf="stretch">
+          <Flex flexDirection="column" h="22rem" alignSelf="stretch">
             <Canvas />
           </Flex>
-          <Flex h="22em" alignSelf="stretch" justifySelf="stretch">
+          <Flex h="22rem" alignSelf="stretch" justifySelf="stretch">
             <Chat />
           </Flex>
         </HStack>

@@ -38,10 +38,13 @@ const BurgerMenu = () => {
           icon={<CloseIcon textAlign="right" fontSize="10px" w="12px" />}
         ></MenuItem>
         <MenuItem>
-          <Link to="/">New Game</Link>
+          <Link to="/">Home</Link>
         </MenuItem>
         <MenuItem>
-          <Link to="/leaderboard">Leader Board</Link>
+          <Link to="/rules">Rules</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/leaderboard">LeaderBoard</Link>
         </MenuItem>
       </MenuList>
     </Menu>

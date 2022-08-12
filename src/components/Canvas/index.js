@@ -95,7 +95,7 @@ function Canvas() {
         onMouseMove={draw}
         ref={canvasRef}
         height={373}
-        width={500}
+        width={600}
         style={{ border: "1px solid black", background: "white" }}
         className="canvas"
       />

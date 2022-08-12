@@ -28,7 +28,9 @@ export default function LeaderBoardTable() {
   }, []);
 
   return (
-    <Container minW="50vw">
+    <Container
+      minW="60vw"
+    >
       <TableContainer
         as={motion.div}
         boxShadow="
@@ -37,6 +39,7 @@ export default function LeaderBoardTable() {
         initial={{ opacity: 0.2, delay: 1 }}
         animate={{ opacity: 1 }}
         m={6}
+        overflow="scroll"
       >
         <Table
           variant="striped"
