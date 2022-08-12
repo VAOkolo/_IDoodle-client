@@ -247,7 +247,7 @@ nav ul li {
 /* Canvas */
 
 .canvas {
-  cursor: url(pencil.png), auto;
+  cursor: url(pencil.png) 0 30, auto;
 }
 
 .hidden {
