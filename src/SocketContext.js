@@ -17,7 +17,7 @@ export default function SocketProvider(props) {
   const [correctPlayer, setCorrectPlayer] = useState("");
   const [isActivePlayer, setIsActivePlayer] = useState(false);
   const [gameTime, setGameTime] = useState(30);
-  const [gameRounds, setGameRounds] = useState(0);
+  const [gameRounds, setGameRounds] = useState(1);
   const [currentRound, setCurrentRound] = useState(0);
 
   return (

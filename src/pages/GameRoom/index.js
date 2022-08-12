@@ -55,14 +55,6 @@ const GameRoom = () => {
 
   return (
     <>
-      <button
-        onClick={(e) => {
-          console.log(e);
-          postUsers(testArray);
-        }}
-      >
-        Click ME
-      </button>
       <CorrectPlayer />
       <Flex
         textAlign="center"
@@ -97,10 +89,13 @@ const GameRoom = () => {
               Connected Players
             </Text>
           </Flex>
-          <Flex w="40%" ml="4%">
-            <Countdown startingMinutes={0} startingSeconds={4} />
+          <Flex w="40%" ml="4%" fontWeight="bold">
+            <Countdown startingMinutes={0} startingSeconds={0} />
             <Divider orientation="vertical" />
             <Word />
+            <p className="roundInfo">{`Round ${currentRound} OF ${
+              gameRounds * availablePlayers.length
+            }`}</p>
           </Flex>
         </Box>
         <HStack
@@ -120,38 +115,14 @@ const GameRoom = () => {
             <PlayersBoard />
           </Flex>
 
-
           <Flex flexDirection="column" h="22em" alignSelf="stretch">
             <Canvas />
           </Flex>
           <Flex h="22em" alignSelf="stretch" justifySelf="stretch">
-
-         // <Flex flexDirection="column" h="100%" minH="25em">
-            // <VStack>
-              // <div>{`Round ${currentRound} OF ${
-               // gameRounds * availablePlayers.length
-             // }`}</div>
-             // <Countdown startingMinutes={0} startingSeconds={0} />
-             // <Canvas />
-             // <Word />
-           // </VStack>
-          //</Flex>
-         // <Flex h="100%" minH="25em">
-            {/* // <GridItem colSpan={4}>
-
-            // <Countdown startingMinutes={0} startingSeconds={0} />
-            // <Canvas />
-            // <Word />
-          // </GridItem>
-          // <GridItem colSpan={1}> */}
-
-
             <Chat />
           </Flex>
         </HStack>
       </Flex>
-      {/* </Container> */}
-      {/* </Flex> */}
     </>
   );
 };

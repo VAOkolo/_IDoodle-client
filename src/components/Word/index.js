@@ -79,36 +79,23 @@ const Word = () => {
     } else {
       setIsActivePlayer(false);
     }
-    console.log("RUNNING! USEEFFECT HOOK");
   }, [activePlayer]);
 
-  // const [guess, setGuess] = useState("");
-  // const haha = "florencia";
-  // let lettersReplaced = [];
-  // const hangman = () => {
-  //   for (const letter of haha) {
-  //     lettersReplaced.push(letter.replace(/^[a-zA-Z]+$/g, "_"));
-  //   }
-  // };
-
   return (
-    <Container backdropFilter="auto" alignSelf="center" justifySelf="center" fontSize="2xl" fontWeight="bold">
+    <Container
+      backdropFilter="auto"
+      alignSelf="center"
+      justifySelf="center"
+      fontSize="2xl"
+      fontWeight="bold"
+    >
       {isActivePlayer ? (
         <Text as="h4" fontSize="xl" textAlign="start" order="1">
           Word to draw: {wordToGuess}
         </Text>
       ) : (
-        <Text>Length of word: { wordToGuess && wordToGuess.length }</Text>
+        <Text>Length of word: {wordToGuess && wordToGuess.length}</Text>
       )}
-      <button
-        onClick={() => {
-          console.log(wordToGuess);
-          console.log(isActivePlayer);
-          console.log(activePlayer);
-        }}
-      >
-        CLICK ME
-      </button>
     </Container>
   );
 };

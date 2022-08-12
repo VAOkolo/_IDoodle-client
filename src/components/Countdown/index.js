@@ -41,18 +41,9 @@ export default function Countdown(props) {
   const navigate = useNavigate();
 
   const startTimer = () => {
-    // socket.emit("set_current_round", currentRound, room);
     setResetGames(!resetGames);
     setSeconds(gameTime);
     setCurrentRound(current_turn);
-
-    console.log("currently on turn:", current_turn);
-    console.log("available players length:", availablePlayers.length);
-    console.log("number of game rounds for current user:", gameRounds);
-    console.log(
-      "to reach for game over:",
-      gameRounds * availablePlayers.length
-    );
     if (current_turn == gameRounds * availablePlayers.length) {
       socket.emit("end_game", room);
       socket.on("redirect_end_game", () => {
@@ -80,7 +71,6 @@ export default function Countdown(props) {
     setActivePlayer(availablePlayers[_turn].id);
     socket.off("received_word_to_guess");
     socket.on("received_word_to_guess", (word) => {
-      console.log(word);
       setWordToGuess(word);
     });
   }
@@ -114,7 +104,10 @@ export default function Countdown(props) {
 
   return (
     <Flex direction="column" fontSize="2xl" fontWeight="bold">
-      {secs}
+      <div className="timerContainer">
+        <p>⌛</p>
+        {secs}
+      </div>
       {!(mins && secs) ? (
         ""
       ) : (
@@ -123,8 +116,6 @@ export default function Countdown(props) {
           {mins}:{secs < 10 ? `0${secs}` : secs}
         </p>
       )}
-      <button onClick={startTimer}> start timer</button>
-      {/* <p>{activePlayer}</p> */}
     </Flex>
   );
 }
