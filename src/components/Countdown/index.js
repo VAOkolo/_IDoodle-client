@@ -83,7 +83,7 @@ export default function Countdown(props) {
       if (secs === 0) {
         if (mins === 0) {
           clearInterval(sampleInterval);
-          // socket.emit("send_time_up", room);
+          socket.emit("send_time_up", room);
         } else {
           setMinutes(mins - 1);
           setSeconds(59);
