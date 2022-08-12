@@ -89,7 +89,7 @@ export default function Lobby() {
                 PLAYERS IN LOBBY
               </Text>
               <Text
-                fontSize="1xl"
+                fontSize="2xl"
                 fontWeight="bold"
                 textAlign="center"
                 marginBottom="2em"
@@ -114,7 +114,7 @@ export default function Lobby() {
                         <AvatarBadge bg="green.500" boxSize="1em" />
                       </Avatar>
                       {user.host ? (
-                        <Text fontSize="1xl" fontWeight="bold">
+                        <Text fontSize="2xl" fontWeight="bold">
                           {" "}
                           HOST:{" "}
                           <span className="uppercase"> {user.username}</span>
@@ -122,7 +122,7 @@ export default function Lobby() {
                       ) : (
                         <Text
                           className="uppercase"
-                          fontSize="1xl"
+                          fontSize="2xl"
                           fontWeight="bold"
                         >
                           {user.username}

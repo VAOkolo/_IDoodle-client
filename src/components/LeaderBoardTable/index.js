@@ -29,12 +29,7 @@ export default function LeaderBoardTable() {
 
   return (
     <Container
-      as={motion.div}
-      // initial={{ opacity: 0.2 }}
-      // animate={{ opacity: 1 }}
-      // transition="2s linear"
-      // w="100vw"
-      minW="50vw"
+      minW="60vw"
     >
       <TableContainer
         as={motion.div}
@@ -44,6 +39,7 @@ export default function LeaderBoardTable() {
         initial={{ opacity: 0.2, delay: 1 }}
         animate={{ opacity: 1 }}
         m={6}
+        overflow="scroll"
       >
         <Table
           variant="striped"
@@ -52,6 +48,7 @@ export default function LeaderBoardTable() {
           bg="white"
           fontSize="lg"
           fontWeight="bold"
+          role="table"
         >
           <Thead>
             <Tr>
