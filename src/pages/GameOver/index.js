@@ -89,6 +89,7 @@ export default function GameOver() {
   }, []);
 
   return (
+
     <div className="gameOverContainer">
       <Confetti width={width} height={height} />
       <Container

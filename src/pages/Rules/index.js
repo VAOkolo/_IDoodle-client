@@ -3,13 +3,6 @@ import {
   Stack,
   Text,
   Container,
-  TableContainer,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
 } from "@chakra-ui/react";
 
 export default function Rules() {
@@ -31,6 +24,7 @@ export default function Rules() {
         rounded="lg"
         bg="white"
         padding="5rem"
+        role="rules"
       >
         <Text fontSize="6xl" color="orange" fontWeight="bold">
           🎨✏️
