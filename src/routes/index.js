@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Leaderboard, Lobby, GameRoom, GameOver } from "../pages";
+import { Home, Leaderboard, Lobby, GameRoom, GameOver, Rules } from "../pages";
 
 const AppRoutes = () => {
   return (
@@ -10,6 +10,7 @@ const AppRoutes = () => {
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/game-over" element={<GameOver />} />
+      <Route path="/rules" element={<Rules />} />
     </Routes>
   );
 };
