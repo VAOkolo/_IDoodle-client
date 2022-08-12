@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import { SocketContext } from "../../SocketContext";
-
+import { Box } from "@chakra-ui/react";
 function Canvas() {
   const [
     socket,
@@ -94,13 +94,11 @@ function Canvas() {
         onMouseUp={finishDrawing}
         onMouseMove={draw}
         ref={canvasRef}
-        height={250}
-        width={250}
-        style={{ border: "1px solid black" }}
+        height={373}
+        width={500}
+        style={{ border: "1px solid black", background: "white" }}
         className="canvas"
       />
-      <br></br>
-      We Are In Room: {room}
     </div>
   );
 }

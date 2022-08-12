@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../../SocketContext";
+import { Flex } from "@chakra-ui/react";
 
 export default function Countdown(props) {
   const [
@@ -28,6 +29,8 @@ export default function Countdown(props) {
     setGameTime,
     gameRounds,
     setGameRounds,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   const { startingMinutes = 1, startingSeconds = 0 } = props;
@@ -40,12 +43,7 @@ export default function Countdown(props) {
   const startTimer = () => {
     setResetGames(!resetGames);
     setSeconds(gameTime);
-    // setSeconds(10);
-    console.log("currently:", current_turn);
-    console.log(
-      "to reach for game over:",
-      current_turn == gameRounds * availablePlayers.length
-    );
+    setCurrentRound(current_turn);
     if (current_turn == gameRounds * availablePlayers.length) {
       socket.emit("end_game", room);
       socket.on("redirect_end_game", () => {
@@ -73,7 +71,6 @@ export default function Countdown(props) {
     setActivePlayer(availablePlayers[_turn].id);
     socket.off("received_word_to_guess");
     socket.on("received_word_to_guess", (word) => {
-      console.log(word);
       setWordToGuess(word);
     });
   }
@@ -106,8 +103,11 @@ export default function Countdown(props) {
   }, [socket]);
 
   return (
-    <div>
-      {secs}
+    <Flex direction="column" fontSize="2xl" fontWeight="bold">
+      <div className="timerContainer">
+        <p>⌛</p>
+        {secs}
+      </div>
       {!(mins && secs) ? (
         ""
       ) : (
@@ -116,8 +116,6 @@ export default function Countdown(props) {
           {mins}:{secs < 10 ? `0${secs}` : secs}
         </p>
       )}
-      <button onClick={startTimer}> start timer</button>
-      {/* <p>{activePlayer}</p> */}
-    </div>
+    </Flex>
   );
 }
