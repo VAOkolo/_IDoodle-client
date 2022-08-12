@@ -48,38 +48,49 @@ const PlayersBoard = () => {
 
     // console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
   }, [socket]);
-
+  console.log(activePlayer);
+  console.log(availablePlayers);
+  console.log(socket.id === activePlayer);
   return (
     <>
-      <Text as="h3" textAlign="start" m="3">
-        Connected Players
-      </Text>
-      <TableContainer w="100%">
-        <Table variant="simple" colorScheme="gray">
-          <Thead bg="gray" color="white">
-            <Tr>
-              <Th>Position</Th>
-              <Th>Name</Th>
-              <Th>Points</Th>
+      <TableContainer
+        w={{ lg: "18em" }}
+        boxShadow="xs"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        alignSelf="center"
+      >
+        <Table colorScheme="gray" fontSize="2em">
+          <Thead>
+            <Tr fontSize="0.8em">
+              {/* <Th>Position</Th> */}
+              <Th fontSize="0.5em">Name</Th>
+              <Th fontSize="0.5em">Points</Th>
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody fontSize="0.5em" fontWeight="bold">
             {availablePlayers.map((user, index) => (
               <Tr key={index}>
-                <Td>#{index + 1}</Td>
-                <Td>
-                  <Wrap p="1">
+                {/* <Td>#{index + 1}</Td> */}
+                <Td
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Wrap display="flex" flexDirection="column">
                     <WrapItem>
                       <Avatar
                         name={user.username}
                         src="https://bit.ly/broken-link"
+                        size="sm"
                       >
-                        <AvatarBadge bg="green.500" boxSize="1em" />
+                        <AvatarBadge bg="green.500" boxSize="0.9em" />
                       </Avatar>
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}
+                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}ß
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>

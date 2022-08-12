@@ -1,12 +1,8 @@
-
-
 body,
 html {
   /* background-image: url("../src/assets/bg-img.jpeg");*/
   height: 100vh;
   width: 100vw;
-
-
 }
 
 @keyframes App-logo-spin {
@@ -84,7 +80,7 @@ html {
 }
 
 .chat-window .chat-header {
-  height: 45px;
+  height: 40px;
   border-radius: 6px;
   background: #263238;
   position: relative;
@@ -254,7 +250,104 @@ nav ul li {
   cursor: url(pencil.png), auto;
 }
 
-.hidden{
-  display: none
+.hidden {
+  display: none;
+}
 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.load {
+  width: 200px;
+  height: 200px;
+  margin: 170px auto 0;
+  border: solid 10px #8822aa;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  -webkit-transition: all 0.5s ease-in;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  transition: all 0.5s ease-in;
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.loadContainer {
+  text-align: center;
+}
+
+/* Settings */
+
+.roomNum {
+  color: yellow;
+  font-size: 1.3rem;
+}
+
+.loadContainer {
+  height: 100vh;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+/* Game Room */
+
+.timerContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.roundInfo {
+  font-weight: "700";
+  text-align: center;
+}
+
+.wordToDraw {
+  color: rebeccapurple;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.correctPlayer {
+  color: #8822aa;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.correctPlayerNormalText {
+  color: black !important;
+}
+
+.userInChat {
+  color: #8822aa !important;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+/* Game Over */
+
+.gameOverContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

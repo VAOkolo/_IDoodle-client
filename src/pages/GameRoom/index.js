@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Grid, GridItem, Container } from "@chakra-ui/react";
+import { Text, Flex, HStack, Divider, Box } from "@chakra-ui/react";
 import {
   PlayersBoard,
   Canvas,
@@ -9,6 +9,7 @@ import {
   CorrectPlayer,
 } from "../../components";
 import { SocketContext } from "../../SocketContext";
+import { postUser, postUsers } from "../../helperFunctions/helpers";
 
 const GameRoom = () => {
   const [
@@ -29,51 +30,99 @@ const GameRoom = () => {
     setWordToGuessArray,
     correctPlayer,
     setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
+    currentRound,
+    setCurrentRound,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
   useEffect(() => {
-    console.log("*****************", wordToGuessArray);
-    // socket.emit("generate_word_array", wordToDisplay, room);
-    // socket.emit("generate_words_array", wordToGuessArray, room);
     setActivePlayer(availablePlayers[0].id);
   }, []);
+
+  let testArray = [
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+    { username: "test", scores: 999 },
+  ];
 
   return (
     <>
       <CorrectPlayer />
-      <Container
+      <Flex
+        textAlign="center"
+        h={["50%", "80%", "50%", "80vh"]}
         display="flex"
-        justifyContent="center"
         flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
         maxW="container.2xl"
-        py={"50px"}
-        px={"50px"}
-        gap={12}
+        w="container.2xl"
+        py={"5%"}
+        px={"5%"}
+        spacing="2"
       >
-        <Grid
-          templateColumns="repeat(6, 1fr)"
-          templateRows="repeat(1, 1fr)"
-          // gap={"15%"}
-          //   alignItems="center"
-          // bg="yellow"
-          textAlign="center"
-          h="100%"
+        <Box
+          gap={2}
+          display="flex"
+          w={{ lg: "85%", xl: "87%", "2xl": "90%" }}
+          bg="white"
+          rounded="xl"
         >
-          <GridItem>
-            <PlayersBoard />
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Countdown startingMinutes={0} startingSeconds={4} />
-            <Canvas />
+          <Flex
+            w={{ lg: "26%" }}
+            justifyContent="center"
+            alignItems="center"
+            rounded="xl"
+            mb={{ lg: "-8px" }}
+            overflow="hidden"
+            spacing="7"
+          >
+            <Text as="h3" fontSize="2xl" fontWeight="bold">
+              PLAYERS
+            </Text>
+          </Flex>
+          <Flex w="40%" ml="4%" fontWeight="bold">
+            <Countdown startingMinutes={0} startingSeconds={0} />
+            <Divider orientation="vertical" />
             <Word />
-          </GridItem>
-          <GridItem colSpan={1}>
+            <p className="roundInfo">{`Round ${currentRound} OF ${
+              gameRounds * availablePlayers.length
+            }`}</p>
+          </Flex>
+        </Box>
+        <HStack
+          bg="white"
+          border="0.5px solid black"
+          minH="23.4em"
+          h="23.5em"
+          justifySelf="stretch"
+          wrap="wrap"
+        >
+          <Flex
+            flexDirection="column"
+            h="22em"
+            alignSelf="stretch"
+            alignItems="center"
+          >
+            <PlayersBoard />
+          </Flex>
+
+          <Flex flexDirection="column" h="22em" alignSelf="stretch">
+            <Canvas />
+          </Flex>
+          <Flex h="22em" alignSelf="stretch" justifySelf="stretch">
             <Chat />
-          </GridItem>
-        </Grid>
-      </Container>
+          </Flex>
+        </HStack>
+      </Flex>
     </>
   );
 };

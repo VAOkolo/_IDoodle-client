@@ -70,10 +70,24 @@ export default function Settings() {
   };
 
   useEffect(() => {
+    if (availablePlayers[0].id == socket.id) {
+      console.log("I EMITTED!!");
+      socket.emit("set_game_rounds", gameRounds, room);
+    }
+    socket.on("recieve_game_rounds", (data) => {
+      setGameRounds(data);
+    });
+
+    console.log(gameRounds);
+  }, [gameRounds]);
+
+  useEffect(() => {
     checkIsHost();
     fetchCategories();
     setActivePlayer(availablePlayers[0].id);
   }, []);
+
+  useEffect(() => {});
 
   socket.on("redirect_start_game", () => {
     navigate("/game-room", { replace: true });
@@ -113,106 +127,128 @@ export default function Settings() {
   };
 
   return (
-
-    <Container
-      display="flex"
-      h="80vh"
-      minH="100%"
-      justifyContent="center"
-      alignItems="center"
-      
-    >
-      {/* <h1>Room Number: {room}</h1> */}
-
-        <FormControl
-          as={motion.form}
-          p="5"
+    <>
+      {player.id == availablePlayers[0].id ? (
+        <Container
           display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
+          h="80vh"
+          minH="100%"
+          justifyContent="center"
           alignItems="center"
-          h="72%"
-          w="70%"
-          minW="400px"
-          boxShadow="rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition="1.2s ease"
-          borderRadius="1em"
         >
-          <FormLabel
-            fontSize="2xl"
-            className="Title"
-            p="2"
-            color="gray"
-            fontWeight="normal"
+          {/* <h1>Room Number: {room}</h1> */}
+          <FormControl
+            as={motion.form}
+            p="5"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            alignItems="center"
+            h="80%"
+            w="70%"
+            minW="400px"
+            boxShadow="rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition="1.2s ease"
+            borderRadius="1em"
           >
-            {`Choose your settings for room: ${room}`}
-          </FormLabel>
-
-          <Text alignSelf="start" as="label" htmlFor="rounds" fontSize="sm">
-            Rounds
-          </Text>
-          <Select
-            onChange={(e) => {
-              setGameRounds(e.target.value);
-              console.log(gameRounds);
-              console.log(availablePlayers.length);
-              console.log("Number: ", gameRounds * availablePlayers.length);
-            }}
-            className="rounds-control"
-            id="rounds"
-            cursor="pointer"
-            value={gameRounds}
-          >
-            {createOptions(1, 5, 1).map((option) => (
-              <option>{option}</option>
-            ))}
-          </Select>
-
-          <Text alignSelf="start" as="label" htmlFor="seconds" fontSize="sm">
-            Seconds
-          </Text>
-          <Select
-            onChange={(e) => setGameTime(e.target.value)}
-            className="seconds-control"
-            id="seconds"
-            value={gameTime}
-          >
-            {createOptions(30, 70, 10).map((option) => (
-              <option>{option}</option>
-            ))}
-          </Select>
-
-          <Text alignSelf="start" as="label" htmlFor="difficulty" fontSize="sm">
-            Difficulty
-          </Text>
-          <Select
-            onChange={(e) => setGameDifficulty(e.target.value)}
-            className="difficulty-control"
-            id="difficulty"
-            cursor="pointer"
-            value={gameDifficulty}
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </Select>
-
-          <Text alignSelf="start" as="label" htmlFor="difficulty" fontSize="sm">
-            Category
-          </Text>
-          <Select
-            onChange={handleCategory}
-            class="category-control"
-            id="category"
-            cursor="pointer"
-            value={gameCategory}
-          >
-            {categories && categories.map((c) => <option>{c.name}</option>)}
-          </Select>
-
-          {player.id == availablePlayers[0].id ? (
+            <FormLabel fontSize="2xl" className="Title" p="2" fontWeight="bold">
+              {`Choose Your Settings`}
+            </FormLabel>
+            <Text
+              alignSelf="start"
+              as="label"
+              htmlFor="rounds"
+              fontSize="sm"
+              fontWeight="bold"
+            >
+              Rounds
+            </Text>
+            <Select
+              onChange={(e) => {
+                setGameRounds(e.target.value);
+                console.log(gameRounds);
+                console.log(availablePlayers.length);
+                console.log("Number: ", gameRounds * availablePlayers.length);
+              }}
+              className="rounds-control"
+              id="rounds"
+              cursor="pointer"
+              value={gameRounds}
+              bg="white"
+              fontSize="1.2rem"
+              color="black"
+            >
+              {createOptions(1, 5, 1).map((option) => (
+                <option className="options">{option}</option>
+              ))}
+              fontWeight="bold"
+            </Select>
+            <Text
+              alignSelf="start"
+              as="label"
+              htmlFor="seconds"
+              fontSize="sm"
+              fontWeight="bold"
+            >
+              Seconds
+            </Text>
+            <Select
+              onChange={(e) => setGameTime(e.target.value)}
+              className="seconds-control"
+              id="seconds"
+              value={gameTime}
+              bg="white"
+              fontSize="1.2rem"
+            >
+              {createOptions(30, 70, 10).map((option) => (
+                <option className="options">{option}</option>
+              ))}
+              fontWeight="bold"
+            </Select>
+            <Text
+              alignSelf="start"
+              as="label"
+              htmlFor="difficulty"
+              fontSize="sm"
+              fontWeight="bold"
+            >
+              Difficulty
+            </Text>
+            <Select
+              onChange={(e) => setGameDifficulty(e.target.value)}
+              className="difficulty-control"
+              id="difficulty"
+              cursor="pointer"
+              value={gameDifficulty}
+              bg="white"
+              fontSize="1.2rem"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </Select>
+            <Text
+              alignSelf="start"
+              as="label"
+              htmlFor="difficulty"
+              fontSize="sm"
+              fontWeight="bold"
+            >
+              Category
+            </Text>
+            <Select
+              onChange={handleCategory}
+              class="category-control"
+              id="category"
+              cursor="pointer"
+              value={gameCategory}
+              bg="white"
+              fontSize="1.2rem"
+            >
+              {categories && categories.map((c) => <option>{c.name}</option>)}
+            </Select>
             <Button
               mt={4}
               onClick={handleSubmit}
@@ -224,15 +260,24 @@ export default function Settings() {
               fontWeight="normal"
               whileHover={{
                 color: "#845ec2",
-                background: "white",
+                background: "red",
                 border: "#845ec2",
                 fontWeight: "bold",
               }}
-            ></Button>
-          ) : (
-            <div>WAIT FOR HOST TO START</div>
-          )}
-        </FormControl>
-      </Container>
+              className="startGameButton"
+            >
+              Start Game
+            </Button>
+          </FormControl>
+        </Container>
+      ) : (
+        <>
+          <div className="loadContainer">
+            <p>WAIT FOR HOST TO START</p>
+            <div className="load"></div>
+          </div>
+        </>
+      )}
+    </>
   );
 }

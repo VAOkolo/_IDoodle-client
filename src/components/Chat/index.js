@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { SocketContext } from "../../SocketContext";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { Container } from "@chakra-ui/react";
 
 export default function Chat() {
   const [
@@ -101,7 +102,10 @@ export default function Chat() {
                 <div className="message" key={index}>
                   <div>
                     <div className="message-content">
-                      <p>{message.guess}</p>
+                      <p>
+                        <span className="userInChat">{`${message.username}:`}</span>
+                        {`${message.guess}`}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -117,7 +121,10 @@ export default function Chat() {
                 value={currentMessage.guess}
                 placeholder="Enter Guess"
                 onChange={(e) => {
-                  setCurrentMessage({ guess: e.target.value });
+                  setCurrentMessage({
+                    guess: e.target.value,
+                    username: player.username,
+                  });
                 }}
                 onKeyPress={(e) => {
                   e.key === "Enter" && sendMessage();

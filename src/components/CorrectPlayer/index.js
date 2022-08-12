@@ -35,20 +35,24 @@ export default function CorrectPlayer() {
   };
 
   useEffect(() => {
-    console.log("Useeffect correctplayer");
     fadeOutElement();
-    console.log("hidden: ", hidden, "correctPlayer: ", correctPlayer);
-    console.log(hidden && correctPlayer == "");
-
     // return () => { clearTimeout(fadeOutElement)}
   }, [correctPlayer]);
 
   return (
     <>
       <div className={hidden && correctPlayer == "" ? "hidden" : ""}>
-        {correctPlayer != "" ? <p>{`${correctPlayer} wins`} </p> : ""}
+        {correctPlayer != "" ? (
+          <p className="correctPlayer">
+            {`${correctPlayer} `}
+            <span className="correctPlayerNormalText">
+              Has Guessed The Correct Answer!
+            </span>
+          </p>
+        ) : (
+          ""
+        )}
       </div>
-      {/* <button onClick={fadeOutElement}>click</button> */}
     </>
   );
 }
