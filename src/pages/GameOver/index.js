@@ -86,7 +86,7 @@ export default function GameOver() {
   }, []);
 
   return (
-    <div className="gameOverContainer">
+    <div className="gameOverContainer" role="game-over">
       <Container
         display="flex"
         justifyContent="center"

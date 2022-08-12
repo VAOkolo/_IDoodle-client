@@ -28,14 +28,7 @@ export default function LeaderBoardTable() {
   }, []);
 
   return (
-    <Container
-      as={motion.div}
-      // initial={{ opacity: 0.2 }}
-      // animate={{ opacity: 1 }}
-      // transition="2s linear"
-      // w="100vw"
-      minW="50vw"
-    >
+    <Container minW="50vw">
       <TableContainer
         as={motion.div}
         boxShadow="
@@ -52,6 +45,7 @@ export default function LeaderBoardTable() {
           bg="white"
           fontSize="lg"
           fontWeight="bold"
+          role="table"
         >
           <Thead>
             <Tr>
