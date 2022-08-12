@@ -13,8 +13,11 @@ import {
   Td,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 export default function GameOver() {
+  const { width, height } = useWindowSize();
   const [
     socket,
     room,
@@ -86,7 +89,9 @@ export default function GameOver() {
   }, []);
 
   return (
-    <div className="gameOverContainer" role="game-over">
+
+    <div className="gameOverContainer">
+      <Confetti width={width} height={height} />
       <Container
         display="flex"
         justifyContent="center"
