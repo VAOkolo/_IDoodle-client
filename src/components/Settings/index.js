@@ -144,7 +144,7 @@ export default function Settings() {
             flexDirection="column"
             justifyContent="space-between"
             alignItems="center"
-            h="80%"
+            h="90%"
             w="70%"
             minW="400px"
             boxShadow="rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px"
@@ -153,14 +153,14 @@ export default function Settings() {
             transition="1.2s ease"
             borderRadius="1em"
           >
-            <FormLabel fontSize="2xl" className="Title" p="2" fontWeight="bold">
+            <FormLabel fontSize="4xl" className="Title" p="2" fontWeight="bold">
               {`Choose Your Settings`}
             </FormLabel>
             <Text
               alignSelf="start"
               as="label"
               htmlFor="rounds"
-              fontSize="sm"
+              fontSize="xl"
               fontWeight="bold"
             >
               Rounds
@@ -177,8 +177,9 @@ export default function Settings() {
               cursor="pointer"
               value={gameRounds}
               bg="white"
-              fontSize="1.2rem"
+              fontSize="xl"
               color="black"
+              fontWeight="bold"
             >
               {createOptions(1, 5, 1).map((option) => (
                 <option className="options">{option}</option>
@@ -189,7 +190,7 @@ export default function Settings() {
               alignSelf="start"
               as="label"
               htmlFor="seconds"
-              fontSize="sm"
+              fontSize="xl"
               fontWeight="bold"
             >
               Seconds
@@ -200,7 +201,8 @@ export default function Settings() {
               id="seconds"
               value={gameTime}
               bg="white"
-              fontSize="1.2rem"
+              fontSize="2xl"
+              fontWeight="bold"
             >
               {createOptions(30, 70, 10).map((option) => (
                 <option className="options">{option}</option>
@@ -211,7 +213,7 @@ export default function Settings() {
               alignSelf="start"
               as="label"
               htmlFor="difficulty"
-              fontSize="sm"
+              fontSize="2xl"
               fontWeight="bold"
             >
               Difficulty
@@ -223,7 +225,8 @@ export default function Settings() {
               cursor="pointer"
               value={gameDifficulty}
               bg="white"
-              fontSize="1.2rem"
+              fontSize="2xl"
+              fontWeight="bold"
             >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
@@ -233,7 +236,7 @@ export default function Settings() {
               alignSelf="start"
               as="label"
               htmlFor="difficulty"
-              fontSize="sm"
+              fontSize="2xl"
               fontWeight="bold"
             >
               Category
@@ -245,7 +248,8 @@ export default function Settings() {
               cursor="pointer"
               value={gameCategory}
               bg="white"
-              fontSize="1.2rem"
+              fontSize="2xl"
+              fontWeight="bold"
             >
               {categories && categories.map((c) => <option>{c.name}</option>)}
             </Select>
@@ -257,7 +261,8 @@ export default function Settings() {
               bg="#845ec2"
               w="100%"
               color="white"
-              fontWeight="normal"
+              fontSize="2xl"
+              fontWeight="bold"
               whileHover={{
                 color: "#845ec2",
                 background: "red",
