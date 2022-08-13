@@ -71,14 +71,11 @@ export default function Settings() {
 
   useEffect(() => {
     if (availablePlayers[0].id == socket.id) {
-      console.log("I EMITTED!!");
       socket.emit("set_game_rounds", gameRounds, room);
     }
     socket.on("recieve_game_rounds", (data) => {
       setGameRounds(data);
     });
-
-    console.log(gameRounds);
   }, [gameRounds]);
 
   useEffect(() => {
@@ -152,8 +149,15 @@ export default function Settings() {
             animate={{ opacity: 1 }}
             transition="1.2s ease"
             borderRadius="1em"
+            className="settingsForm"
           >
-            <FormLabel fontSize="4xl" className="Title" p="2" fontWeight="bold">
+            <FormLabel
+              fontSize="4xl"
+              className="Title"
+              p="2"
+              fontWeight="bold"
+              color="#A25DBB"
+            >
               {`Choose Your Settings`}
             </FormLabel>
             <Text
@@ -162,15 +166,13 @@ export default function Settings() {
               htmlFor="rounds"
               fontSize="xl"
               fontWeight="bold"
+              color="#A25DBB"
             >
               Rounds
             </Text>
             <Select
               onChange={(e) => {
                 setGameRounds(e.target.value);
-                console.log(gameRounds);
-                console.log(availablePlayers.length);
-                console.log("Number: ", gameRounds * availablePlayers.length);
               }}
               className="rounds-control"
               id="rounds"
@@ -192,6 +194,7 @@ export default function Settings() {
               htmlFor="seconds"
               fontSize="xl"
               fontWeight="bold"
+              color="#A25DBB"
             >
               Seconds
             </Text>
@@ -203,6 +206,7 @@ export default function Settings() {
               bg="white"
               fontSize="2xl"
               fontWeight="bold"
+              letterSpacing="2px"
             >
               {createOptions(30, 70, 10).map((option) => (
                 <option className="options">{option}</option>
@@ -215,6 +219,7 @@ export default function Settings() {
               htmlFor="difficulty"
               fontSize="2xl"
               fontWeight="bold"
+              color="#A25DBB"
             >
               Difficulty
             </Text>
@@ -227,6 +232,7 @@ export default function Settings() {
               bg="white"
               fontSize="2xl"
               fontWeight="bold"
+              letterSpacing="2px"
             >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
@@ -238,6 +244,7 @@ export default function Settings() {
               htmlFor="difficulty"
               fontSize="2xl"
               fontWeight="bold"
+              color="#A25DBB"
             >
               Category
             </Text>
@@ -250,6 +257,7 @@ export default function Settings() {
               bg="white"
               fontSize="2xl"
               fontWeight="bold"
+              letterSpacing="2px"
             >
               {categories && categories.map((c) => <option>{c.name}</option>)}
             </Select>

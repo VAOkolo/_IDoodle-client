@@ -25,7 +25,6 @@ export default function CorrectPlayer() {
 
   let [hidden, setHidden] = useState(true);
   const fadeOutElement = async (e) => {
-    console.log(e);
     setHidden(false);
 
     setTimeout(() => {
@@ -36,7 +35,6 @@ export default function CorrectPlayer() {
 
   useEffect(() => {
     fadeOutElement();
-    // return () => { clearTimeout(fadeOutElement)}
   }, [correctPlayer]);
 
   return (

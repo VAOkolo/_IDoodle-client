@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io.connect("https://hptq-backend.herokuapp.com/");
-// const socket = io.connect("http://localhost:4000");
+// const socket = io.connect("https://hptq-backend.herokuapp.com/");
+const socket = io.connect("http://localhost:4000");
 
 export const SocketContext = createContext();
 
@@ -19,6 +19,7 @@ export default function SocketProvider(props) {
   const [gameTime, setGameTime] = useState(30);
   const [gameRounds, setGameRounds] = useState(1);
   const [currentRound, setCurrentRound] = useState(0);
+  const [refuseConnection, setRefuseConnection] = useState(false);
 
   return (
     <SocketContext.Provider
@@ -48,6 +49,8 @@ export default function SocketProvider(props) {
         setGameRounds,
         currentRound,
         setCurrentRound,
+        refuseConnection,
+        setRefuseConnection,
       ]}
     >
       {props.children}

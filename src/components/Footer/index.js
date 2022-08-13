@@ -1,7 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-
 const Footer = () => {
   return (
     <Box
@@ -11,7 +10,6 @@ const Footer = () => {
       minH={["10vh", "5vh"]}
       b="0"
       w="100vw"
-      // h=""
       p={1}
       color="white"
       fontSize="11px"

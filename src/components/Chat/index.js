@@ -57,25 +57,17 @@ export default function Chat() {
       if (currentMessage.guess.toLowerCase() === wordToGuess.toLowerCase()) {
         let userWithCorrectAns = socket.id;
         nextTurn();
-        console.log(availablePlayers);
 
-        // if(availablePlayers.length > 0){
         let correctPlayerArray = availablePlayers.filter(
           (player) => player.id == userWithCorrectAns
         );
-        // setCorrectPlayer(correctPlayerArray[0].username)
+
         socket.emit(
           "send_correct_player",
           correctPlayerArray[0].username,
           room
         );
-        // }
-        // console.log(correctPlayer)
 
-        // alert(
-        //   "Activate Fireworks You Are The Winner ! ---- " +
-        //     correctPlayerArray[0].username
-        // );
         socket.emit("set_user_points", room, userWithCorrectAns);
       }
       setMessageList((list) => [...list, currentMessage]);
@@ -87,18 +79,10 @@ export default function Chat() {
     socket.on("recieved_message", (data) => {
       setMessageList((list) => [...list, data]);
     });
-    console.log("gameRoom Useeffect running");
     socket.on("receive_correct_player", (player) => {
       setCorrectPlayer(player);
     });
   }, [socket]);
-
-  // useEffect(() => {
-  //   console.log("gameRoom Useeffect running");
-  //   socket.on("receive_correct_player", (player) => {
-  //     setCorrectPlayer(player);
-  //   });
-  // }, [socket]);
 
   return (
     <>

@@ -48,9 +48,6 @@ export default function Lobby() {
     socket.on("room_data", (users) => {
       setAvailablePlayers([...users]);
     });
-    // socket.on("set_host", (host) => {
-    //   setHost(host);
-    // });
   }, [socket]);
 
   useEffect(() => {
@@ -60,10 +57,6 @@ export default function Lobby() {
     socket.on("initial_room_data", (player) => {
       setPlayer(player);
     });
-    console.log(player);
-    // setHost(availablePlayers);
-    console.log("host is: ", host);
-    // setWordToGuess(["please", "help"]);
   }, []);
 
   return (

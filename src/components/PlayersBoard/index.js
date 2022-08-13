@@ -45,12 +45,8 @@ const PlayersBoard = () => {
     socket.on("room_data", (users) => {
       setAvailablePlayers([...users]);
     });
-
-    // console.log("THIS IS AVAILABLE PLAYERS", availablePlayers);
   }, [socket]);
-  console.log(activePlayer);
-  console.log(availablePlayers);
-  console.log(socket.id === activePlayer);
+
   return (
     <>
       <TableContainer
@@ -90,7 +86,7 @@ const PlayersBoard = () => {
                     </WrapItem>
                   </Wrap>
                   <span>{user.username}</span>
-                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}ß
+                  {user.id == activePlayer ? <p>✏️</p> : <p></p>}
                 </Td>
                 <Td>{user.points}</Td>
               </Tr>
