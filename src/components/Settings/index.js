@@ -79,6 +79,15 @@ export default function Settings() {
   }, [gameRounds]);
 
   useEffect(() => {
+    if (availablePlayers[0].id == socket.id) {
+      socket.emit("set_game_seconds", gameTime, room);
+    }
+    socket.on("recieve_game_seconds", (data) => {
+      setGameTime(data);
+    });
+  }, [gameTime]);
+
+  useEffect(() => {
     checkIsHost();
     fetchCategories();
     setActivePlayer(availablePlayers[0].id);
