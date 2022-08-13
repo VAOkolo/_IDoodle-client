@@ -9,7 +9,7 @@ IDoodle is a fun drawing game you can play with your friends. Simply join a room
 # Features
 
 
-![addhabit](./images/home.PNG)
+![addhabit](./images/homepage.PNG)
 
 
 ![trackhabit](./images/settings.PNG)
