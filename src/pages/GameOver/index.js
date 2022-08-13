@@ -42,9 +42,15 @@ export default function GameOver() {
     setGameTime,
     gameRounds,
     setGameRounds,
-    roundsForPlayers,
-    setRoundsForPlayers,
+    currentRound,
+    setCurrentRound,
+    refuseConnection,
+    setRefuseConnection,
   ] = useContext(SocketContext);
+
+  useEffect(() => {
+    socket.emit("delete_room", room);
+  }, []);
 
   function sortPlayers(data) {
     return data.sort(function (a, b) {
@@ -53,7 +59,6 @@ export default function GameOver() {
   }
 
   function postUsers(data) {
-    console.log(data);
     data.forEach((player) => postUser(player));
   }
 
@@ -63,7 +68,6 @@ export default function GameOver() {
       username: username,
       scores: points,
     };
-    console.log(data);
     let url = "https://hptq-backend.herokuapp.com/users";
     // let url = "https://localhost:4000/users"
 
@@ -77,19 +81,17 @@ export default function GameOver() {
     };
 
     fetch(url, options)
-      .then((res) => console.log("I have posted the user: " + res))
+      .then((res) => console.log("I have Posted The User(s): " + res))
       .catch((err) => console.log(err));
   }
 
   let orderedPlayerArr = sortPlayers(availablePlayers);
 
   useEffect(() => {
-    console.log("this is the ordered arr: ", orderedPlayerArr);
     postUsers(orderedPlayerArr);
   }, []);
 
   return (
-
     <div className="gameOverContainer">
       <Confetti width={width} height={height} />
       <Container
@@ -97,15 +99,15 @@ export default function GameOver() {
         justifyContent="center"
         alignItems="center"
         minW="80%"
-        minH="70vh"
+        minH="20vh"
       >
         <Stack
           display="flex"
           justifyContent="center"
           alignItems="center"
           boxShadow="dark-lg"
-          minW="20em"
-          minH="20em"
+          minW="90%"
+          minH="5em"
           rounded="lg"
           bg="white"
         >

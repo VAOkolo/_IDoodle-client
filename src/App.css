@@ -310,6 +310,10 @@ nav ul li {
   margin-top: 1rem;
 }
 
+.lobby {
+  overflow: auto;
+}
+
 /* Game Room */
 
 .timerContainer {
@@ -345,9 +349,59 @@ nav ul li {
   font-size: 1.3rem;
   font-weight: bold;
 }
+
+.timerIcon {
+  font-size: 1.3rem;
+  margin-top: 0.1rem;
+}
+
 /* Game Over */
 
 .gameOverContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 5rem 1fr;
+}
+
+@media screen and (max-width: 768px) {
+  .lobby {
+    /* width: 100vw; */
+    grid-template-columns: 1fr;
+  }
+  .chakra-form-control {
+    margin-bottom: 60px;
+  }
+
+  .chakra-stack {
+    font-size: 1.5rem;
+  }
+
+  .gameOverContainer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .mainContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .css-1wrwtqx {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .chat-window {
+    margin-top: 4rem;
+  }
+
+  .App {
+    margin-top: 2rem;
+  }
+
+  .gameInfoContainer {
+    width: 100%;
+  }
 }

@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import mockio, { serverSocket, cleanUp } from "socket.io-client";
 import React from "react";
 import Chat from "./index";
@@ -53,17 +50,17 @@ describe("my awesome project", () => {
   });
 });
 
-test("App should get messages", () => {
-  // first render the app
-  const utils = render(
-    <SocketProvider>
-      <Chat />
-    </SocketProvider>
-  );
-  // then send a message
-  clientSocket.emit("message", "Hey Wizy!");
-  // the message must appear in the message-section
-  const messageSection = utils.getByTestId("message-section");
-  // check withing messageSection to find the received message
-  const message = within(messageSection).getByText("Hey Wizy!");
-});
+// test("App should get messages", () => {
+//   // first render the app
+//   const utils = render(
+//     <SocketProvider>
+//       <Chat />
+//     </SocketProvider>
+//   );
+//   // then send a message
+//   clientSocket.emit("message", "Hey Wizy!");
+//   // the message must appear in the message-section
+//   const messageSection = utils.getByTestId("message-section");
+//   // check withing messageSection to find the received message
+//   const message = within(messageSection).getByText("Hey Wizy!");
+// });

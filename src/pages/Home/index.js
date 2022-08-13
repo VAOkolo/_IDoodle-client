@@ -20,22 +20,41 @@ const Home = () => {
     setPlayer,
     host,
     setHost,
+    wordToGuessArray,
+    setWordToGuessArray,
+    correctPlayer,
+    setCorrectPlayer,
+    isActivePlayer,
+    setIsActivePlayer,
+    gameTime,
+    setGameTime,
+    gameRounds,
+    setGameRounds,
+    currentRound,
+    setCurrentRound,
+    refuseConnection,
+    setRefuseConnection,
   ] = useContext(SocketContext);
 
   const navigate = useNavigate();
 
+  socket.on("accept_connection", () => {});
+
   socket.on("refuse_connection", () => {
+    socket.emit("remove_from_room", socket.id, room);
     navigate("/", { replace: true });
   });
 
-  socket.on("accept_connection", () => {});
+  socket.on("refuse_incomming_connections", () => {
+    setRefuseConnection(true);
+  });
 
   const handleRoomSelect = (e) => {
-    console.log(player.host);
-    if (player.username && room) {
-      console.log("in here3");
-      setAvailablePlayers((list) => [...list, player.username]);
-      socket.emit("join_room", player, room);
+    if (refuseConnection == false) {
+      if (player.username && room) {
+        setAvailablePlayers((list) => [...list, player.username]);
+        socket.emit("join_room", player, room);
+      }
     }
   };
 
@@ -52,7 +71,6 @@ const Home = () => {
       transition="0.5s linear"
       initial={{ opacity: 0.55, x: 390 }}
       animate={{ opacity: 2, x: 0 }}
-      // transition={{ type: "tween", delay: 5.5 }}
     >
       <Box
         className="joinGameContainer"
@@ -86,6 +104,7 @@ const Home = () => {
             mt="2"
             bg="white"
             fontSize="1.5em"
+            fontWeight="bold"
           />
           <Input
             type="text"
@@ -106,6 +125,7 @@ const Home = () => {
             focusBorderColor="#FFC75F"
             bg="white"
             fontSize="1.5em"
+            fontWeight="bold"
           />
         </Box>
         <NavLink to="/lobby">

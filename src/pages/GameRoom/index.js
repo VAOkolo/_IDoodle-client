@@ -38,11 +38,16 @@ const GameRoom = () => {
     setGameRounds,
     currentRound,
     setCurrentRound,
+    refuseConnection,
+    setRefuseConnection,
   ] = useContext(SocketContext);
 
   //Make First Person In Room Active Player
   useEffect(() => {
     setActivePlayer(availablePlayers[0].id);
+    socket.on("refuse_incomming_connections", () => {
+      setRefuseConnection(true);
+    });
   }, []);
 
   let testArray = [
@@ -69,34 +74,42 @@ const GameRoom = () => {
         px={"5%"}
         spacing="2"
       >
-        <Box
+        <HStack
           gap={2}
           display="flex"
-          w={{ lg: "85%", xl: "92%", "2xl": "90%" }}
+          // w={{ lg: "85%", xl: "92%" }}
+          w="74%"
           bg="white"
           rounded="xl"
+          className="gameInfoContainer"
         >
           <Flex
-            w={{ lg: "5rem", xl: "19rem" }}
-            justifyContent="center"
+            // w={{ lg: "5rem", xl: "19rem" }}
+            // justifyContent="center"
+            // alignItems="center"
+            // rounded="xl"
+            // overflow="hidden"
+            flexDirection="row"
+            w="30%"
+            alignSelf="stretch"
             alignItems="center"
-            rounded="xl"
-            overflow="hidden"
-            // spacing="7"
           >
-            <Text as="h3" fontSize="2xl" fontWeight="bold">
+            <Text as="h3" fontSize="2xl" fontWeight="bold" w="60%">
               PLAYERS
             </Text>
           </Flex>
-          <Flex w="40%" ml="4%" fontWeight="bold">
+          <Flex w="0%">
+            <span className="timerIcon">⌛</span>
             <Countdown startingMinutes={0} startingSeconds={0} />
+          </Flex>
+          <Flex w="60%" ml="4%" fontWeight="bold">
             <Divider orientation="vertical" />
             <Word />
             <p className="roundInfo">{`Round ${currentRound} OF ${
               gameRounds * availablePlayers.length
             }`}</p>
           </Flex>
-        </Box>
+        </HStack>
         <HStack
           bg="white"
           border="0.5px solid black"
@@ -104,6 +117,7 @@ const GameRoom = () => {
           h="23.5rem"
           justifySelf="stretch"
           wrap="wrap"
+          className="mainContainer"
         >
           <Flex
             flexDirection="column"

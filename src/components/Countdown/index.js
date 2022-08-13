@@ -104,10 +104,7 @@ export default function Countdown(props) {
 
   return (
     <Flex direction="column" fontSize="2xl" fontWeight="bold">
-      <div className="timerContainer">
-        <p>⌛</p>
-        {secs}
-      </div>
+      <div className="timerContainer">{secs}</div>
       {!(mins && secs) ? (
         ""
       ) : (
