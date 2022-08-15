@@ -9,16 +9,16 @@ IDoodle is a fun drawing game you can play with your friends. Simply join a room
 # Features
 
 
-![addhabit](./images/addhabit.PNG)
+![homepage](./images/homepage.PNG)
 
 
-![trackhabit](./images/trackhabit.PNG)
+![settings](./images/settings.PNG)
 
 
-![completedhabit](./images/completedhabit.PNG) 
+![loading](./images/loading.PNG) 
 
 
-![profilehabit](./images/profilehabit.PNG) 
+![game](./images/game.PNG) 
 
 
 # Implementation
