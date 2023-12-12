@@ -16,7 +16,7 @@ export function postUsers(data) {
 }
 
 async function postUser(data) {
-  let url = "https://hptq-backend.herokuapp.com/users";
+  let url = "https://idoodle.onrender.com/users";
   // let url = "https://localhost:4000/users"
 
   const options = {

@@ -17,7 +17,7 @@ export default function LeaderBoardTable() {
   const [userScores, setUserScores] = useState();
 
   const fetchScores = async () => {
-    const response = await fetch("https://hptq-backend.herokuapp.com/users");
+    const response = await fetch("https://idoodle.onrender.com/users");
     const userData = await response.json();
     const sortedUsers = sortUsers(userData);
     setUserScores(sortedUsers);
@@ -28,9 +28,7 @@ export default function LeaderBoardTable() {
   }, []);
 
   return (
-    <Container
-      minW="60vw"
-    >
+    <Container minW="60vw">
       <TableContainer
         as={motion.div}
         boxShadow="
